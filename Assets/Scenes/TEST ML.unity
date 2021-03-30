@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2082, g: 2082, b: 2082, a: 1}
+  m_IndirectSpecularColor: {r: 4868.704, g: 3089.2754, b: 2262.289, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -591,6 +591,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1938cd5cf7941f548b756cdb94a425fb, type: 3}
+--- !u!1 &336860156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a966d321492c180449e6fba4f9f68491, type: 3}
+  m_PrefabInstance: {fileID: 167027263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &336860160
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336860156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7629811779324647873, guid: a966d321492c180449e6fba4f9f68491, type: 3}
 --- !u!1001 &340189810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1326,6 +1345,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1938cd5cf7941f548b756cdb94a425fb, type: 3}
+--- !u!1 &513362024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4700551255719871336, guid: 99ba2523fe4b68743aea83e733781339, type: 3}
+  m_PrefabInstance: {fileID: 188718375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &513362028
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513362024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6890808213672705114, guid: 99ba2523fe4b68743aea83e733781339, type: 3}
 --- !u!1 &523285576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1754666104088808192, guid: ce83e13aa487e904392d2a387428f3e3, type: 3}
@@ -5091,7 +5129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850446612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -117, y: -17.6, z: -0}
+  m_LocalPosition: {x: -117, y: -17.6, z: -8}
   m_LocalScale: {x: 500, y: 30, z: 300}
   m_Children: []
   m_Father: {fileID: 0}
