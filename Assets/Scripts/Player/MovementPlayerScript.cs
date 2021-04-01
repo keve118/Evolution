@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovementPlayerScript : MonoBehaviour
 {
-    public float moveSpeed;
+    public float walkSpeed, runSpeed;
     public float jumpHeight;
     public float gravity = -9.18f;
 
@@ -12,11 +12,13 @@ public class MovementPlayerScript : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private float currentSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        currentSpeed = walkSpeed;
     }
 
     // Update is called once per frame
@@ -25,18 +27,28 @@ public class MovementPlayerScript : MonoBehaviour
         isGrounded = controller.isGrounded;
         if (isGrounded && playerVelocity.y < 0)
         {
-            playerVelocity.y = gravity;
+            playerVelocity.y = -2f;
         }
 
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveDirection = transform.right * x + transform.forward * z;
+        Vector3 moveDirection = transform.right * (x * 0.75f) + transform.forward * z;
 
-        controller.Move(moveDirection * Time.deltaTime * moveSpeed);
+        controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
-        Jump();
+        if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            currentSpeed = runSpeed;
+        }
+        else if (isGrounded)
+        {
+            currentSpeed = walkSpeed;
+        }
+
+        if(isGrounded)
+            Jump();
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -44,7 +56,7 @@ public class MovementPlayerScript : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump"))
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
