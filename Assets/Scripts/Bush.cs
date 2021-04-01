@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bush : MonoBehaviour
 {
     GameObject thisBush;
-    public int bushHealth = 2;
+    public int bushHealth = 5;
     private bool isFallen = false;
 
     private void Start()
@@ -27,7 +27,7 @@ public class Bush : MonoBehaviour
 
         IEnumerator destroyBush()
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(5);
             Destroy(thisBush);
         }
 
