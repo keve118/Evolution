@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!33 &26041138
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954392039276560527}
+  m_Mesh: {fileID: 4300006, guid: c52a1ad28de5ec447a225e11be0fe132, type: 3}
+--- !u!136 &1993158366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157537265250861437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 9.7880335
+  m_Direction: 1
+  m_Center: {x: -0.3, y: 4, z: 0.1}
+--- !u!114 &1993158365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157537265250861437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8374413763ecb0049b16360379f1fd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodHealth: 20
+  mass: 60
+  force: 10
+  rest: {fileID: 1819780415515065089, guid: 62936143bdf4f104b9b8c4267bdd7331, type: 3}
+  timeFallen: 4.5
+--- !u!1001 &8107901890830237150
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.54366
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25062275
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.908739
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 121712793109757091, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_Name
+      value: Tree1Broken
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032823420476312315, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+--- !u!1 &8954392039276560527 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+  m_PrefabInstance: {fileID: 8107901890830237150}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8157537265250861437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 121712793109757091, guid: ad65cfe838e369e4eb7f6ad5e2e8db32, type: 3}
+  m_PrefabInstance: {fileID: 8107901890830237150}
+  m_PrefabAsset: {fileID: 0}
