@@ -14,6 +14,7 @@ public class MovementPlayerScript : MonoBehaviour
     private float currentSpeed;
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private float currentSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +40,22 @@ public class MovementPlayerScript : MonoBehaviour
 
         controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
+<<<<<<< Updated upstream:Assets/Scripts/MovementPlayerScript.cs
         if(isGrounded)
+=======
+        if (isGrounded)
+>>>>>>> Stashed changes:Assets/Scripts/Player/MovementPlayerScript.cs
             Jump();
 
         if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             currentSpeed = runSpeed;
         }
+<<<<<<< Updated upstream:Assets/Scripts/MovementPlayerScript.cs
         else
+=======
+        else if (isGrounded)
+>>>>>>> Stashed changes:Assets/Scripts/Player/MovementPlayerScript.cs
         {
             currentSpeed = moveSpeed;
         }
