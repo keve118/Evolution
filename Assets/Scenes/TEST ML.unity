@@ -1112,6 +1112,14 @@ PrefabInstance:
       value: -18.36
       objectReference: {fileID: 0}
     - target: {fileID: 3066076104699215524, guid: 7fb4b1774fc765e459879e3a6c08e283, type: 3}
+      propertyPath: runSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066076104699215524, guid: 7fb4b1774fc765e459879e3a6c08e283, type: 3}
+      propertyPath: walkSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066076104699215524, guid: 7fb4b1774fc765e459879e3a6c08e283, type: 3}
       propertyPath: jumpHeight
       value: 3
       objectReference: {fileID: 0}
