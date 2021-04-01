@@ -8,13 +8,10 @@ public class HarvestResource : MonoBehaviour
     public static int woodUnits = 0;
     public static int foodUnits = 0;
 
-
-    // Start is called before the first frame update
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
 
