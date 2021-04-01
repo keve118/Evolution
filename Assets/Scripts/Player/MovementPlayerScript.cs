@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementPlayerScript : MonoBehaviour
 {
     public float moveSpeed;
-    public float jumpForce;
+    public float jumpHeight;
     public float gravity = -9.18f;
 
     [SerializeField] bool isGrounded;
@@ -46,7 +46,7 @@ public class MovementPlayerScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpForce * -3.0f * gravity);
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
     }
 }
