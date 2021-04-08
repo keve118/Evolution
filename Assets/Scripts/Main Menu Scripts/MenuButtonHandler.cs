@@ -1,23 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class MenuButtonHandler : MonoBehaviour
 {
-    private int indexCurrent = 0;
+    public bool IsMouseOverWord { get; set; }
+
+    public int index;
+
     private int indexMax;
-    private string vertical = "Vertical";
+    private const string vertical = "Vertical";
     
-    [SerializeField] private int howManyButtonsInScene;
+    [SerializeField] public Text[] textButtons;
     [SerializeField] private bool keyDown;
+    [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
+    [SerializeField] public AudioSource audioSource;
 
     void Start()
     {
-        indexMax = howManyButtonsInScene - 1;
+        indexMax = textButtons.Length - 1;
+        audioSource = GetComponent<AudioSource>();
+
+        for (int i = 0; i < textButtons.Length; i++)
+        {
+            textButtons[i].GetComponent<MenuButton>().slotInArray = i;
+            textButtons[i].GetComponent<MenuButton>().MainMenuButtonHandler = this;
+        }
     }
 
     void Update()
     {
+        if (IsMouseOverWord)
+        {
+            return;
+        }
+
         if (Input.GetAxis(vertical) != 0)
         {
             if (!keyDown)
@@ -31,31 +51,36 @@ public class MenuButtonHandler : MonoBehaviour
                     HandleDownwardIncrement();
 
                 }
+                keyDown = true;
             }
+        }
+        else
+        {
+            keyDown = false;
         }
     }
 
     private void HandleDownwardIncrement()
     {
-        if (indexCurrent > 0)
+        if (index > 0)
         {
-            indexCurrent--;
+            index--;
         }
         else
         {
-            indexCurrent = indexMax;
+            index = indexMax;
         }
     }
 
     private void HandleUpwardIncrement()
     {
-        if (indexCurrent < indexMax)
+        if (index < indexMax)
         {
-            indexCurrent++;
+            index++;
         }
         else
         {
-            indexCurrent = 0;
+            index = 0;
         }
     }
-}
+ }
