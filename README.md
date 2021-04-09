@@ -8,4 +8,5 @@ Ur projektplan "Evolution handlar om att ta sig från stenåldern till andra tid
 För att köra:
 
 - Unity 2020.3.1f1 Ska vara installerat. 
+- High Definition Render Pipeline skall användas för projektet.
 - Tillgång till GitHub-filer 
