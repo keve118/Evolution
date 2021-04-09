@@ -15,13 +15,27 @@ public class DestroyResource : MonoBehaviour
     {
         if (resourceHP < 1)
         {
+         
+
+            if(gameObject.tag=="Wood")           
+                PlayerProperties.amountWood += 1;
+
+            if (gameObject.tag == "Stone")
+                PlayerProperties.amountStone += 1;
+
+
+            if (gameObject.tag == "Food")
+                PlayerProperties.amountFood += 1;
+
             Destroy(gameObject);
+            Debug.Log("Wood:" + PlayerProperties.amountWood + "Stone:" + PlayerProperties.amountStone + "Food:" + PlayerProperties.amountFood);
+
         }
     }
 
     void OnTriggerStay(Collider other) //Click??
     {
-        resourceHP -= 1; 
-
+        if (other.tag == "Player") 
+            resourceHP -= 1; 
     }
 }

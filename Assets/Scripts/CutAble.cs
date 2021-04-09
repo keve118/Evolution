@@ -26,7 +26,6 @@ public class CutAble : MonoBehaviour
             rb.useGravity = true;
             rb.mass = mass;
             rb.AddForce(Vector3.forward*force, ForceMode.Impulse);
-            Instantiate(rest, transform.position, transform.rotation);
             StartCoroutine(destroyBush());
 
             isFallen = true;
@@ -37,6 +36,7 @@ public class CutAble : MonoBehaviour
            
             yield return new WaitForSeconds(timeFallen);          
             Destroy(thisWood);
+            Instantiate(rest, transform.position + new Vector3(0,1,0), transform.rotation);
         }
 
     }
