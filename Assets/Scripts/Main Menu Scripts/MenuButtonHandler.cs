@@ -9,9 +9,20 @@ public class MenuButtonHandler : MonoBehaviour
 {
     public bool IsMouseOverWord { get; set; }
 
-    public int index;
+    private bool isAnimationStarted;
+
+    public bool IsAnimationStarted
+    {
+        get { return isAnimationStarted; }
+        
+        set { if (!isAnimationStarted) isAnimationStarted = value; }
+    }
+
+
+    [HideInInspector] public int index;
 
     private int indexMax;
+    
     private const string vertical = "Vertical";
     
     [SerializeField] public Text[] textButtons;
@@ -40,6 +51,8 @@ public class MenuButtonHandler : MonoBehaviour
 
         if (Input.GetAxis(vertical) != 0)
         {
+ 
+
             if (!keyDown)
             {
                 if (Input.GetAxis(vertical) < 0)

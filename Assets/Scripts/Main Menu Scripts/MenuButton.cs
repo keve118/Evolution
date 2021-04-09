@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,8 +11,12 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public MenuButtonHandler MainMenuButtonHandler { get; set; }
 
+    private bool isFirstUpdate = true;
+    private bool isInitialMouseOverCheck = true;
+
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
+
     [HideInInspector] public int slotInArray;
 
     private Vector3 previousMousePosition;
@@ -49,6 +54,24 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Update()
     {
+        if (isFirstUpdate)
+        {
+            bool state = (slotInArray == 0) ? true : false;
+            animator.SetBool("onStart", state);
+            isFirstUpdate = false;
+        }
+
+        if (animator.GetBool("onStart"))
+        {
+            ReadInputDevicePressAction();
+            
+            //if (isMouseOver)
+            //{
+            //    ReadMousePressAction();
+            //}
+            
+        }
+       
         if (previousMousePosition != Input.mousePosition)
         {
             isMouseInputDevice = true;
@@ -59,19 +82,14 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             if (isMouseOver)
             {
-                animator.SetBool("selected", true);
-                
-                if (isPressedByMouse)
+                if (isInitialMouseOverCheck)
                 {
-                    animator.SetBool("pressed", true);
-                    Debug.Log("Mouse Pressed");
+                    SetAllOtherInstancesToDeselected();
                 }
-                else if (animator.GetBool("pressed"))
-                {
-                    animator.SetBool("pressed", false);
 
-                    animatorAudioHelper.disableOnce = true;
-                }
+                animator.SetBool("selected", true);
+
+                ReadMousePressAction();
             }
             else
             {
@@ -88,6 +106,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (Input.GetAxis("Vertical") != 0 && previousMousePosition == Input.mousePosition)
         {
             isMouseInputDevice = false;
+            animator.SetBool("onStart", true);
         } 
 
         if (!isMouseInputDevice)
@@ -98,27 +117,60 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         previousMousePosition = Input.mousePosition;
     }
 
+    private void SetAllOtherInstancesToDeselected()
+    {
+        foreach (var item in MainMenuButtonHandler.textButtons)
+        {
+            if (item != this)
+            {
+                item.gameObject.GetComponent<Animator>().SetBool("onStart", false);
+            }
+        }
+
+        isInitialMouseOverCheck = false;
+    }
+
     private void KeyBoardObjectInteraction()
     {
         if (MainMenuButtonHandler.index == slotInArray)
         {
             animator.SetBool("selected", true);
 
-            if (Input.GetAxis("Submit") == 1)
-            {
-                animator.SetBool("pressed", true);
-                Debug.Log("Keyboard Pressed");
-            }
-            else if (animator.GetBool("pressed"))
-            {
-                animator.SetBool("pressed", false);
-
-                animatorAudioHelper.disableOnce = true;
-            }
+            ReadInputDevicePressAction();
         }
         else
         {
             animator.SetBool("selected", false);
+        }
+    }
+
+    private void ReadInputDevicePressAction()
+    {
+        if (Input.GetAxis("Submit") == 1)
+        {
+            animator.SetBool("pressed", true);
+            Debug.Log("Keyboard Pressed");
+        }
+        else if (animator.GetBool("pressed"))
+        {
+            animator.SetBool("pressed", false);
+
+            animatorAudioHelper.disableOnce = true;
+        }
+    }
+
+    private void ReadMousePressAction()
+    {
+        if (isPressedByMouse)
+        {
+            animator.SetBool("pressed", true);
+            Debug.Log("Mouse Pressed");
+        }
+        else if (animator.GetBool("pressed"))
+        {
+            animator.SetBool("pressed", false);
+
+            animatorAudioHelper.disableOnce = true;
         }
     }
 }

@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5111425655069390165}
   animatorAudioHelper: {fileID: 0}
+  slotInArray: 0
 --- !u!114 &4402515796275615539
 MonoBehaviour:
   m_ObjectHideFlags: 0
