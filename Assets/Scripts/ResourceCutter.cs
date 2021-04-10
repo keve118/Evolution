@@ -5,84 +5,88 @@ using UnityEngine;
 public class ResourceCutter : MonoBehaviour
 {
     public GameObject woodCutter;
-    private bool woodCutterAvailable;
+    public static bool woodCutterAvailable = false;
     private bool woodCutterEquiped;
 
     public GameObject stoneCutter;
-    private bool stoneCutterAvailable;
+    private bool stoneCutterAvailable = true;
     private bool stoneCutterEquiped;
 
     public GameObject huntingTool;
-    private bool huntingToolAvailable;
+    private bool huntingToolAvailable = true;
     private bool huntingToolEquiped;
 
     public GameObject fishingRod;
-    private bool fishingRodAvailable;
+    private bool fishingRodAvailable = true;
     private bool fishingRodEquiped;
+
+
+    private bool anyToolEquiped=false;
 
     private void Update()
     {
-        if (woodCutterAvailable) 
+
+        if (woodCutterAvailable)
         {
-            if (!woodCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha1))
+            if (!woodCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha1) && !anyToolEquiped)
             {
                 woodCutterEquiped = true;
+                anyToolEquiped = true;
                 woodCutter.SetActive(true);
 
             }
             else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 woodCutterEquiped = false;
+                anyToolEquiped = false;
                 woodCutter.SetActive(false);
 
-            }
+            }           
         }
+        //if (stoneCutterAvailable)
+        //{
+        //    if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2) && !anyToolEquiped )
+        //    {
+        //        stoneCutterEquiped = true;
+        //        anyToolEquiped = true;
+        //        stoneCutter.SetActive(true);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    {
+        //        stoneCutterEquiped = false;
+        //        stoneCutter.SetActive(false);
+        //    }
+        //}
+        //if (huntingToolAvailable)
+        //{
+        //    if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3) && !anyToolEquiped)
+        //    {
+        //        huntingToolEquiped = true;
+        //        huntingTool.SetActive(true);
 
-        if (stoneCutterAvailable)
-        {
-            if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                stoneCutterEquiped = true;
-                stoneCutter.SetActive(true);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                stoneCutterEquiped = false;
-                stoneCutter.SetActive(false);
-            }
-        }
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    {
+        //        huntingToolEquiped = false;
+        //        huntingTool.SetActive(false);
 
-        if (huntingToolAvailable)
-        {
-            if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                huntingToolEquiped = true;
-                huntingTool.SetActive(true);
+        //    }
+        //}
+        //if (fishingRodAvailable)
+        //{
+        //    if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha4) && !anyToolEquiped)
+        //    {
+        //        fishingRodEquiped = true;
+        //        fishingRod.SetActive(true);
 
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                huntingToolEquiped = false;
-                huntingTool.SetActive(false);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //    {
+        //        fishingRodEquiped = false;
+        //        fishingRod.SetActive(false);
 
-            }
-        }
-
-        if (fishingRodAvailable)
-        {
-            if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                fishingRodEquiped = true;
-                fishingRod.SetActive(true);
-
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                fishingRodEquiped = false;
-                fishingRod.SetActive(false);
-
-            }
-        }
+        //    }
+        //}
 
 
         //Raycast
@@ -96,16 +100,21 @@ public class ResourceCutter : MonoBehaviour
                 CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
                 cutScript.resourceHealth--;
             }
-
-
-
-
-
-
-
-
-
-
+            if (hit.collider.tag == "Stone" && Input.GetMouseButton(0) && stoneCutterEquiped == true)
+            {
+                CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
+                cutScript.resourceHealth--;
+            }
+            if (hit.collider.tag == "Food" && Input.GetMouseButton(0) && huntingToolEquiped == true)
+            {
+                CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
+                cutScript.resourceHealth--;
+            }
+            if (hit.collider.tag == "Food" && Input.GetMouseButton(0) && fishingRodEquiped == true)
+            {
+                CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
+                cutScript.resourceHealth--;
+            }
         }
     }
 }
