@@ -14,7 +14,14 @@ public class CutAble : MonoBehaviour
 
     private void Start()
     {
+<<<<<<< Updated upstream
         thisWood = transform.parent.gameObject;
+=======
+        if(gameObject.tag=="Stone")
+         thisResource = gameObject;
+        if(gameObject.tag=="Wood")
+            thisResource = transform.parent.gameObject;
+>>>>>>> Stashed changes
     }
 
     private void Update()
