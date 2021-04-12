@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
+/// <summary>
+/// Class that defines the custom text menu button and handles input response
+/// </summary>
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
 
@@ -54,6 +52,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Update()
     {
+        //Decides what menu item is highlighted on start
         if (isFirstUpdate)
         {
             bool state = (slotInArray == 0) ? true : false;
@@ -61,23 +60,20 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             isFirstUpdate = false;
         }
 
+        //The highlighted item on start klick check
         if (animator.GetBool("onStart"))
         {
             ReadInputDevicePressAction();
-            
-            //if (isMouseOver)
-            //{
-            //    ReadMousePressAction();
-            //}
-            
         }
-       
+
+        
         if (previousMousePosition != Input.mousePosition)
         {
             isMouseInputDevice = true;
 
         }
 
+        //Button select with mouse 
         if (isMouseInputDevice)
         {
             if (isMouseOver)
@@ -102,21 +98,23 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             }
         }
 
-
+        //Breaks mouse control and gives control to input device
         if (Input.GetAxis("Vertical") != 0 && previousMousePosition == Input.mousePosition)
         {
             isMouseInputDevice = false;
             animator.SetBool("onStart", true);
-        } 
+        }
 
         if (!isMouseInputDevice)
         {
-            KeyBoardObjectInteraction();
+            InputDeviceObjectInteraction();
         }
 
         previousMousePosition = Input.mousePosition;
     }
 
+
+    //Highlight index 0 of menubutton on start
     private void SetAllOtherInstancesToDeselected()
     {
         foreach (var item in MainMenuButtonHandler.textButtons)
@@ -130,7 +128,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         isInitialMouseOverCheck = false;
     }
 
-    private void KeyBoardObjectInteraction()
+    //Identify available menubutton for keypress - keyboard, hand controller
+    private void InputDeviceObjectInteraction()
     {
         if (MainMenuButtonHandler.index == slotInArray)
         {
@@ -174,3 +173,4 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 }
+
