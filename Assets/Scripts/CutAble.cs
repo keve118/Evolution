@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CutAble : MonoBehaviour
 {
-    GameObject thisResource;
-    public int resourceHealth = 5;
+    GameObject thisWood;
+    public int woodHealth = 5;
     public int mass = 10;
     public int force = 9;
     public GameObject rest=null;
@@ -14,14 +14,21 @@ public class CutAble : MonoBehaviour
 
     private void Start()
     {
-        thisResource = transform.parent.gameObject;
+<<<<<<< Updated upstream
+        thisWood = transform.parent.gameObject;
+=======
+        if(gameObject.tag=="Stone")
+         thisResource = gameObject;
+        if(gameObject.tag=="Wood")
+            thisResource = transform.parent.gameObject;
+>>>>>>> Stashed changes
     }
 
     private void Update()
     {
-        if (resourceHealth <= 0 && isFallen == false)
+        if (woodHealth <= 0 && isFallen == false)
         {
-            Rigidbody rb = thisResource.AddComponent<Rigidbody>();
+            Rigidbody rb = thisWood.AddComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
             rb.mass = mass;
@@ -35,7 +42,7 @@ public class CutAble : MonoBehaviour
         {
            
             yield return new WaitForSeconds(timeFallen);          
-            Destroy(thisResource);
+            Destroy(thisWood);
             Instantiate(rest, transform.position + new Vector3(0,1,0), transform.rotation);
         }
 
