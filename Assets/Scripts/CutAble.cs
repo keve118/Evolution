@@ -7,17 +7,14 @@ public class CutAble : MonoBehaviour
     GameObject thisResource;
     public int resourceHealth = 5;
     public int mass = 10;
-    public int force = 9;
+    public int force = 0;
     public GameObject rest=null;
     public float timeFallen = 5f;
     private bool isFallen = false;
 
     private void Start()
     {
-        if(gameObject.tag=="Stone")
-            thisResource = gameObject;
-        if(gameObject.tag=="Wood")
-            thisResource = transform.parent.gameObject;
+            thisResource = /*transform.parent.*/gameObject;
     }
 
     private void Update()
