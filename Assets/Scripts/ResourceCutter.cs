@@ -9,15 +9,15 @@ public class ResourceCutter : MonoBehaviour
     private bool woodCutterEquiped;
 
     public GameObject stoneCutter;
-    public static bool stoneCutterAvailable = false;
+    public static bool stoneCutterAvailable = true;
     private bool stoneCutterEquiped;
 
     public GameObject huntingTool;
-    private bool huntingToolAvailable = true;
+    public static bool huntingToolAvailable = true;
     private bool huntingToolEquiped;
 
     public GameObject fishingRod;
-    private bool fishingRodAvailable = true;
+    public static bool fishingRodAvailable = true;
     private bool fishingRodEquiped;
 
 
@@ -43,56 +43,54 @@ public class ResourceCutter : MonoBehaviour
 
             }           
         }
-        if (stoneCutterAvailable)
-        {
-            if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2) && !anyToolEquiped)
-            {
-                stoneCutterEquiped = true;
-                anyToolEquiped = true;
-                stoneCutter.SetActive(true);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                stoneCutterEquiped = false;
-                anyToolEquiped = false;
-                stoneCutter.SetActive(false);
-            }
-        }
-            
-            //if (huntingToolAvailable)
-            //{
-            //    if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3) && !anyToolEquiped)
-            //    {
-            //        huntingToolEquiped = true;
-            //        huntingTool.SetActive(true);
+        //if (stoneCutterAvailable)
+        //{
+        //    if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2) && !anyToolEquiped )
+        //    {
+        //        stoneCutterEquiped = true;
+        //        anyToolEquiped = true;
+        //        stoneCutter.SetActive(true);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    {
+        //        stoneCutterEquiped = false;
+        //        stoneCutter.SetActive(false);
+        //    }
+        //}
+        //if (huntingToolAvailable)
+        //{
+        //    if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3) && !anyToolEquiped)
+        //    {
+        //        huntingToolEquiped = true;
+        //        huntingTool.SetActive(true);
 
-            //    }
-            //    else if (Input.GetKeyDown(KeyCode.Alpha3))
-            //    {
-            //        huntingToolEquiped = false;
-            //        huntingTool.SetActive(false);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    {
+        //        huntingToolEquiped = false;
+        //        huntingTool.SetActive(false);
 
-            //    }
-            //}
-            //if (fishingRodAvailable)
-            //{
-            //    if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha4) && !anyToolEquiped)
-            //    {
-            //        fishingRodEquiped = true;
-            //        fishingRod.SetActive(true);
+        //    }
+        //}
+        //if (fishingRodAvailable)
+        //{
+        //    if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha4) && !anyToolEquiped)
+        //    {
+        //        fishingRodEquiped = true;
+        //        fishingRod.SetActive(true);
 
-            //    }
-            //    else if (Input.GetKeyDown(KeyCode.Alpha4))
-            //    {
-            //        fishingRodEquiped = false;
-            //        fishingRod.SetActive(false);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //    {
+        //        fishingRodEquiped = false;
+        //        fishingRod.SetActive(false);
 
-            //    }
-            //}
+        //    }
+        //}
 
 
-            //Raycast
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        //Raycast
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, fwd, out hit, 10))

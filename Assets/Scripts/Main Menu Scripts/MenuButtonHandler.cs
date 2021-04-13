@@ -1,9 +1,9 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-///  Class Responsible for handeling the menu buttons in the custom textbutton menu
-/// </summary>
 
 public class MenuButtonHandler : MonoBehaviour
 {
@@ -14,16 +14,17 @@ public class MenuButtonHandler : MonoBehaviour
     public bool IsAnimationStarted
     {
         get { return isAnimationStarted; }
-
+        
         set { if (!isAnimationStarted) isAnimationStarted = value; }
     }
+
 
     [HideInInspector] public int index;
 
     private int indexMax;
-
+    
     private const string vertical = "Vertical";
-
+    
     [SerializeField] public Text[] textButtons;
     [SerializeField] private bool keyDown;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
@@ -34,7 +35,6 @@ public class MenuButtonHandler : MonoBehaviour
         indexMax = textButtons.Length - 1;
         audioSource = GetComponent<AudioSource>();
 
-        //Links textbuttons and make them aware of their array index
         for (int i = 0; i < textButtons.Length; i++)
         {
             textButtons[i].GetComponent<MenuButton>().slotInArray = i;
@@ -44,7 +44,6 @@ public class MenuButtonHandler : MonoBehaviour
 
     void Update()
     {
-        //Skips loop if the mouse is the input device
         if (IsMouseOverWord)
         {
             return;
@@ -52,7 +51,7 @@ public class MenuButtonHandler : MonoBehaviour
 
         if (Input.GetAxis(vertical) != 0)
         {
-
+ 
 
             if (!keyDown)
             {
@@ -74,7 +73,6 @@ public class MenuButtonHandler : MonoBehaviour
         }
     }
 
-    //Counts down and makes menu loop on itself when it reaches below min index
     private void HandleDownwardIncrement()
     {
         if (index > 0)
@@ -87,7 +85,6 @@ public class MenuButtonHandler : MonoBehaviour
         }
     }
 
-    //Counts up and makes menu loop on itself when it reaches above max index
     private void HandleUpwardIncrement()
     {
         if (index < indexMax)
@@ -99,4 +96,4 @@ public class MenuButtonHandler : MonoBehaviour
             index = 0;
         }
     }
-}
+ }

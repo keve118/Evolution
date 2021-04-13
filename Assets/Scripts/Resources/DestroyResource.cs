@@ -14,12 +14,15 @@ public class DestroyResource : MonoBehaviour
     void Update()
     {
         if (resourceHP < 1)
-        {        
+        {
+         
+
             if(gameObject.tag=="Wood")           
                 PlayerProperties.amountWood += 1;
 
             if (gameObject.tag == "Stone")
                 PlayerProperties.amountStone += 1;
+
 
             if (gameObject.tag == "Food")
                 PlayerProperties.amountFood += 1;
