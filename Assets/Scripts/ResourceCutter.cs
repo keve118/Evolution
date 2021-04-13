@@ -9,7 +9,7 @@ public class ResourceCutter : MonoBehaviour
     private bool woodCutterEquiped;
 
     public GameObject stoneCutter;
-    public static bool stoneCutterAvailable = true;
+    public static bool stoneCutterAvailable = false;
     private bool stoneCutterEquiped;
 
     public GameObject huntingTool;
@@ -43,20 +43,21 @@ public class ResourceCutter : MonoBehaviour
 
             }           
         }
-        //if (stoneCutterAvailable)
-        //{
-        //    if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2) && !anyToolEquiped )
-        //    {
-        //        stoneCutterEquiped = true;
-        //        anyToolEquiped = true;
-        //        stoneCutter.SetActive(true);
-        //    }
-        //    else if (Input.GetKeyDown(KeyCode.Alpha2))
-        //    {
-        //        stoneCutterEquiped = false;
-        //        stoneCutter.SetActive(false);
-        //    }
-        //}
+        if (stoneCutterAvailable)
+        {
+            if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2) && !anyToolEquiped)
+            {
+                stoneCutterEquiped = true;
+                anyToolEquiped = true;
+                stoneCutter.SetActive(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                stoneCutterEquiped = false;
+                anyToolEquiped = false;
+                stoneCutter.SetActive(false);
+            }
+        }
         //if (huntingToolAvailable)
         //{
         //    if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3) && !anyToolEquiped)
