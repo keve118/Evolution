@@ -15,7 +15,7 @@ public class CutAble : MonoBehaviour
     private void Start()
     {
         if(gameObject.tag=="Stone")
-         thisResource = gameObject;
+            thisResource = gameObject;
         if(gameObject.tag=="Wood")
             thisResource = transform.parent.gameObject;
     }
