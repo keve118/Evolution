@@ -1140,9 +1140,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3e77b8537f35b0e48bd86b8edf1fa760, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.748
+  m_audioClip: {fileID: 8300000, guid: ba6029ca248ff2247a1a9ca238be48ff, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.772
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1186,7 +1186,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1403,17 +1403,20 @@ MonoBehaviour:
   - name: Hatchet
     clip: {fileID: 8300000, guid: 2696ef4f847e05f47bef797d7bdaaa40, type: 3}
     volume: 1
-    pitch: 0.41
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: PickUpResource
+    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+    volume: 0.473
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Background
+    clip: {fileID: 8300000, guid: 3e77b8537f35b0e48bd86b8edf1fa760, type: 3}
+    volume: 0.662
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &1649255585
 Transform:
