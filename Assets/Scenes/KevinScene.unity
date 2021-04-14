@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2082, g: 2082, b: 2082, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1471,21 +1471,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Hatchet
-    clip: {fileID: 8300000, guid: 2696ef4f847e05f47bef797d7bdaaa40, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: PickUpResource
     clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
-    volume: 0.473
+    volume: 0.218
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Background
     clip: {fileID: 8300000, guid: 3e77b8537f35b0e48bd86b8edf1fa760, type: 3}
-    volume: 0.662
+    volume: 0.65
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: PickUpTool
+    clip: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+    volume: 0.313
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CutWood
+    clip: {fileID: 8300000, guid: 2696ef4f847e05f47bef797d7bdaaa40, type: 3}
+    volume: 0.781
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CutStone
+    clip: {fileID: 8300000, guid: 3c283dedc9406ef45ae7696bb3201103, type: 3}
+    volume: 0.816
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BirdsBackground
+    clip: {fileID: 0}
+    volume: 0.828
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: WildAnimalKill
+    clip: {fileID: 8300000, guid: 06b3b3e795e803f48bd1f55f77775623, type: 3}
+    volume: 0.828
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CaughtFish
+    clip: {fileID: 8300000, guid: cf50b58300e377d44ad76a5e8581c89f, type: 3}
+    volume: 0.828
     pitch: 1
     loop: 1
     source: {fileID: 0}

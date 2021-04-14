@@ -35,14 +35,20 @@ public class Harvest : MonoBehaviour
         if (ResourceCutter.woodCutterEquiped && health <= 0 && thisGameObject.tag == "Wood")
         {
             Falling();
-            FindObjectOfType<SoundManager>().Play("CutTree");
+            FindObjectOfType<SoundManager>().Play("CutWood");
         }
 
         if (ResourceCutter.fishingRodEquiped && health <= 0 && thisGameObject.tag == "Food")
+        {
             Falling();
+            FindObjectOfType<SoundManager>().Play("CaughtFish");
+        }
 
         if (ResourceCutter.huntingToolEquiped && health <= 0 && thisGameObject.tag == "Food")
+        {
             Falling();
+            FindObjectOfType<SoundManager>().Play("WildAnimalKill");
+        }
     }
 
     public void Falling()    
