@@ -1400,27 +1400,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Hatchet
-    clip: {fileID: 8300000, guid: 2696ef4f847e05f47bef797d7bdaaa40, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: PickUpResource
     clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
-    volume: 0.283
+    volume: 0.218
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Background
     clip: {fileID: 8300000, guid: 3e77b8537f35b0e48bd86b8edf1fa760, type: 3}
-    volume: 0.662
+    volume: 0.65
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: PickUpTool
     clip: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
-    volume: 0.372
+    volume: 0.313
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -1435,6 +1429,12 @@ MonoBehaviour:
     volume: 0.816
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: BirdsBackground
+    clip: {fileID: 0}
+    volume: 0.828
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &1649255585
 Transform:
