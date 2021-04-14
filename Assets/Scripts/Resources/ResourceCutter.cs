@@ -6,37 +6,20 @@ public class ResourceCutter : MonoBehaviour
 {
     public GameObject woodCutter;
     public static bool woodCutterAvailable = false;
-<<<<<<< Updated upstream:Assets/Scripts/ResourceCutter.cs
-    private bool woodCutterEquiped;
+    private bool woodCutterEquiped=false;
 
     public GameObject stoneCutter;
     public static bool stoneCutterAvailable = false;
-    private bool stoneCutterEquiped;
+    private bool stoneCutterEquiped=false;
 
     public GameObject huntingTool;
-    public static bool huntingToolAvailable = true;
-    private bool huntingToolEquiped;
+    public static bool huntingToolAvailable = false;
+    private bool huntingToolEquiped=false;
 
     public GameObject fishingRod;
-    public static bool fishingRodAvailable = true;
-    private bool fishingRodEquiped;
-
-=======
-    public static bool woodCutterEquiped=false;
-
-    public GameObject stoneCutter;
-    public static bool stoneCutterAvailable = false;
-    public static bool stoneCutterEquiped=false;
-
-    public GameObject huntingTool;
-    public static bool huntingToolAvailable = true;
-    public static bool huntingToolEquiped=false;
-
-    public GameObject fishingRod;
-    public static bool fishingRodAvailable = true;
-    public static bool fishingRodEquiped=false;
->>>>>>> Stashed changes:Assets/Scripts/Resources/ResourceCutter.cs
-
+    public static bool fishingRodAvailable = false;
+    private bool fishingRodEquiped=false;
+   
     private bool anyToolEquiped=false;
 
 
@@ -80,28 +63,6 @@ public class ResourceCutter : MonoBehaviour
     {
         if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2) && !anyToolEquiped)
         {
-<<<<<<< Updated upstream:Assets/Scripts/ResourceCutter.cs
-            if (hit.collider.tag == "Wood" && Input.GetMouseButton(0) && woodCutterEquiped == true)
-            {
-                CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
-                cutScript.resourceHealth--;
-            }
-            if (hit.collider.tag == "Stone" && Input.GetMouseButton(0) && stoneCutterEquiped == true)
-            {
-                CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
-                cutScript.resourceHealth--;
-            }
-            if (hit.collider.tag == "Food" && Input.GetMouseButton(0) && huntingToolEquiped == true)
-            {
-                CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
-                cutScript.resourceHealth--;
-            }
-            if (hit.collider.tag == "Food" && Input.GetMouseButton(0) && fishingRodEquiped == true)
-            {
-                CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
-                cutScript.resourceHealth--;
-            }
-=======
             stoneCutterEquiped = true;
             anyToolEquiped = true;
             stoneCutter.SetActive(true);
@@ -121,8 +82,6 @@ public class ResourceCutter : MonoBehaviour
         {
             huntingToolEquiped = true;
             huntingTool.SetActive(true);
-
->>>>>>> Stashed changes:Assets/Scripts/Resources/ResourceCutter.cs
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
