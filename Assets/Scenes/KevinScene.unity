@@ -1408,7 +1408,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PickUpResource
     clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
-    volume: 0.473
+    volume: 0.283
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -1417,6 +1417,24 @@ MonoBehaviour:
     volume: 0.662
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: PickUpTool
+    clip: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+    volume: 0.372
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CutWood
+    clip: {fileID: 8300000, guid: 2696ef4f847e05f47bef797d7bdaaa40, type: 3}
+    volume: 0.781
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CutStone
+    clip: {fileID: 8300000, guid: 3c283dedc9406ef45ae7696bb3201103, type: 3}
+    volume: 0.816
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
 --- !u!4 &1649255585
 Transform:
@@ -2462,7 +2480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d100ef2a769ae4e8d647114f9f7e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipedAxe: {fileID: 9220735663215843427, guid: b1617c87f3a07e74db3638bce408568b, type: 3}
 --- !u!65 &7729968961228003280
 BoxCollider:
   m_ObjectHideFlags: 0
