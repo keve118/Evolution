@@ -14,14 +14,13 @@ public class ResourceCutter : MonoBehaviour
 
     public GameObject huntingTool;
     public static bool huntingToolAvailable = false;
-    public static bool huntingToolEquiped =false;
+    public static bool huntingToolEquiped = false;
 
     public GameObject fishingRod;
     public static bool fishingRodAvailable = false;
     public static bool fishingRodEquiped =false;
    
     public static bool anyToolEquiped=false;
-
 
     private void Update()
     {
@@ -31,16 +30,17 @@ public class ResourceCutter : MonoBehaviour
 
             if (!woodCutterEquiped || !stoneCutterEquiped || !fishingRodEquiped || !huntingToolEquiped)
                 break;
-        }
-                
+        }                
         if (woodCutterAvailable)
             WoodCutter();
 
          if (stoneCutterAvailable)
             StoneCutter();
 
-       //if (huntingToolAvailable || fishingRodAvailable)
-       //     FoodCollector();
+        if (huntingToolAvailable)
+            HuntCollector();
+        if (fishingRodAvailable)
+            FishCollector();   
     }
 
     public void WoodCutter() 
@@ -76,7 +76,8 @@ public class ResourceCutter : MonoBehaviour
         }
     }
 
-    public void FoodCollector() 
+
+    public void HuntCollector() 
     {
         if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3) && !anyToolEquiped)
         {
@@ -87,9 +88,16 @@ public class ResourceCutter : MonoBehaviour
         {
             huntingToolEquiped = false;
             huntingTool.SetActive(false);
+            return;
+        }
 
-        }              
-       else if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha4) && !anyToolEquiped)
+    }
+
+
+    public void FishCollector() 
+    {
+                    
+       if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha4) && !anyToolEquiped)
        {
            fishingRodEquiped = true;
            fishingRod.SetActive(true);
@@ -99,19 +107,7 @@ public class ResourceCutter : MonoBehaviour
        {
            fishingRodEquiped = false;
            fishingRod.SetActive(false);
-
+            return;
        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

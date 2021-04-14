@@ -401,7 +401,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2824562455141743641}
   - component: {fileID: 2824562455134737397}
-  - component: {fileID: 2824562455075827723}
   m_Layer: 0
   m_Name: Deer_0
   m_TagString: Untagged
@@ -444,18 +443,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2824562455075827723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2824562455142162489}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d7d5c6cc9db7341a55514417198fcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2824562455142162491
 GameObject:
   m_ObjectHideFlags: 0

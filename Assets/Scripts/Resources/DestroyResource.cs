@@ -10,7 +10,6 @@ public class DestroyResource : MonoBehaviour
     {
 
     }
-
     void Update()
     {
         if (resourceHP < 1)

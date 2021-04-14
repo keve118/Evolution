@@ -37,32 +37,48 @@ public class Harvest : MonoBehaviour
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("CutStone");
+            return;
         }
         if (health <= 0 && thisGameObject.tag == "Wood")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("CutWood");
+            return;
         }
         if (health <= 0 && thisGameObject.tag == "Food")
         {
             Falling();
-            FindObjectOfType<SoundManager>().Play("CaughtFish");
+            //FindObjectOfType<SoundManager>().Play("CaughtFish");         
         }
         if (health <= 0 && thisGameObject.tag == "Food")
         {
-            Falling();
-            FindObjectOfType<SoundManager>().Play("WildAnimalKill");
+            //Falling();
+            //FindObjectOfType<SoundManager>().Play("WildAnimalKill");       
         }
+
+        // We have two types of food, FISH & Deer, we have to differ these
+        //Think sound for animals will be implemented in the Animator
+
     }
     public void Falling()    
     {
-        Rigidbody rb = thisGameObject.AddComponent<Rigidbody>();
-        rb.isKinematic = false;
-        rb.useGravity = true;
-        rb.mass = mass;
-        rb.AddForce(Vector3.forward * force, ForceMode.Impulse);
+        if (thisGameObject.tag == "Food") 
+        {
+            Animator an = thisGameObject.GetComponent<Animator>();
+            an.SetBool("isDead", true);
+
+        }
+        if (thisGameObject.tag != "Food")
+        {
+            Rigidbody rb = thisGameObject.AddComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.mass = mass;
+            rb.AddForce(Vector3.forward * force, ForceMode.Impulse);
+        }
         StartCoroutine(DestroyThisResource());
     }
+
     IEnumerator DestroyThisResource()
     {
         yield return new WaitForSeconds(timeFallen);
