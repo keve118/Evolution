@@ -9,8 +9,7 @@ public class Axe : MonoBehaviour
         if (other.tag == "Player") 
         {
             Destroy(gameObject);
-            ResourceCutter.woodCutterAvailable = true;
-            
+            ResourceCutter.woodCutterAvailable = true;           
         }         
     }
 }
