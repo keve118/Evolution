@@ -23,8 +23,10 @@ public class Harvest : MonoBehaviour
     {
         health -= 2;
 
-        if (ResourceCutter.stoneCutterEquiped && health <= 0 && thisGameObject.tag == "Stone")
 
+
+
+        if (ResourceCutter.stoneCutterEquiped && health <= 0 && thisGameObject.tag == "Stone")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("CutStone");

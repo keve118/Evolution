@@ -789,7 +789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2046588765185884960, guid: b35d365a42459db44af15b9933d3c707, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2046588765185884960, guid: b35d365a42459db44af15b9933d3c707, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1093,6 +1093,38 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1670027388966508954, guid: b35d365a42459db44af15b9933d3c707, type: 3}
   m_PrefabInstance: {fileID: 840854516}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1233847624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233847617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f71a1ac8571354b840e0c4cd3f1e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePassed: 1
+--- !u!95 &1233847625
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233847617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd89cf00ada222548ab2b34e6183ef6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1337775323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,22 +1263,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 324869470147291351, guid: 727eeef150e05b74a8e41548e4def3c4, type: 3}
   m_PrefabInstance: {fileID: 1015177450960172062}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1486158752
-Rigidbody:
+--- !u!114 &1486158750
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1486158746}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6aa69004b11b84bbf8b3892d45333b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 10
+  health: 0
+  mass: 300
+  force: 5
+  timeFallen: 2
+  rest: {fileID: 1542454797714841312, guid: f40dac89b68782d49aa9ffcade5b9f97, type: 3}
 --- !u!65 &1486158753
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1322,6 +1356,43 @@ Transform:
   m_Father: {fileID: 1337775324}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1590488347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1510875954064179273, guid: 7c6e6ec9bc8b6df4e8632e9c10682739, type: 3}
+  m_PrefabInstance: {fileID: 1895575076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1590488351
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590488347}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd89cf00ada222548ab2b34e6183ef6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1590488352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590488347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f71a1ac8571354b840e0c4cd3f1e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePassed: 1
 --- !u!1 &1625722994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,6 +2363,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54561691, guid: 6e9ab1ccabf6655479b67c908f67d888, type: 3}
+      propertyPath: startHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6289160771160124018, guid: 6e9ab1ccabf6655479b67c908f67d888, type: 3}
       propertyPath: m_Radius
       value: 1.4
@@ -2462,7 +2537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d100ef2a769ae4e8d647114f9f7e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipedAxe: {fileID: 9220735663215843427, guid: b1617c87f3a07e74db3638bce408568b, type: 3}
 --- !u!65 &7729968961228003280
 BoxCollider:
   m_ObjectHideFlags: 0
