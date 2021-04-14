@@ -6,19 +6,19 @@ public class ResourceCutter : MonoBehaviour
 {
     public GameObject woodCutter;
     public static bool woodCutterAvailable = false;
-    private bool woodCutterEquiped=false;
+    public static bool woodCutterEquiped =false;
 
     public GameObject stoneCutter;
     public static bool stoneCutterAvailable = false;
-    public bool stoneCutterEquiped=false;
+    public static bool stoneCutterEquiped =false;
 
     public GameObject huntingTool;
     public static bool huntingToolAvailable = false;
-    public bool huntingToolEquiped=false;
+    public static bool huntingToolEquiped =false;
 
     public GameObject fishingRod;
     public static bool fishingRodAvailable = false;
-    public bool fishingRodEquiped=false;
+    public static bool fishingRodEquiped =false;
    
     private bool anyToolEquiped=false;
 
