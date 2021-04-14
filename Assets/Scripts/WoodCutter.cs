@@ -31,9 +31,9 @@ public class WoodCutter : MonoBehaviour
         { 
             if(hit.collider.tag=="Wood" && Input.GetMouseButton(0) && isEquiped == true) 
             {
-                FindObjectOfType<SoundManager>().Play("Wood");
                 CutAble cutScript = hit.collider.gameObject.GetComponent<CutAble>();
-                cutScript.resourceHealth--;           
+                cutScript.resourceHealth--;
+                FindObjectOfType<SoundManager>().Play("Hatchet");
             }       
         }
     }

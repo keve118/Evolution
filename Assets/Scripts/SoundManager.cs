@@ -16,7 +16,13 @@ public class SoundManager : MonoBehaviour
             s.source.clip = s.clip;
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
         }
+    }
+
+    void Start()
+    {
+        Play("Background");
     }
 
     public void Play(string name)
