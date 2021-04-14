@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         Play("Background");
+        Play("BirdsBackground");
     }
 
     public void Play(string name)
