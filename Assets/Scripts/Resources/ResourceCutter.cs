@@ -10,15 +10,15 @@ public class ResourceCutter : MonoBehaviour
 
     public GameObject stoneCutter;
     public static bool stoneCutterAvailable = false;
-    private bool stoneCutterEquiped=false;
+    public bool stoneCutterEquiped=false;
 
     public GameObject huntingTool;
     public static bool huntingToolAvailable = false;
-    private bool huntingToolEquiped=false;
+    public bool huntingToolEquiped=false;
 
     public GameObject fishingRod;
     public static bool fishingRodAvailable = false;
-    private bool fishingRodEquiped=false;
+    public bool fishingRodEquiped=false;
    
     private bool anyToolEquiped=false;
 
