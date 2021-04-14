@@ -5,52 +5,55 @@ using UnityEngine;
 public class Harvest : MonoBehaviour
 {
     private GameObject thisGameObject;
-    public float startHealth=10;
-    public float health;
+    public int startHealth=10;
+    public int health;
     public int mass = 10;
     public int force = 0;
-    public float timeFallen = 5f;
-    public GameObject rest;
-    
-
+    public int timeFallen = 5;
+    public GameObject rest;  
     private void Start()
     {
         thisGameObject = gameObject;
         health = startHealth;
     }
-
-    private void OnMouseDown()
+    private void Update()
     {
-        health -= 2;
-
-
-
-
-        if (ResourceCutter.stoneCutterEquiped && health <= 0 && thisGameObject.tag == "Stone")
+        //Reducera Liv
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.woodCutterEquiped && thisGameObject.tag == "Wood")            
+                health -= 2;            
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.stoneCutterEquiped && thisGameObject.tag == "Stone")          
+                health -= 2;          
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")           
+                health -= 2;          
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food")           
+                health -= 2;            
+        }
+        ////Faller
+        if (health <= 0 && thisGameObject.tag == "Stone")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("CutStone");
         }
-        
-        if (ResourceCutter.woodCutterEquiped && health <= 0 && thisGameObject.tag == "Wood")
+        if (health <= 0 && thisGameObject.tag == "Wood")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("CutWood");
         }
-
-        if (ResourceCutter.fishingRodEquiped && health <= 0 && thisGameObject.tag == "Food")
+        if (health <= 0 && thisGameObject.tag == "Food")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("CaughtFish");
         }
-
-        if (ResourceCutter.huntingToolEquiped && health <= 0 && thisGameObject.tag == "Food")
+        if (health <= 0 && thisGameObject.tag == "Food")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("WildAnimalKill");
         }
     }
-
     public void Falling()    
     {
         Rigidbody rb = thisGameObject.AddComponent<Rigidbody>();
@@ -62,7 +65,6 @@ public class Harvest : MonoBehaviour
     }
     IEnumerator DestroyThisResource()
     {
-
         yield return new WaitForSeconds(timeFallen);
         Instantiate(rest, transform.position, transform.rotation);
         Destroy(thisGameObject);

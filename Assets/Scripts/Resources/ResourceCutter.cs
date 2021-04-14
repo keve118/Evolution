@@ -20,7 +20,7 @@ public class ResourceCutter : MonoBehaviour
     public static bool fishingRodAvailable = false;
     public static bool fishingRodEquiped =false;
    
-    private bool anyToolEquiped=false;
+    public static bool anyToolEquiped=false;
 
 
     private void Update()
