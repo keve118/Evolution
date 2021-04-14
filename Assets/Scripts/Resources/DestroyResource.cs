@@ -15,13 +15,10 @@ public class DestroyResource : MonoBehaviour
     {
         if (resourceHP < 1)
         {
-         
+            FindObjectOfType<SoundManager>().Play("PickUpResource");
 
-            if(gameObject.tag=="Wood")
-            {
-                FindObjectOfType<SoundManager>().Play("PickUpResource");
+            if (gameObject.tag=="Wood")
                 PlayerProperties.amountWood += 1;
-            }
                 
 
             if (gameObject.tag == "Stone")
