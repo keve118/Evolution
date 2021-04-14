@@ -17,8 +17,12 @@ public class DestroyResource : MonoBehaviour
         {
          
 
-            if(gameObject.tag=="Wood")           
+            if(gameObject.tag=="Wood")
+            {
+                FindObjectOfType<SoundManager>().Play("PickUpResource");
                 PlayerProperties.amountWood += 1;
+            }
+                
 
             if (gameObject.tag == "Stone")
                 PlayerProperties.amountStone += 1;
@@ -28,7 +32,7 @@ public class DestroyResource : MonoBehaviour
                 PlayerProperties.amountFood += 1;
 
             Destroy(gameObject);
-            Debug.Log("Wood:" + PlayerProperties.amountWood + "Stone:" + PlayerProperties.amountStone + "Food:" + PlayerProperties.amountFood);
+            Debug.Log("Wood:" + PlayerProperties.amountWood + "    Stone:" + PlayerProperties.amountStone + "   Food:" + PlayerProperties.amountFood);
 
         }
     }

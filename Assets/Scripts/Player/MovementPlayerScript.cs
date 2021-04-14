@@ -14,11 +14,15 @@ public class MovementPlayerScript : MonoBehaviour
     private Vector3 playerVelocity;
     private float currentSpeed;
 
+    AudioSource audioSource;
+    bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
         currentSpeed = walkSpeed;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +32,7 @@ public class MovementPlayerScript : MonoBehaviour
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
+
         }
 
 
@@ -38,21 +43,27 @@ public class MovementPlayerScript : MonoBehaviour
 
         controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
-        if(Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             currentSpeed = runSpeed;
+            isMoving = true;
         }
         else if (isGrounded)
         {
             currentSpeed = walkSpeed;
+            isMoving = true;
         }
 
-        if(isGrounded)
+        if (isGrounded)
             Jump();
+
+        if(isMoving)
+            FootstepsSound();
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
+
 
     void Jump()
     {
@@ -61,4 +72,21 @@ public class MovementPlayerScript : MonoBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
     }
+
+    void FootstepsSound()
+    {
+        if (controller.velocity.x != 0)
+            isMoving = true;
+        else
+            isMoving = false;
+
+        if (isMoving)
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+        else
+            audioSource.Stop();
+    }
 }
+
