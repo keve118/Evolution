@@ -3,7 +3,7 @@
         <ui:Label text="Buildings&#10;" display-tooltip-when-elided="true" name="Building" />
         <ui:Button text="Shelter" display-tooltip-when-elided="true" style="width: 150px;" />
         <ui:Button text="Workshop" display-tooltip-when-elided="true" style="width: 150px;" />
-        <ui:Label text="Tools&#10;" display-tooltip-when-elided="true" name="Tool" />
+        <ui:Label text="Tools &amp; Weapons&#10;" display-tooltip-when-elided="true" name="Tool" />
         <ui:Button text="Pick Axe" display-tooltip-when-elided="true" style="width: 149px;" />
         <ui:Button text="Spear" display-tooltip-when-elided="true" style="width: 146px;" />
         <ui:Label text="Label" display-tooltip-when-elided="true" />
