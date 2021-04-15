@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="height: 50%; top: 25%; bottom: 25%; width: 50%; left: 25%; right: 25%; opacity: 1; background-color: rgba(119, 152, 88, 0.18);">
+        <ui:Label text="Buildings&#10;" display-tooltip-when-elided="true" name="Building" />
+        <ui:Button text="Shelter" display-tooltip-when-elided="true" style="width: 150px;" />
+        <ui:Button text="Workshop" display-tooltip-when-elided="true" style="width: 150px;" />
+        <ui:Label text="Tools&#10;" display-tooltip-when-elided="true" name="Tool" />
+        <ui:Button text="Pick Axe" display-tooltip-when-elided="true" style="width: 149px;" />
+        <ui:Button text="Spear" display-tooltip-when-elided="true" style="width: 146px;" />
+        <ui:Label text="Label" display-tooltip-when-elided="true" />
+        <ui:Button text="Button" display-tooltip-when-elided="true" style="width: 148px;" />
+        <ui:Button text="Button" display-tooltip-when-elided="true" style="width: 148px;" />
+    </ui:VisualElement>
+</ui:UXML>
