@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,10 +11,13 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public MenuButtonHandler MainMenuButtonHandler { get; set; }
 
+    //Specify and attach a script that inherrits from ButtonFunc and defines button methodcall.
+    [Header("Provide a script that inherrits from ButtonFunc")]
 
-    private bool isFirstUpdate = true;
-    private bool isInitialMouseOverCheck = true;
-
+    public ButtonFunc ButtonFunc;
+    public delegate void ButtonAction();
+    public ButtonAction buttonAction;
+    
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
 
@@ -22,18 +26,17 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [HideInInspector] public bool isLastSelectionByMouse = true;
 
     private Vector3 previousMousePosition;
+    private bool isFirstUpdate = true;
+    private bool isInitialMouseOverCheck = true;
     private bool isMouseOver;
     private bool isPressedByMouse;
     private bool isMouseInputDevice;
     private bool isDeviceKeyPressed;
-
-    private void Awake()
-    {
-
-    }
+    private bool isMouseKeyDown;
 
     private void Start()
     {
+        buttonAction = gameObject.GetComponent<ButtonFunc>().ButtonPress;
         animatorAudioHelper = gameObject.GetComponentInParent<AnimatorAudioHelper>();
         previousMousePosition = Input.mousePosition;
     }
@@ -79,7 +82,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (previousMousePosition != Input.mousePosition)
         {
             isMouseInputDevice = true;
-
         }
 
         //Button select with mouse 
@@ -185,6 +187,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             if (!isDeviceKeyPressed)
             {
+                SelectAction(buttonAction);
                 animator.SetBool("pressed", true);
                 Debug.Log("Keyboard Pressed");
             }
@@ -206,15 +209,31 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (isPressedByMouse)
         {
-            animator.SetBool("pressed", true);
-            Debug.Log("Mouse Pressed");
-        }
-        else if (animator.GetBool("pressed"))
-        {
-            animator.SetBool("pressed", false);
+            if (!isMouseKeyDown)
+            {
+                SelectAction(buttonAction);
+                animator.SetBool("pressed", true);
+                Debug.Log("Mouse Pressed");
+                isMouseKeyDown = true;
+            }
+            else if (animator.GetBool("pressed"))
+            {
+                animator.SetBool("pressed", false);
 
-            animatorAudioHelper.disableOnce = true;
+                animatorAudioHelper.disableOnce = true;
+            }
         }
+        else
+        {
+            isMouseKeyDown = false;
+        }
+    }
+
+    //Takes a delegate
+    private void SelectAction(ButtonAction ExecuteCommand)
+    {
+
+        ExecuteCommand();
     }
 }
 

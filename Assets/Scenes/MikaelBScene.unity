@@ -123,6 +123,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &337259815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5111425655069390185, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+  m_PrefabInstance: {fileID: 1928656907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &337259816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337259815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4aa664467b7214cbbe26fbc6635f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &758122035
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +228,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5111425655069390167, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
   m_PrefabInstance: {fileID: 979786096}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1249593127}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -445,6 +462,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1891461304}
     m_Modifications:
+    - target: {fileID: 5111425655069390162, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+      propertyPath: ButtonFunc
+      value: 
+      objectReference: {fileID: 1249593128}
     - target: {fileID: 5111425655069390166, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -539,6 +560,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+--- !u!1 &1249593127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5111425655069390185, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+  m_PrefabInstance: {fileID: 979786096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1249593128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249593127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b5f6a574b5ba449af1de8d28503c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1727520211
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +643,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1862757481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5111425655069390185, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+  m_PrefabInstance: {fileID: 5111425654929847606}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1862757482 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4402515796275615539, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+  m_PrefabInstance: {fileID: 5111425654929847606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862757481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bf309716e7b57478492066263a3809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1862757486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862757481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3256131a1fa907743b4ce2125db42a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1891461300
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,14 +789,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908ea50364b949e478303bed311c9b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
+  audioSource: {fileID: 1891461306}
   textButtons:
   - {fileID: 2077474913}
   - {fileID: 785481395}
   - {fileID: 2122916009}
   keyDown: 0
   animatorAudioHelper: {fileID: 0}
-  audioSource: {fileID: 1891461306}
+  index: 0
 --- !u!82 &1891461306
 AudioSource:
   m_ObjectHideFlags: 0
@@ -834,6 +900,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1891461304}
     m_Modifications:
+    - target: {fileID: 5111425655069390162, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+      propertyPath: ButtonFunc
+      value: 
+      objectReference: {fileID: 337259816}
     - target: {fileID: 5111425655069390166, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1101,7 +1171,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5111425655069390167, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
   m_PrefabInstance: {fileID: 5111425654929847606}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1862757481}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -1112,7 +1182,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5111425655069390167, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
   m_PrefabInstance: {fileID: 1928656907}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 337259815}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -1125,6 +1195,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1891461304}
     m_Modifications:
+    - target: {fileID: 5111425655069390162, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+      propertyPath: ButtonFunc
+      value: 
+      objectReference: {fileID: 1862757486}
+    - target: {fileID: 5111425655069390162, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+      propertyPath: buttonFunc
+      value: 
+      objectReference: {fileID: 1862757486}
+    - target: {fileID: 5111425655069390162, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
+      propertyPath: animatorAudioHelper
+      value: 
+      objectReference: {fileID: 1862757482}
     - target: {fileID: 5111425655069390162, guid: 07fef11730750394d97ccd24bf3c7967, type: 3}
       propertyPath: isHighlightedOnStart
       value: 1
