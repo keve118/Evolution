@@ -18,16 +18,17 @@ public class MenuButtonHandler : MonoBehaviour
         set { if (!isAnimationStarted) isAnimationStarted = value; }
     }
 
-    [HideInInspector] public int index;
+    public AudioSource audioSource;
+    public Text[] textButtons;
 
-    private int indexMax;
-
-    private const string vertical = "Vertical";
-
-    [SerializeField] public Text[] textButtons;
     [SerializeField] private bool keyDown;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
-    [SerializeField] public AudioSource audioSource;
+   
+
+    [HideInInspector] public int index;
+    
+    private const string vertical = "Vertical";
+    private int indexMax;
 
     void Start()
     {
@@ -52,8 +53,7 @@ public class MenuButtonHandler : MonoBehaviour
 
         if (Input.GetAxis(vertical) != 0)
         {
-
-
+  
             if (!keyDown)
             {
                 if (Input.GetAxis(vertical) < 0)

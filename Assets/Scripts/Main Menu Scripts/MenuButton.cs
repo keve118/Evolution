@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// Class that defines the custom text menu button and handles input response
@@ -9,18 +10,27 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public MenuButtonHandler MainMenuButtonHandler { get; set; }
 
+
     private bool isFirstUpdate = true;
     private bool isInitialMouseOverCheck = true;
 
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
 
+
     [HideInInspector] public int slotInArray;
+    [HideInInspector] public bool isLastSelectionByMouse = true;
 
     private Vector3 previousMousePosition;
     private bool isMouseOver;
     private bool isPressedByMouse;
     private bool isMouseInputDevice;
+    private bool isDeviceKeyPressed;
+
+    private void Awake()
+    {
+
+    }
 
     private void Start()
     {
@@ -66,7 +76,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             ReadInputDevicePressAction();
         }
 
-        
         if (previousMousePosition != Input.mousePosition)
         {
             isMouseInputDevice = true;
@@ -78,6 +87,19 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             if (isMouseOver)
             {
+                isLastSelectionByMouse = true;
+
+                //Preserves highlight when mouse leaves the boundinbox of the text
+                for (int i = 0; i < MainMenuButtonHandler.textButtons.Length; i++)
+                {
+                    var otherMenuObject = MainMenuButtonHandler.textButtons[i].GetComponent<MenuButton>();
+
+                    if (slotInArray != otherMenuObject.slotInArray)
+                    {
+                        otherMenuObject.isLastSelectionByMouse = false; 
+                    }
+                }
+
                 if (isInitialMouseOverCheck)
                 {
                     SetAllOtherInstancesToDeselected();
@@ -89,7 +111,10 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             }
             else
             {
-                animator.SetBool("selected", false);
+                if (!isLastSelectionByMouse)
+                {
+                    animator.SetBool("selected", false);
+                }
             }
 
             if (!isPressedByMouse)
@@ -102,7 +127,18 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (Input.GetAxis("Vertical") != 0 && previousMousePosition == Input.mousePosition)
         {
             isMouseInputDevice = false;
-            animator.SetBool("onStart", true);
+
+            for (int i = 0; i < MainMenuButtonHandler.textButtons.Length; i++)
+            {
+                if (this.slotInArray != MainMenuButtonHandler.textButtons[i].gameObject.GetComponent<MenuButton>().slotInArray)
+                {
+                    animator.SetBool("onStart", false);
+                }
+                else
+                {
+                    animator.SetBool("onStart", true);
+                }
+            }
         }
 
         if (!isMouseInputDevice)
@@ -147,14 +183,22 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (Input.GetAxis("Submit") == 1)
         {
-            animator.SetBool("pressed", true);
-            Debug.Log("Keyboard Pressed");
-        }
-        else if (animator.GetBool("pressed"))
-        {
-            animator.SetBool("pressed", false);
+            if (!isDeviceKeyPressed)
+            {
+                animator.SetBool("pressed", true);
+                Debug.Log("Keyboard Pressed");
+            }
+            else if (animator.GetBool("pressed"))
+            {
+                animator.SetBool("pressed", false);
 
-            animatorAudioHelper.disableOnce = true;
+                animatorAudioHelper.disableOnce = true;
+            }
+            isDeviceKeyPressed = true;
+        }
+        else
+        {
+            isDeviceKeyPressed = false;
         }
     }
 
