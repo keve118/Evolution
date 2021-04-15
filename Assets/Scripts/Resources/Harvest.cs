@@ -23,26 +23,33 @@ public class Harvest : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.woodCutterEquiped && thisGameObject.tag == "Wood")            
-                health -= 2;            
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.stoneCutterEquiped && thisGameObject.tag == "Stone")          
-                health -= 2;          
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")           
-                health -= 2;          
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food")           
-                health -= 2;            
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.woodCutterEquiped && thisGameObject.tag == "Wood")
+            {
+                health -= 2;
+                FindObjectOfType<SoundManager>().Play("CutWood");
+            }
+                           
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.stoneCutterEquiped && thisGameObject.tag == "Stone")
+            {
+                health -= 2;
+                FindObjectOfType<SoundManager>().Play("CutStone");
+            }
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")
+                health -= 2;
+            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food")
+                health -= 2;
         }
         ////Faller
         if (health <= 0 && thisGameObject.tag == "Stone")
         {
             Falling();
-            FindObjectOfType<SoundManager>().Play("CutStone");
+            FindObjectOfType<SoundManager>().Play("StoneDown");
             return;
         }
         if (health <= 0 && thisGameObject.tag == "Wood")
         {
             Falling();
-            FindObjectOfType<SoundManager>().Play("CutWood");
+            FindObjectOfType<SoundManager>().Play("WoodDown");
             return;
         }
         if (health <= 0 && thisGameObject.tag == "Food")
