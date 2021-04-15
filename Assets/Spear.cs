@@ -8,6 +8,7 @@ public class Spear : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            FindObjectOfType<SoundManager>().Play("PickUpTool");
             Destroy(gameObject);
             ResourceCutter.huntingToolAvailable = true;
 

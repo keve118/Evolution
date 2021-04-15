@@ -8,6 +8,7 @@ public class PickAxe : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            FindObjectOfType<SoundManager>().Play("PickUpTool");
             Destroy(gameObject);            
             ResourceCutter.stoneCutterAvailable = true;
 

@@ -1668,13 +1668,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: CutWood
     clip: {fileID: 8300000, guid: 2696ef4f847e05f47bef797d7bdaaa40, type: 3}
-    volume: 0.781
+    volume: 0.864
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CutStone
     clip: {fileID: 8300000, guid: 3c283dedc9406ef45ae7696bb3201103, type: 3}
-    volume: 0.816
+    volume: 0.947
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -1686,7 +1686,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: WildAnimalKill
     clip: {fileID: 8300000, guid: 06b3b3e795e803f48bd1f55f77775623, type: 3}
-    volume: 0.828
+    volume: 0.905
     pitch: 1
     loop: 1
     source: {fileID: 0}
