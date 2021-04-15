@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4842.2646, g: 3089.0508, b: 2293.4375, a: 1}
+  m_IndirectSpecularColor: {r: 2082, g: 2082, b: 2082, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1702,7 +1702,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Background
-    clip: {fileID: 8300000, guid: 3e77b8537f35b0e48bd86b8edf1fa760, type: 3}
+    clip: {fileID: 8300000, guid: c23df35eb01861f48a5faa6ff7bfd41d, type: 3}
     volume: 0.65
     pitch: 1
     loop: 1
