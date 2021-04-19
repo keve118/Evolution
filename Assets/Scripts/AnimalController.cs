@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class AnimalController : MonoBehaviour
 {
     public float lookRadius = 10f;
-    public float runAwayRadius = 10f;
+    public float runAwayRadius = 20f;
     Transform player;
     NavMeshAgent agent;
+    public float speed = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,15 +24,16 @@ public class AnimalController : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
         if (distance <= lookRadius) //while will crash
         {
-            agent.SetDestination(player.position * -1);
+            agent.speed = speed;
+            agent.SetDestination(-player.position); //.normalized
 
         }
-        //else
-        //    agent.speed = 0;
-        //if (distance >= runAwayRadius)
-        //{
-        //    agent.speed = 0;
-        //}
+
+        if (distance > runAwayRadius)
+        {
+            agent.speed = 0;
+        }
+
     }
 
     private void OnDrawGizmosSelected()

@@ -12,7 +12,6 @@ public class DeerAI : MonoBehaviour
 
 
 
-
     //private Vector3 startingPosition;
     //private Vector3 roamingPosition;
 
@@ -24,7 +23,7 @@ public class DeerAI : MonoBehaviour
 
     //private void Update()
     //{
-        
+
     //}
 
     //private Vector3 GetRoamingPosition()
