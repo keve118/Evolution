@@ -4,30 +4,22 @@ using UnityEngine.UI;
 /// <summary>
 ///  Class Responsible for handeling the menu buttons in the custom textbutton menu
 /// </summary>
-
+[RequireComponent(typeof(MenuDelegateCollection))]
 public class MenuButtonHandler : MonoBehaviour
 {
-    public bool IsMouseOverWord { get; set; }
 
-    private bool isAnimationStarted;
+    public AudioSource audioSource;
+    public Text[] textButtons;
 
-    public bool IsAnimationStarted
-    {
-        get { return isAnimationStarted; }
+    [SerializeField] private bool isKeyDown;
+    [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
 
-        set { if (!isAnimationStarted) isAnimationStarted = value; }
-    }
-
+    [HideInInspector] public bool isMouseInputDevice;
     [HideInInspector] public int index;
 
     private int indexMax;
-
+    private Vector3 previousMousePosition;
     private const string vertical = "Vertical";
-
-    [SerializeField] public Text[] textButtons;
-    [SerializeField] private bool keyDown;
-    [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
-    [SerializeField] public AudioSource audioSource;
 
     void Start()
     {
@@ -37,24 +29,40 @@ public class MenuButtonHandler : MonoBehaviour
         //Links textbuttons and make them aware of their array index
         for (int i = 0; i < textButtons.Length; i++)
         {
-            textButtons[i].GetComponent<MenuButton>().slotInArray = i;
-            textButtons[i].GetComponent<MenuButton>().MainMenuButtonHandler = this;
+            textButtons[i].GetComponent<MenuButton>().buttonIndex = i;
         }
+
+        previousMousePosition = Input.mousePosition;
     }
+
+    //Mouse State Fetching Methods
 
     void Update()
     {
-        //Skips loop if the mouse is the input device
-        if (IsMouseOverWord)
+        if (previousMousePosition != Input.mousePosition)
         {
+            isMouseInputDevice = true;
+        }
+
+        //If mouse is use block selects the button
+        if (isMouseInputDevice)
+        {
+            for (int i = 0; i < textButtons.Length; i++)
+            {
+                if (textButtons[i].gameObject.GetComponent<MenuButton>().isMouseOver)
+                {
+                    index = textButtons[i].gameObject.GetComponent<MenuButton>().buttonIndex;
+                }
+            }
+            previousMousePosition = Input.mousePosition;
+            isMouseInputDevice = false;
             return;
         }
 
         if (Input.GetAxis(vertical) != 0)
         {
 
-
-            if (!keyDown)
+            if (!isKeyDown)
             {
                 if (Input.GetAxis(vertical) < 0)
                 {
@@ -65,38 +73,40 @@ public class MenuButtonHandler : MonoBehaviour
                     HandleDownwardIncrement();
 
                 }
-                keyDown = true;
+                isKeyDown = true;
             }
         }
         else
         {
-            keyDown = false;
+            isKeyDown = false;
         }
-    }
 
-    //Counts down and makes menu loop on itself when it reaches below min index
-    private void HandleDownwardIncrement()
-    {
-        if (index > 0)
-        {
-            index--;
-        }
-        else
-        {
-            index = indexMax;
-        }
-    }
+        previousMousePosition = Input.mousePosition;
 
-    //Counts up and makes menu loop on itself when it reaches above max index
-    private void HandleUpwardIncrement()
-    {
-        if (index < indexMax)
+        //Counts down and makes menu loop on itself when it reaches below min index
+        void HandleDownwardIncrement()
         {
-            index++;
+            if (index > 0)
+            {
+                index--;
+            }
+            else
+            {
+                index = indexMax;
+            }
         }
-        else
+
+        //Counts up and makes menu loop on itself when it reaches above max index
+        void HandleUpwardIncrement()
         {
-            index = 0;
+            if (index < indexMax)
+            {
+                index++;
+            }
+            else
+            {
+                index = 0;
+            }
         }
     }
 }
