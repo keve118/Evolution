@@ -26,22 +26,17 @@ public class AnimalController : MonoBehaviour
         {
             agent.speed = speed;
             agent.SetDestination(-player.position); //.normalized
+            Animator an = agent.GetComponent<Animator>();
+            an.SetBool("isRunning", true);
 
         }
 
         if (distance > runAwayRadius)
         {
             agent.speed = 0;
+            Animator an = agent.GetComponent<Animator>();
+            an.SetBool("isRunning", false);
         }
 
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, runAwayRadius);
     }
 }
