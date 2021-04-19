@@ -9,34 +9,65 @@ public class AnimalController : MonoBehaviour
     public float runAwayRadius = 20f;
     Transform player;
     NavMeshAgent agent;
-    public float speed = 2f;
+    public float speedMin = 2f;
+    public float speedMax = 10f;
+    float randomSpeed;
 
-    // Start is called before the first frame update
+    float currentTime = 0f;
+    float startingTime = 5f;
+
     void Start()
     {
         player = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        randomSpeed = Random.Range(speedMin, speedMax);
+        currentTime = startingTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(player.position, transform.position);
-        if (distance <= lookRadius) //while will crash
+        if (distance <= lookRadius && ResourceCutter.huntingToolEquiped) 
         {
-            agent.speed = speed;
-            agent.SetDestination(-player.position); //.normalized
-            Animator an = agent.GetComponent<Animator>();
-            an.SetBool("isRunning", true);
-
+            RunAway();
         }
 
         if (distance > runAwayRadius)
         {
-            agent.speed = 0;
-            Animator an = agent.GetComponent<Animator>();
-            an.SetBool("isRunning", false);
+            //currentTime -= 1 * Time.deltaTime;
+            //if(currentTime <= 0f)
+            //{
+            //    WalkAround();
+            //}
+            //else
+                StandStill();
         }
 
+        Debug.Log(currentTime);
+
     }
+
+    void RunAway()
+    {
+        agent.speed = randomSpeed;
+        agent.SetDestination(-player.position);
+        Animator an = agent.GetComponent<Animator>();
+        an.SetBool("isRunning", true);
+    }
+
+    void StandStill()
+    {
+        agent.speed = 0;
+        Animator an = agent.GetComponent<Animator>();
+        an.SetBool("isRunning", false);
+    }
+
+    void WalkAround()
+    {
+        agent.speed = speedMin;
+        agent.SetDestination(player.position);
+        Animator an = agent.GetComponent<Animator>();
+        an.SetBool("isWalking", true);
+    }
+
 }
