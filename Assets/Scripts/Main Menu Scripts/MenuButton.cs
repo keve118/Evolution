@@ -1,47 +1,33 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// Class that defines the custom text menu button and handles input response
 /// </summary>
-public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [Header ("Assign delegate function to the button")]
+    public UnityEvent buttonEvent;
 
-    public MenuButtonHandler MainMenuButtonHandler { get; set; }
-
-    //Specify and attach a script that inherrits from ButtonFunc and defines button methodcall.
-    [Header("Provide a script that inherrits from ButtonFunc")]
-
-    public ButtonFunc ButtonFunc;
-    public delegate void ButtonAction();
-    public ButtonAction buttonAction;
+    public int buttonIndex;
     
+    [HideInInspector] public bool isMouseOver;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
-
-
-    [HideInInspector] public int slotInArray;
-    [HideInInspector] public bool isLastSelectionByMouse = true;
-
-    private Vector3 previousMousePosition;
-    private bool isFirstUpdate = true;
-    private bool isInitialMouseOverCheck = true;
-    private bool isMouseOver;
-    private bool isPressedByMouse;
-    private bool isMouseInputDevice;
-    private bool isDeviceKeyPressed;
+    private MenuButtonHandler menuButtonHandler;
     private bool isMouseKeyDown;
+    private bool isKeyDown;
 
-    private void Start()
+    #region Event implementation for reacting to mouse input 
+    public void OnPointerClick(PointerEventData eventData)
     {
-        buttonAction = gameObject.GetComponent<ButtonFunc>().ButtonPress;
-        animatorAudioHelper = gameObject.GetComponentInParent<AnimatorAudioHelper>();
-        previousMousePosition = Input.mousePosition;
+        buttonEvent.Invoke();
+        isMouseKeyDown = true;
     }
 
-    #region Mouse State Fetching Methods
     public void OnPointerEnter(PointerEventData eventData)
     {
         isMouseOver = true;
@@ -51,189 +37,48 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         isMouseOver = false;
     }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        isPressedByMouse = true;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        isPressedByMouse = false;
-    }
     #endregion
+
+    private void Awake()
+    {
+        menuButtonHandler = GetComponentInParent<MenuButtonHandler>();
+    }
 
     void Update()
     {
-        //Decides what menu item is highlighted on start
-        if (isFirstUpdate)
-        {
-            bool state = (slotInArray == 0) ? true : false;
-            animator.SetBool("onStart", state);
-            isFirstUpdate = false;
-        }
+        //Reads interaction with button to determine boolean state of the animator
+        //Takes mouse, keyboard and hand controller 
 
-        //The highlighted item on start klick check
-        if (animator.GetBool("onStart"))
+        
+        if (menuButtonHandler.index == this.buttonIndex)
         {
-            ReadInputDevicePressAction();
-        }
-
-        if (previousMousePosition != Input.mousePosition)
-        {
-            isMouseInputDevice = true;
-        }
-
-        //Button select with mouse 
-        if (isMouseInputDevice)
-        {
-            if (isMouseOver)
+            if (!isKeyDown || Input.GetButtonDown("Fire1"))
             {
-                isLastSelectionByMouse = true;
-
-                //Preserves highlight when mouse leaves the boundinbox of the text
-                for (int i = 0; i < MainMenuButtonHandler.textButtons.Length; i++)
+                    animator.SetBool("selected", true);
+                if (Input.GetAxis("Submit") == 1 || Input.GetButtonDown("Fire1"))
                 {
-                    var otherMenuObject = MainMenuButtonHandler.textButtons[i].GetComponent<MenuButton>();
-
-                    if (slotInArray != otherMenuObject.slotInArray)
-                    {
-                        otherMenuObject.isLastSelectionByMouse = false; 
-                    }
+                    Debug.Log("Here be Mice");
+                    animator.SetBool("pressed", true);
+                    
+                }
+                else if (animator.GetBool("pressed"))
+                {
+                    animator.SetBool("pressed", false);
+                    animatorAudioHelper.disableOnce = true;
+                    
                 }
 
-                if (isInitialMouseOverCheck)
-                {
-                    SetAllOtherInstancesToDeselected();
-                }
-
-                animator.SetBool("selected", true);
-
-                ReadMousePressAction();
+                isKeyDown = true;
             }
             else
             {
-                if (!isLastSelectionByMouse)
-                {
-                    animator.SetBool("selected", false);
-                }
+                isKeyDown = false;
             }
-
-            if (!isPressedByMouse)
-            {
-                animator.SetBool("pressed", false);
-            }
-        }
-
-        //Breaks mouse control and gives control to input device
-        if (Input.GetAxis("Vertical") != 0 && previousMousePosition == Input.mousePosition)
-        {
-            isMouseInputDevice = false;
-
-            for (int i = 0; i < MainMenuButtonHandler.textButtons.Length; i++)
-            {
-                if (this.slotInArray != MainMenuButtonHandler.textButtons[i].gameObject.GetComponent<MenuButton>().slotInArray)
-                {
-                    animator.SetBool("onStart", false);
-                }
-                else
-                {
-                    animator.SetBool("onStart", true);
-                }
-            }
-        }
-
-        if (!isMouseInputDevice)
-        {
-            InputDeviceObjectInteraction();
-        }
-
-        previousMousePosition = Input.mousePosition;
-    }
-
-
-    //Highlight index 0 of menubutton on start
-    private void SetAllOtherInstancesToDeselected()
-    {
-        foreach (var item in MainMenuButtonHandler.textButtons)
-        {
-            if (item != this)
-            {
-                item.gameObject.GetComponent<Animator>().SetBool("onStart", false);
-            }
-        }
-
-        isInitialMouseOverCheck = false;
-    }
-
-    //Identify available menubutton for keypress - keyboard, hand controller
-    private void InputDeviceObjectInteraction()
-    {
-        if (MainMenuButtonHandler.index == slotInArray)
-        {
-            animator.SetBool("selected", true);
-
-            ReadInputDevicePressAction();
         }
         else
         {
             animator.SetBool("selected", false);
         }
-    }
-
-    private void ReadInputDevicePressAction()
-    {
-        if (Input.GetAxis("Submit") == 1)
-        {
-            if (!isDeviceKeyPressed)
-            {
-                SelectAction(buttonAction);
-                animator.SetBool("pressed", true);
-                Debug.Log("Keyboard Pressed");
-            }
-            else if (animator.GetBool("pressed"))
-            {
-                animator.SetBool("pressed", false);
-
-                animatorAudioHelper.disableOnce = true;
-            }
-            isDeviceKeyPressed = true;
-        }
-        else
-        {
-            isDeviceKeyPressed = false;
-        }
-    }
-
-    private void ReadMousePressAction()
-    {
-        if (isPressedByMouse)
-        {
-            if (!isMouseKeyDown)
-            {
-                SelectAction(buttonAction);
-                animator.SetBool("pressed", true);
-                Debug.Log("Mouse Pressed");
-                isMouseKeyDown = true;
-            }
-            else if (animator.GetBool("pressed"))
-            {
-                animator.SetBool("pressed", false);
-
-                animatorAudioHelper.disableOnce = true;
-            }
-        }
-        else
-        {
-            isMouseKeyDown = false;
-        }
-    }
-
-    //Takes a delegate
-    private void SelectAction(ButtonAction ExecuteCommand)
-    {
-
-        ExecuteCommand();
-    }
+    }        
 }
 
