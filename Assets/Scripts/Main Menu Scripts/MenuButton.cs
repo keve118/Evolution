@@ -1,19 +1,16 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 /// <summary>
 /// Class that defines the custom text menu button and handles input response
 /// </summary>
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [Header ("Assign delegate function to the button")]
+    [Header("Assign delegate function to the button")]
     public UnityEvent buttonEvent;
-
     public int buttonIndex;
-    
+
     [HideInInspector] public bool isMouseOver;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
@@ -49,23 +46,23 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         //Reads interaction with button to determine boolean state of the animator
         //Takes mouse, keyboard and hand controller 
 
-        
+
         if (menuButtonHandler.index == this.buttonIndex)
         {
             if (!isKeyDown || Input.GetButtonDown("Fire1"))
             {
-                    animator.SetBool("selected", true);
+                animator.SetBool("selected", true);
                 if (Input.GetAxis("Submit") == 1 || Input.GetButtonDown("Fire1"))
                 {
                     Debug.Log("Here be Mice");
                     animator.SetBool("pressed", true);
-                    
+
                 }
                 else if (animator.GetBool("pressed"))
                 {
                     animator.SetBool("pressed", false);
                     animatorAudioHelper.disableOnce = true;
-                    
+
                 }
 
                 isKeyDown = true;
@@ -79,6 +76,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             animator.SetBool("selected", false);
         }
-    }        
+    }
 }
 
