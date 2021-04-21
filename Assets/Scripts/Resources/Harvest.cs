@@ -63,7 +63,7 @@ public class Harvest : MonoBehaviour
         if (health <= 0 && thisGameObject.tag == "Food")
         {
             //Falling();
-            //FindObjectOfType<SoundManager>().Play("WildAnimalKill");       
+            //FindObjectOfType<SoundManager>().Play("");       
         }
 
         // We have two types of food, FISH & Deer, we have to differ these
