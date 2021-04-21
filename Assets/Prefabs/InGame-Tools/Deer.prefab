@@ -59,9 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdaf931ea29382640adf751b69aec765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 10
-  runAwayRadius: 20
-  speed: 5
 --- !u!195 &1337065533
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -84,6 +81,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3316113030180077303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480663805476998728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6518dd3e1ded15a4f94ff476c85c1d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookRadius: 10
+  runAwayRadius: 40
+  speedMin: 4
+  speedMax: 10
+  randomSpeed: 0
+  currentState: 0
 --- !u!1001 &5945739256258326129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2824562455142162489, guid: afa67385874b3b14bb341a99ad025708, type: 3}
       propertyPath: m_Name
-      value: Deer_0
+      value: Deer
       objectReference: {fileID: 0}
     - target: {fileID: 2824562455142162489, guid: afa67385874b3b14bb341a99ad025708, type: 3}
       propertyPath: m_TagString
