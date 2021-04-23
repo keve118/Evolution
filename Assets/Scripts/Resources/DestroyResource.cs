@@ -33,7 +33,7 @@ public class DestroyResource : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other) //Click??
+    void OnTriggerStay(Collider other) 
     {
         if (other.tag == "Player") 
             resourceHP -= 1; 

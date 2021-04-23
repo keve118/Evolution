@@ -19,6 +19,16 @@ public class Harvest : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.tag == "Stone" && ResourceCutter.stoneCutterAvailable && thisGameObject.tag == "Stone" && Input.GetMouseButtonDown(0))
+        {
+            health -= 2;
+            FindObjectOfType<SoundManager>().Play("CutStone");
+        }
+        if (other.tag == "Wood" && ResourceCutter.woodCutterAvailable && thisGameObject.tag == "Wood" && Input.GetMouseButtonDown(0))
+        {
+            health -= 2;
+            FindObjectOfType<SoundManager>().Play("CutWood");
+        }
         if (other.tag == "Spear" && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food" && Input.GetMouseButtonDown(0))
         {
             health -= 2;
@@ -27,42 +37,43 @@ public class Harvest : MonoBehaviour
     }
     private void Update()
     {
-        //Reducera Liv
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.woodCutterEquiped && thisGameObject.tag == "Wood")
-            {
-                health -= 2;
-                FindObjectOfType<SoundManager>().Play("CutWood");
-            }
+        ////Reducera Liv
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.woodCutterEquiped && thisGameObject.tag == "Wood")
+        //    {
+        //        health -= 2;
+        //        FindObjectOfType<SoundManager>().Play("CutWood");
+        //    }
                            
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.stoneCutterEquiped && thisGameObject.tag == "Stone")
-            {
-                health -= 2;
-                FindObjectOfType<SoundManager>().Play("CutStone");
-            }
-            //if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")
-            //    health -= 2;
+        //    if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.stoneCutterEquiped && thisGameObject.tag == "Stone")
+        //    {
+        //        health -= 2;
+        //        FindObjectOfType<SoundManager>().Play("CutStone");
+        //    }
+        //    //if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")
+        //    //    health -= 2;
             
-        }
+        //}
         ////Faller
         if (health <= 0 && thisGameObject.tag == "Stone")
         {
             Falling();
-            FindObjectOfType<SoundManager>().Play("StoneDown");
+            FindObjectOfType<SoundManager>().Play("ResourceDown");
             return;
         }
         if (health <= 0 && thisGameObject.tag == "Wood")
         {
             Falling();
-            FindObjectOfType<SoundManager>().Play("WoodDown");
+            FindObjectOfType<SoundManager>().Play("ResourceDown");
             return;
         }
         if (health <= 0 && thisGameObject.tag == "Food")
         {
             Falling();
+            //FindObjectOfType<SoundManager>().Play("ResourceDown");
             return;
             //FindObjectOfType<SoundManager>().Play("CaughtFish");         
         }
