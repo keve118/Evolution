@@ -19,7 +19,7 @@ public class Harvest : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food" && Input.GetMouseButtonDown(0))
+        if (other.tag == "Spear" && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food" && Input.GetMouseButtonDown(0))
         {
             health -= 2;
             FindObjectOfType<SoundManager>().Play("SpearAnimal");
@@ -43,8 +43,8 @@ public class Harvest : MonoBehaviour
                 health -= 2;
                 FindObjectOfType<SoundManager>().Play("CutStone");
             }
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")
-                health -= 2;
+            //if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")
+            //    health -= 2;
             
         }
         ////Faller
@@ -63,13 +63,14 @@ public class Harvest : MonoBehaviour
         if (health <= 0 && thisGameObject.tag == "Food")
         {
             Falling();
+            return;
             //FindObjectOfType<SoundManager>().Play("CaughtFish");         
         }
-        if (health <= 0 && thisGameObject.tag == "Food")
-        {
-            //Falling();
-            //FindObjectOfType<SoundManager>().Play("");       
-        }
+        //if (health <= 0 && thisGameObject.tag == "Food")
+        //{
+        //    //Falling();
+        //    //FindObjectOfType<SoundManager>().Play("");       
+        //}
 
         // We have two types of food, FISH & Deer, we have to differ these
         //Think sound for animals will be implemented in the Animator
