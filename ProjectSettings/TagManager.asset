@@ -9,6 +9,7 @@ TagManager:
   - Wood
   - Food
   - Waypoint
+  - Spear
   layers:
   - Default
   - TransparentFX
