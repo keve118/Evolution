@@ -47,18 +47,6 @@ MonoBehaviour:
   force: 0
   timeFallen: 5
   rest: {fileID: 6153647288546526111, guid: 9ab00b4c642bab046a2304a33b9cc149, type: 3}
---- !u!114 &1337065530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8480663805476998728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdaf931ea29382640adf751b69aec765, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &1337065533
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -95,8 +83,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 10
   runAwayRadius: 40
-  speedMin: 4
-  speedMax: 10
+  speedMin: 2
+  speedMax: 8
   randomSpeed: 0
   currentState: 0
 --- !u!1001 &5945739256258326129
