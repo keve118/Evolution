@@ -30,7 +30,8 @@ public class ResourceCutter : MonoBehaviour
 
             if (!woodCutterEquiped || !stoneCutterEquiped || !fishingRodEquiped || !huntingToolEquiped)
                 break;
-        }                
+        }            
+        
         if (woodCutterAvailable)
             WoodCutter();
 
@@ -40,7 +41,54 @@ public class ResourceCutter : MonoBehaviour
         if (huntingToolAvailable)
             HuntCollector();
         if (fishingRodAvailable)
-            FishCollector();   
+            FishCollector();
+
+
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit; 
+
+        //Origin, direction, raycasthit, length
+        if(Physics.Raycast(transform.position,fwd,out hit, 10)) 
+        { 
+            if(hit.collider.tag=="Wood" && Input.GetMouseButton(0) && woodCutterEquiped) 
+            {
+                Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
+                FindObjectOfType<SoundManager>().Play("CutWood");
+                harvestScript.health--;
+            }
+            if (hit.collider.tag == "Stone" && Input.GetMouseButton(0) && stoneCutterEquiped)
+            {
+                Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
+                FindObjectOfType<SoundManager>().Play("CutStone");
+                harvestScript.health--;
+            }
+            if (hit.collider.tag == "Food" && Input.GetMouseButton(0) && huntingToolEquiped)
+            {
+                Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
+                FindObjectOfType<SoundManager>().Play("SpearAnimal");
+                harvestScript.health--;
+            }
+            if (hit.collider.tag == "Food" && Input.GetMouseButton(0) && fishingRodEquiped)
+            {
+                Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
+                harvestScript.health--;
+            }
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public void WoodCutter() 
