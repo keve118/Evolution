@@ -16,6 +16,15 @@ public class Harvest : MonoBehaviour
         thisGameObject = gameObject;
         health = startHealth;
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food" && Input.GetMouseButtonDown(0))
+        {
+            health -= 2;
+            FindObjectOfType<SoundManager>().Play("SpearAnimal");
+        }
+    }
     private void Update()
     {
         //Reducera Liv
@@ -36,11 +45,7 @@ public class Harvest : MonoBehaviour
             }
             if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")
                 health -= 2;
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food")
-            {
-                health -= 2;
-                FindObjectOfType<SoundManager>().Play("SpearAnimal");
-            }
+            
         }
         ////Faller
         if (health <= 0 && thisGameObject.tag == "Stone")
