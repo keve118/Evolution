@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Harvest : MonoBehaviour
 {
-    private GameObject thisGameObject;
     public int startHealth=10;
     public int health;
     public int mass = 10;
     public int force = 0;
     public int timeFallen = 5;
     public GameObject rest;  
+
     private void Start()
-    {
-        thisGameObject = gameObject;
+    {       
         health = startHealth;
     }
     private void Update()
@@ -23,44 +22,46 @@ public class Harvest : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.woodCutterEquiped && thisGameObject.tag == "Wood")
+            if (Physics.Raycast(ray, out hit,1) && ResourceCutter.woodCutterEquiped && gameObject.tag == "Wood")
             {
+                
                 health -= 2;
                 FindObjectOfType<SoundManager>().Play("CutWood");
             }
                            
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.stoneCutterEquiped && thisGameObject.tag == "Stone")
+            if (Physics.Raycast(ray, out hit, 1) && ResourceCutter.stoneCutterEquiped && gameObject.tag == "Stone")
             {
                 health -= 2;
                 FindObjectOfType<SoundManager>().Play("CutStone");
             }
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.fishingRodEquiped && thisGameObject.tag == "Food")
+            if (Physics.Raycast(ray, out hit, 1) && ResourceCutter.fishingRodEquiped && gameObject.tag == "Food")
                 health -= 2;
-            if (Physics.Raycast(ray, out hit, 10) && ResourceCutter.huntingToolEquiped && thisGameObject.tag == "Food")
+
+            if (Physics.Raycast(ray, out hit, 1) && ResourceCutter.huntingToolEquiped && gameObject.tag == "Food")
             {
                 health -= 2;
                 FindObjectOfType<SoundManager>().Play("SpearAnimal");
             }
         }
         ////Faller
-        if (health <= 0 && thisGameObject.tag == "Stone")
+        if (health <= 0 && gameObject.tag == "Stone")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("StoneDown");
             return;
         }
-        if (health <= 0 && thisGameObject.tag == "Wood")
+        if (health <= 0 && gameObject.tag == "Wood")
         {
             Falling();
             FindObjectOfType<SoundManager>().Play("WoodDown");
             return;
         }
-        if (health <= 0 && thisGameObject.tag == "Food")
+        if (health <= 0 && gameObject.tag == "Food")
         {
             Falling();
             //FindObjectOfType<SoundManager>().Play("CaughtFish");         
         }
-        if (health <= 0 && thisGameObject.tag == "Food")
+        if (health <= 0 && gameObject.tag == "Food")
         {
             //Falling();
             //FindObjectOfType<SoundManager>().Play("");       
@@ -73,15 +74,15 @@ public class Harvest : MonoBehaviour
     }
     public void Falling()    
     {
-        if (thisGameObject.tag == "Food") 
+        if (gameObject.tag == "Food") 
         {
-            Animator an = thisGameObject.GetComponent<Animator>();
+            Animator an = gameObject.GetComponent<Animator>();
             an.SetBool("isDead", true);
 
         }
-        if (thisGameObject.tag != "Food")
+        if (gameObject.tag != "Food")
         {
-            Rigidbody rb = thisGameObject.AddComponent<Rigidbody>();
+            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
             rb.mass = mass;
@@ -94,6 +95,6 @@ public class Harvest : MonoBehaviour
     {
         yield return new WaitForSeconds(timeFallen);
         Instantiate(rest, transform.position, transform.rotation);
-        Destroy(thisGameObject);
+        Destroy(gameObject);
     }
 }
