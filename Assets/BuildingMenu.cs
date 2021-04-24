@@ -10,6 +10,7 @@ public class BuildingMenu : MonoBehaviour
     public Transform positionObject;
 
     public GameObject primitiveHut;
+    public GameObject firePlace;
 
     private bool placed = false;
 
@@ -55,7 +56,14 @@ public class BuildingMenu : MonoBehaviour
 
 
     }
+    public void PlaceFirePlace()
+    {
+        Debug.Log("Fireplace selected");
+        Instantiate(firePlace, positionObject.transform.position, transform.rotation);
+        CloseUI();
 
+
+    }
 
 
 

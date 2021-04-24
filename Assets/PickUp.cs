@@ -6,51 +6,48 @@ public class PickUp : MonoBehaviour
 {
     public Transform middleHand;
     private bool middleCarry = false;
+    private Rigidbody gRigidbody;
 
     private void Start()
     {
+        gRigidbody = GetComponent<Rigidbody>();
         middleHand = GameObject.Find("MiddleHand").transform;
+
+        RaycastHit hit = new RaycastHit();
+        if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
+        {
+            transform.Rotate(0, 0, 0);
+            transform.position = hit.point;
+        }
+        transform.rotation = new Quaternion(0, 0, 0, 0);
+        transform.position += new Vector3(0, 0.1f, 0);
     }
 
 
     private void OnMouseDown()
     {
         GetComponent<Rigidbody>().useGravity = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<Rigidbody>().isKinematic = true;    
+        gRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         this.transform.position = middleHand.position;
         this.transform.parent = GameObject.Find("MiddleHand").transform;
 
     }
 
+
     private void OnMouseUp()
     {
-        transform.parent = null;
-        GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().useGravity = true;
+        this.transform.parent = null;
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<Rigidbody>().useGravity = false;
+        RaycastHit hit = new RaycastHit();
+        if(Physics.Raycast(transform.position,-transform.up,out hit, Mathf.Infinity))
+        {
+            transform.Rotate(0, 0, 0);
+            transform.position = hit.point;
+        }
+        transform.rotation = new Quaternion(0, 0, 0,0);
+        transform.position += new Vector3(0, 0.1f, 0);
     }
 
-
-
-
-
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0) && !middleCarry)
-    //    {
-    //        middleCarry = true;
-    //        GetComponent<BoxCollider>().enabled = false;
-    //        GetComponent<Rigidbody>().useGravity = false;
-    //        GetComponent<Rigidbody>().isKinematic = false;
-
-    //        gameObject.transform.position = middleHand.position;
-
-    //    }
-    //    if (Input.GetMouseButtonDown(0) && middleCarry)
-    //    {
-    //        gameObject.transform.position = transform.position; 
-    //        GetComponent<Rigidbody>().useGravity = true;
-    //        GetComponent<BoxCollider>().enabled = true;
-    //        GetComponent<Rigidbody>().isKinematic = true;
-    //    }
-    //}
 }

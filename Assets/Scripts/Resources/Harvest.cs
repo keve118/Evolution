@@ -14,44 +14,11 @@ public class Harvest : MonoBehaviour
     public int timeFallen = 5;
     public GameObject rest;
 
-
     private void Start()
     {
          thisResource = transform.gameObject;
          health=startHealth;
     }
-
-    //public void Cutting1() 
-    //{
-    //    //Reducera Liv       
-    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //        RaycastHit hit;
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        if (Physics.Raycast(ray, out hit, 5) && ResourceCutter.woodCutterEquiped && gameObject.tag == "Wood")
-    //        {
-    //            health -= 2;
-    //            //FindObjectOfType<SoundManager>().Play("CutWood");
-    //        }
-
-    //    }
-    //    if (Physics.Raycast(ray, out hit, 1) && ResourceCutter.stoneCutterEquiped && gameObject.tag == "Stone")
-    //    {
-    //            health -= 2;
-    //            //FindObjectOfType<SoundManager>().Play("CutStone");
-    //    }
-    //    if (Physics.Raycast(ray, out hit, 1) && ResourceCutter.fishingRodEquiped && gameObject.tag == "Food")
-    //           health -= 2;
-
-    //    if (Physics.Raycast(ray, out hit, 1) && ResourceCutter.huntingToolEquiped && gameObject.tag == "Food")
-    //    {
-    //            health -= 2;
-    //            //FindObjectOfType<SoundManager>().Play("SpearAnimal");
-    //    }
-        
-
-
-    //}
 
     private void Update()
     {       
@@ -59,24 +26,21 @@ public class Harvest : MonoBehaviour
         if (health <= 0 && gameObject.tag == "Stone")
         {
             Falling();
-            //FindObjectOfType<SoundManager>().Play("StoneDown");
             return;
         }
         if (health <= 0 && gameObject.tag == "Wood")
         {
             Falling();
-            //FindObjectOfType<SoundManager>().Play("WoodDown");
             return;
         }
         if (health <= 0 && gameObject.tag == "Food")
         {
-            Falling();
-            //FindObjectOfType<SoundManager>().Play("CaughtFish");         
+            Falling();       
         }
         if (health <= 0 && gameObject.tag == "Food")
         {
-            //Falling();
-            //FindObjectOfType<SoundManager>().Play("");       
+            Falling();
+
         }
 
         // We have two types of food, FISH & Deer, we have to differ these
