@@ -83,8 +83,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 10
   runAwayRadius: 40
-  speedMin: 2
-  speedMax: 6
+  speedMin: 1
+  speedMax: 3
   randomSpeed: 0
   currentState: 0
 --- !u!1001 &6549274034003355285

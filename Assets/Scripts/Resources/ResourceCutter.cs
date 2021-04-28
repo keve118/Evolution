@@ -40,6 +40,7 @@ public class ResourceCutter : MonoBehaviour
 
         if (huntingToolAvailable)
             HuntCollector();
+
         if (fishingRodAvailable)
             FishCollector();
 
@@ -130,15 +131,16 @@ public class ResourceCutter : MonoBehaviour
         if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3) && !anyToolEquiped)
         {
             huntingToolEquiped = true;
+            anyToolEquiped = true;
             huntingTool.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             huntingToolEquiped = false;
+            anyToolEquiped = false;
             huntingTool.SetActive(false);
             return;
         }
-
     }
 
 
@@ -148,13 +150,15 @@ public class ResourceCutter : MonoBehaviour
        if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha4) && !anyToolEquiped)
        {
            fishingRodEquiped = true;
-           fishingRod.SetActive(true);
+            anyToolEquiped = true;
+            fishingRod.SetActive(true);
 
        }
        else if (Input.GetKeyDown(KeyCode.Alpha4))
        {
            fishingRodEquiped = false;
-           fishingRod.SetActive(false);
+            anyToolEquiped = false;
+            fishingRod.SetActive(false);
             return;
        }
     }
