@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public Transform middleHand;
+    private Transform middleHand;
     private bool middleCarry = false;
     private Rigidbody gRigidbody;
 

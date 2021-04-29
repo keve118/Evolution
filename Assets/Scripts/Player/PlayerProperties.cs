@@ -8,4 +8,6 @@ public class PlayerProperties : MonoBehaviour
     public static int amountStone = 0;
     public static int amountFood = 0;
 
+
+
 }

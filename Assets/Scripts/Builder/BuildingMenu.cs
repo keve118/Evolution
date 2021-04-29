@@ -8,9 +8,9 @@ public class BuildingMenu : MonoBehaviour
     public GameObject buildUI;
 
     public Transform positionObject;
-
     public GameObject primitiveHut;
     public GameObject firePlace;
+    public GameObject workshop;
 
     private bool placed = false;
 
@@ -26,8 +26,7 @@ public class BuildingMenu : MonoBehaviour
             else
             {
                 OpenUI();
-                Cursor.visible = true;              
-               
+                Cursor.visible = true;                           
             }        
         }
     }
@@ -53,22 +52,19 @@ public class BuildingMenu : MonoBehaviour
         Debug.Log("Hut selected");   
         Instantiate(primitiveHut,positionObject.transform.position , transform.rotation);
         CloseUI();
-
-
     }
     public void PlaceFirePlace()
     {
         Debug.Log("Fireplace selected");
         Instantiate(firePlace, positionObject.transform.position, transform.rotation);
         CloseUI();
-
-
     }
-
-
-
-
-
+    public void PlaceWorkshop()
+    {
+        Debug.Log("Workshop Selected");
+        Instantiate(workshop, positionObject.transform.position, transform.rotation);
+        CloseUI();
+    }
 
 
 

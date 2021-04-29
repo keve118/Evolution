@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     #region Singleton
-    public static PlayerManager instance;
+    public static PlayerManager instance; 
+
 
     private void Awake()
     {
