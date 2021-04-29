@@ -16,8 +16,8 @@ public class Harvest : MonoBehaviour
 
     private void Start()
     {
-         thisResource = transform.gameObject;
-         health=startHealth;
+        thisResource = transform.gameObject;
+        health =startHealth;
     }
 
     private void Update()

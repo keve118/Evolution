@@ -74,22 +74,7 @@ public class ResourceCutter : MonoBehaviour
                 Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
                 harvestScript.health--;
             }
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 
     public void WoodCutter() 
