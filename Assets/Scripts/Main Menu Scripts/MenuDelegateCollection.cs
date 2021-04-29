@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Class collecting all methods tied to menu button behavoir
@@ -13,15 +14,23 @@ public class MenuDelegateCollection : MonoBehaviour
         Debug.Log("Start function works and goes here");
     }
 
-
     public void Options()
     {
         Debug.Log("Opens the options menu");
     }
 
-    //Will after build quit the game
-    public void QuitGame()
+    public void QuitGame() //Will after build quit the game
     {
         Application.Quit();
+    }
+
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ResumeGame() //To leverage this funciton the pause screen gameobject must implement the pause script!
+    {
+        gameObject.GetComponent<PauseMenu>().UIManager.GetComponent<GameStateManager>().StartGame();
     }
 }
