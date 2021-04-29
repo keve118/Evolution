@@ -54,7 +54,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if (!isKeyDown || Input.GetButtonDown("Fire1"))
             {
                 animator.SetBool("selected", true);
-                if (Input.GetAxis("Submit") == 1 || Input.GetButtonDown("Fire1"))
+                if (Input.GetAxisRaw("Submit") == 1 || Input.GetButtonDown("Fire1"))
                 {
                     Debug.Log("Here be Mice");
                     animator.SetBool("pressed", true);
