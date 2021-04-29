@@ -3681,6 +3681,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487807483}
     m_Modifications:
+    - target: {fileID: 246541754, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9066149152807896748, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_Name
       value: Deer (3)
@@ -3800,6 +3804,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487807483}
     m_Modifications:
+    - target: {fileID: 246541754, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9066149152807896748, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_Name
       value: Deer (2)
@@ -3857,6 +3865,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487807483}
     m_Modifications:
+    - target: {fileID: 246541754, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9066149152807896748, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_Name
       value: Deer
@@ -5818,6 +5830,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487807483}
     m_Modifications:
+    - target: {fileID: 246541754, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9066149152807896748, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_Name
       value: Deer (1)

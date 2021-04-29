@@ -15,9 +15,10 @@ public class DeerAI : MonoBehaviour
     public float runAwayRadius = 40f;
     Transform player;
     NavMeshAgent agent;
-    public float speedMin = 4f;
-    public float speedMax = 10f;
+    public float speedMin = 2f;
+    public float speedMax = 7f;
     public float randomSpeed;
+    public float walkSpeed = 1f;
     float distance;
 
     //Waypoint variables
@@ -25,10 +26,18 @@ public class DeerAI : MonoBehaviour
     private int waypointIndex = 0;
     int randomWaypoint;
 
+    //walking variables
+    private bool isWandering = false;
+    private bool isWalking = false;
+    private bool isRotLeft = false;
+    private bool isRotRight = false;
+    public float rotSpeed = 100f;
+
     public enum DeerState
     {
         Eating,
-        Running
+        Running, 
+        Walking
     }
     public DeerState currentState;
 
@@ -48,7 +57,19 @@ public class DeerAI : MonoBehaviour
         {
             case DeerState.Eating:
                 {
-                    StandStill();
+                    if (isWandering == false)
+                    {
+                        StartCoroutine(Wander());
+                    }
+
+                    if (isWalking)
+                        currentState = DeerState.Walking;
+
+                    if(isWalking == false)
+                    {
+                        Animator an = agent.GetComponent<Animator>();
+                        an.SetBool("isWalking", false);
+                    }
 
                     if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
                         currentState = DeerState.Running;
@@ -65,6 +86,30 @@ public class DeerAI : MonoBehaviour
 
                     break;
                 }
+
+            case DeerState.Walking:
+                {
+                    if (isRotRight == true)
+                    {
+                        agent.transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+                    }
+
+                    if (isRotLeft == true)
+                    {
+                        agent.transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
+                    }
+
+                    agent.speed = walkSpeed;
+                    agent.transform.position += transform.forward * walkSpeed * Time.deltaTime;
+                    Animator an = agent.GetComponent<Animator>();
+                    an.SetBool("isWalking", true);
+                    
+                    if (isWandering == false)
+                        currentState = DeerState.Eating;
+
+                    break;
+                }
+
         }
 
     }
@@ -100,20 +145,35 @@ public class DeerAI : MonoBehaviour
         waypointTarget = Waypoint.waypoints[waypointIndex];
     }
 
-    public void StandStill()
+    IEnumerator Wander()
     {
-        agent.speed = 0;
-        Animator an = agent.GetComponent<Animator>();
-        an.SetBool("isRunning", false);
+        //moves the deer in random directions (not the waypoints), stops for awhile and then walks again depending on the random times
+        int rotTime = Random.Range(1, 2);
+        int rotWait = Random.Range(1, 4);
+        int rotLeftOrRight = Random.Range(1, 20);
+        int walkWait = Random.Range(10, 60);
+        int walkTime = Random.Range(10, 20);
+        isWandering = true;
 
-    }
+        yield return new WaitForSeconds(walkWait);
+        isWalking = true;
+        yield return new WaitForSeconds(walkTime);
+        isWalking = false;
 
-    public void WalkAround()
-    {
-        //agent.speed = speedMin;
-        //agent.SetDestination();
+        yield return new WaitForSeconds(rotWait);
+        if (rotLeftOrRight <= 10)
+        {
+            isRotRight = true;
+            yield return new WaitForSeconds(rotTime);
+            isRotRight = false;
+        }
+        if (rotLeftOrRight >= 11)
+        {
+            isRotLeft = true;
+            yield return new WaitForSeconds(rotTime);
+            isRotLeft = false;
+        }
 
-        Animator an = agent.GetComponent<Animator>();
-        an.SetBool("isWalking", true);
+        isWandering = false;
     }
 }
