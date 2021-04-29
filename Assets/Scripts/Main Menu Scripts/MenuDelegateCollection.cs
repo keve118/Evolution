@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MenuDelegateCollection : MonoBehaviour
 {
+
     public void RunDemo()
     {
         Debug.Log("Start function works and goes here");
@@ -31,6 +33,10 @@ public class MenuDelegateCollection : MonoBehaviour
 
     public void ResumeGame() //To leverage this funciton the pause screen gameobject must implement the pause script!
     {
-        gameObject.GetComponent<PauseMenu>().UIManager.GetComponent<GameStateManager>().StartGame();
+
+        Debug.Log("The function ResumeGame() was called");
+        gameObject.GetComponent<PauseMenu>();
+        
+        
     }
 }

@@ -10,8 +10,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [Header("Assign delegate function to the button")]
     public UnityEvent buttonEvent;
     public int buttonIndex;
-
     [HideInInspector] public bool isMouseOver;
+
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
     private MenuButtonHandler menuButtonHandler;
@@ -55,6 +55,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 if (Input.GetAxis("Submit") == 1 || Input.GetButtonDown("Fire1"))
                 {
                     Debug.Log("Here be Mice");
+
                     animator.SetBool("pressed", true);
 
                 }
@@ -62,9 +63,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 {
                     animator.SetBool("pressed", false);
                     animatorAudioHelper.disableOnce = true;
-
+                    buttonEvent.Invoke();
                 }
-
+                
                 isKeyDown = true;
             }
             else
