@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -14,11 +12,6 @@ public class GameStateManager : MonoBehaviour
     //[SerializeField] private GameObject start;
     [SerializeField] private GameObject pause;
     //[SerializeField] private GameObject gameover;
-
-    private void Start()
-    {
-        
-    }
 
     void Update()
     {
