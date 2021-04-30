@@ -23,25 +23,25 @@ public class Harvest : MonoBehaviour
     private void Update()
     {       
         ////Faller
-        if (health <= 0 && gameObject.tag == "Stone")
+        if (health == 0 && gameObject.tag == "Stone")
         {
             Falling();
             return;
         }
-        if (health <= 0 && gameObject.tag == "Wood")
+        if (health == 0 && gameObject.tag == "Wood")
         {
             Falling();
             return;
         }
-        if (health <= 0 && gameObject.tag == "Food")
+        if (health == 0 && gameObject.tag == "Food")
         {
             Falling();       
         }
-        if (health <= 0 && gameObject.tag == "Food")
-        {
-            Falling();
+        //if (health <= 0 && gameObject.tag == "Food")
+        //{
+        //    Falling();
 
-        }
+        //}
 
         // We have two types of food, FISH & Deer, we have to differ these
         //Think sound for animals will be implemented in the Animator

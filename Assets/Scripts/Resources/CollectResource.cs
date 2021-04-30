@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyResource : MonoBehaviour
+public class CollectResource : MonoBehaviour
 {
     public int resourceHP = 10; 
 
