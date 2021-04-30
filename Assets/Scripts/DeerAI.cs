@@ -52,11 +52,14 @@ public class DeerAI : MonoBehaviour
 
     void Update()
     {
-        distance = Vector3.Distance(player.position, transform.position); //distance to player from agent (deer)
+        //distance to player from agent (deer)
+        distance = Vector3.Distance(player.position, transform.position); 
+
         switch (currentState)
         {
             case DeerState.Eating:
                 {
+                    agent.speed = 0;
                     if (isWandering == false)
                     {
                         StartCoroutine(Wander());
@@ -69,6 +72,8 @@ public class DeerAI : MonoBehaviour
                     {
                         Animator an = agent.GetComponent<Animator>();
                         an.SetBool("isWalking", false);
+                        an.SetBool("isRunning", false);
+                        an.SetBool("isEating", true);
                     }
 
                     if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
@@ -89,6 +94,7 @@ public class DeerAI : MonoBehaviour
 
             case DeerState.Walking:
                 {
+                    //decides the rotation / direction to face
                     if (isRotRight == true)
                     {
                         agent.transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
@@ -101,9 +107,16 @@ public class DeerAI : MonoBehaviour
 
                     agent.speed = walkSpeed;
                     agent.transform.position += transform.forward * walkSpeed * Time.deltaTime;
-                    Animator an = agent.GetComponent<Animator>();
-                    an.SetBool("isWalking", true);
                     
+                    Animator an = agent.GetComponent<Animator>();
+                    an.SetBool("isRunning", false);
+                    an.SetBool("isEating", false);
+                    an.SetBool("isWalking", true);
+
+                    //distance = distance between player and the deer
+                    if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
+                        currentState = DeerState.Running;
+
                     if (isWandering == false)
                         currentState = DeerState.Eating;
 
@@ -116,21 +129,24 @@ public class DeerAI : MonoBehaviour
 
     public void RunAway()
     {
-        //random speed and run towards the assigned waypoint + animation
+        Animator an = agent.GetComponent<Animator>();
+        an.SetBool("isWalking", false);
+        an.SetBool("isEating", false);
+        an.SetBool("isRunning", true);
+
+        //random speed and run towards the assigned waypoint
         randomSpeed = Random.Range(speedMin, speedMax);
         agent.speed = randomSpeed;
 
         Vector3 direction = waypointTarget.position - transform.position;
         transform.Translate(direction.normalized * randomSpeed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, waypointTarget.position) <= 2f)
+        //3f = margin from the waypoint position that the deer switch destination to the next waypoint
+        if (Vector3.Distance(transform.position, waypointTarget.position) <= 3f)
         {
             GetNextWaypoint();
         }
         agent.SetDestination(waypointTarget.position);
-
-        Animator an = agent.GetComponent<Animator>();
-        an.SetBool("isRunning", true);
 
     }
 
@@ -147,28 +163,34 @@ public class DeerAI : MonoBehaviour
 
     IEnumerator Wander()
     {
-        //moves the deer in random directions (not the waypoints), stops for awhile and then walks again depending on the random times
+        //moves the deer in random directions (not the waypoints)
         int rotTime = Random.Range(1, 2);
         int rotWait = Random.Range(1, 4);
-        int rotLeftOrRight = Random.Range(1, 20);
+        int rotLeftOrRight = Random.Range(1, 2);
         int walkWait = Random.Range(10, 60);
         int walkTime = Random.Range(10, 20);
         isWandering = true;
 
+        //waits for a random amount of seconds before it starts to walk
         yield return new WaitForSeconds(walkWait);
         isWalking = true;
+
+        //walks for a random amount of seconds before stopping
         yield return new WaitForSeconds(walkTime);
         isWalking = false;
 
+        //waits for a random amount of seconds before rotating
         yield return new WaitForSeconds(rotWait);
-        if (rotLeftOrRight <= 10)
+        if (rotLeftOrRight == 1)
         {
+            //rotates right for a random amount of seconds and then stops
             isRotRight = true;
             yield return new WaitForSeconds(rotTime);
             isRotRight = false;
         }
-        if (rotLeftOrRight >= 11)
+        if (rotLeftOrRight == 2)
         {
+            //rotates left for a random amount of seconds and then stops
             isRotLeft = true;
             yield return new WaitForSeconds(rotTime);
             isRotLeft = false;

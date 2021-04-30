@@ -11420,7 +11420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9066149152808065676, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7099991
+      value: 41.4
       objectReference: {fileID: 0}
     - target: {fileID: 9066149152808065676, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11428,7 +11428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9066149152808065676, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.466467
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 9066149152808065676, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20871,18 +20871,6 @@ MonoBehaviour:
   - name: CutStone
     clip: {fileID: 8300000, guid: 3c283dedc9406ef45ae7696bb3201103, type: 3}
     volume: 0.947
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: BirdsBackground
-    clip: {fileID: 0}
-    volume: 0.828
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: CaughtFish
-    clip: {fileID: 8300000, guid: cf50b58300e377d44ad76a5e8581c89f, type: 3}
-    volume: 0.828
     pitch: 1
     loop: 0
     source: {fileID: 0}
