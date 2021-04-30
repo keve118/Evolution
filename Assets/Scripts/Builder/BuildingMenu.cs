@@ -6,12 +6,10 @@ public class BuildingMenu : MonoBehaviour
 {
     public static bool activeUI = false;
     public GameObject buildUI;
-
     public Transform positionObject;
     public GameObject primitiveHut;
     public GameObject firePlace;
     public GameObject workshop;
-
     private bool placed = false;
 
     private void Update()
@@ -30,7 +28,6 @@ public class BuildingMenu : MonoBehaviour
             }        
         }
     }
-
     public void CloseUI() 
     {
         buildUI.SetActive(false);
@@ -38,36 +35,16 @@ public class BuildingMenu : MonoBehaviour
         activeUI = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     public void OpenUI()
     {
         buildUI.SetActive(true);
         Time.timeScale = 0f;
         activeUI = true;
         Cursor.lockState = CursorLockMode.Confined;
-
     }
-    public void PlacePrimitiveHut() 
+    public void SpawnObject(GameObject buildingObject) 
     {
-        Debug.Log("Hut selected");   
-        Instantiate(primitiveHut,positionObject.transform.position , transform.rotation);
+        Instantiate(buildingObject, positionObject.transform.position, transform.rotation);
         CloseUI();
     }
-    public void PlaceFirePlace()
-    {
-        Debug.Log("Fireplace selected");
-        Instantiate(firePlace, positionObject.transform.position, transform.rotation);
-        CloseUI();
-    }
-    public void PlaceWorkshop()
-    {
-        Debug.Log("Workshop Selected");
-        Instantiate(workshop, positionObject.transform.position, transform.rotation);
-        CloseUI();
-    }
-
-
-
-
-
 }
