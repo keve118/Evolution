@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectResource : MonoBehaviour
 {
-    public int resourceHP = 10;
+    public int resourceHP = 10; 
 
     void Start()
     {
@@ -16,9 +16,9 @@ public class CollectResource : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().Play("PickUpResource");
 
-            if (gameObject.tag == "Wood")
+            if (gameObject.tag=="Wood")
                 PlayerProperties.amountWood += 1;
-
+                
 
             if (gameObject.tag == "Stone")
                 PlayerProperties.amountStone += 1;
@@ -33,9 +33,9 @@ public class CollectResource : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player")
-            resourceHP -= 1;
+        if (other.tag == "Player") 
+            resourceHP -= 1; 
     }
 }
