@@ -22,36 +22,61 @@ public class ResourceCutter : MonoBehaviour
    
     public static bool anyToolEquiped=false;
 
+
+
+    public GameObject rayCastObject;
+    private Transform rayCastTransform;
+    private Vector3 rayCastOrigin;
+    private int resourceLayerID = 3;
+    private int resourceMask=1<<3;
+
     private void Update()
     {
         while (woodCutterEquiped || stoneCutterEquiped || fishingRodEquiped || huntingToolEquiped)
         {
             anyToolEquiped = true;
-
             if (!woodCutterEquiped || !stoneCutterEquiped || !fishingRodEquiped || !huntingToolEquiped)
                 break;
-        }            
-        
+        }                
         if (woodCutterAvailable)
             WoodCutter();
-
          if (stoneCutterAvailable)
             StoneCutter();
-
         if (huntingToolAvailable)
             HuntCollector();
-
         if (fishingRodAvailable)
-            FishCollector();
+            FishCollector(); 
+    }
 
 
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        RaycastHit hit; 
+    private void FixedUpdate()
+    {
+        rayCastTransform = rayCastObject.transform;
+        rayCastOrigin = rayCastTransform.position;
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
 
         //Origin, direction, raycasthit, length
-        if(Physics.Raycast(transform.position,fwd,out hit, 10)) 
-        { 
-            if(hit.collider.tag=="Wood" && Input.GetMouseButton(0) && woodCutterEquiped) 
+
+        if (Physics.Raycast(rayCastOrigin, forward, out hit,resourceMask))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Debug.Log("Did Hit");
+
+            if (hit.collider.tag == "Wood")
+            {
+                Debug.Log("Raycast hit wood!");
+            }
+            if (hit.collider.tag == "Stone")
+            {
+                Debug.Log("Raycast hit Stone!");
+            }
+            if (hit.collider.tag == "Food")
+            {
+                Debug.Log("Raycast hit Food!");
+            }
+
+            if (hit.collider.tag == "Wood" && Input.GetMouseButton(0) && woodCutterEquiped)
             {
                 Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
                 FindObjectOfType<SoundManager>().Play("CutWood");
