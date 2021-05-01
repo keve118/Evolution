@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 5007618335609904235}
   - component: {fileID: 6966561377413576549}
   - component: {fileID: 4534324972610034363}
+  - component: {fileID: 9219573089227288506}
   m_Layer: 0
   m_Name: Workshop
   m_TagString: Untagged
@@ -173,6 +174,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1d665e198241e48bea3a04badc37bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9219573089227288506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5561681059196933574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodCost: 5
+  stoneCost: 0
+  foodCost: 0
 --- !u!1001 &5459679507659857462
 PrefabInstance:
   m_ObjectHideFlags: 0
