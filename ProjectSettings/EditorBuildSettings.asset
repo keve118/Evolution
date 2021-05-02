@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TEST ML.unity
     guid: 168f09305fe82c14b8068e0b5b96d2bc
+  - enabled: 0
+    path: Assets/Scenes/JessicaMapScene.unity
+    guid: c507a4b3ba419f344adf073b78ec4b3a
+  - enabled: 0
+    path: Assets/Scenes/MikaelBScene.unity
+    guid: f250be4863baa844e92bcf5d4ae84e6b
+  - enabled: 1
+    path: Assets/Scenes/KevinNewScene.unity
+    guid: 1774865ed29a348499e1b66717f981da
+  - enabled: 0
+    path: Assets/Scenes/KevinScene.unity
+    guid: c22e9be24dafba146b8a1b719b4537b9
   m_configObjects: {}

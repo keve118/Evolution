@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BuildingMenu : MonoBehaviour
 {
     [Header("UI Settings")]
-    public static bool activeUI = false;
+    public static bool activeBuildUI = false;
     public GameObject buildUI;
 
     [Header("Spawn Settings")]
@@ -28,6 +28,12 @@ public class BuildingMenu : MonoBehaviour
     public Text firePlaceCost;
     public Text workshopCost;
 
+    [Header("Tools Settings")]
+    public GameObject toolUI; 
+    public static bool activeToolUI = false;
+
+    private ResourceCutter resourceCutterScript;
+
     private void Start()
     {
         primitiveHutCost.text= "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
@@ -37,34 +43,84 @@ public class BuildingMenu : MonoBehaviour
 
     private void Update()
     {
+        Vector3 forward = transform.TransformDirection(PlayerProperties.rayCastTransform.position);
+        Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
+        RaycastHit hit;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (activeUI)
+            if (activeBuildUI)
             {
-                CloseUI();
+                CloseBuildUI();
                 Cursor.visible = false;
             }
             else
             {
-                OpenUI();
+                OpenBuildUI();
                 Cursor.visible = true;                           
             }        
         }
+
+        if (Physics.Raycast(ray, out hit, 10))
+        {
+            //if (hit.collider.tag == "Wood")
+            //    Debug.Log("Wood!");
+
+            if (hit.collider.gameObject.name =="Workshop" && Input.GetMouseButton(1) && activeToolUI)
+            {
+                CloseToolUI();
+                Cursor.visible = false;
+
+            }
+            else if (hit.collider.gameObject.name == "Workshop" && Input.GetMouseButton(1) && !activeToolUI)
+            {
+                OpenToolUI();
+                Cursor.visible = true;
+
+            }
+        }
     }
-    public void CloseUI() 
+
+
+    public void CloseBuildUI() 
     {
         buildUI.SetActive(false);
         Time.timeScale = 1f;
-        activeUI = false;
+        activeBuildUI = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    public void OpenUI()
+    public void OpenBuildUI()
     {
         buildUI.SetActive(true);
         Time.timeScale = 0f;
-        activeUI = true;
+        activeBuildUI = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
+
+
+    public void CloseToolUI()
+    {
+        toolUI.SetActive(false);
+        Time.timeScale = 1f;
+        activeToolUI = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void OpenToolUI()
+    {
+        toolUI.SetActive(true);
+        Time.timeScale = 0f;
+        activeToolUI = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+
+
+
+
+
+
+
+
 
     public void CostOfObject(GameObject buildingObject)
     {
@@ -93,6 +149,6 @@ public class BuildingMenu : MonoBehaviour
     public void SpawnObject(GameObject buildingObject)
     {
         Instantiate(buildingObject, positionObject.transform.position, transform.rotation);
-        CloseUI();
+        CloseBuildUI();
     }
 }

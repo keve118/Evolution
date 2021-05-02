@@ -6,21 +6,45 @@ public class PlayerProperties : MonoBehaviour
 {
 
     #region Singleton
-    public static PlayerProperties instance;
+    [HideInInspector] public PlayerProperties instance;
 
     public static int amountWood = 0;
     public static int amountStone = 0;
     public static int amountFood = 0;
-
+    
     private void Awake()
     {
         instance = this;
     }
 
-    public GameObject player;
-
     #endregion
 
+    public GameObject player;
+    public GameObject rayCastObject;
 
+    [HideInInspector] public static Transform rayCastTransform;
+    [HideInInspector] public static Vector3 rayCastOrigin;
+    [HideInInspector] public static int resourceLayerID = 3;
+    [HideInInspector] public static int resourceMask = 1 << 3;
+
+
+
+
+
+    private void Update()
+    {
+  
+
+
+        rayCastTransform = rayCastObject.transform;
+        rayCastOrigin = rayCastTransform.position;
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(rayCastOrigin, forward, out hit, resourceMask))
+        {
+           
+        }
+    }
 
 }

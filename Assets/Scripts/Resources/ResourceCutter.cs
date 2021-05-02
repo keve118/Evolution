@@ -18,12 +18,6 @@ public class ResourceCutter : MonoBehaviour
    
     public static bool anyToolEquiped=false;
 
-    public GameObject rayCastObject;
-    private Transform rayCastTransform;
-    private Vector3 rayCastOrigin;
-    private int resourceLayerID = 3;
-    private int resourceMask=1<<3;
-
     private void Start()
     {
         huntingToolEquiped = false;
@@ -49,14 +43,16 @@ public class ResourceCutter : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        rayCastTransform = rayCastObject.transform;
-        rayCastOrigin = rayCastTransform.position;
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
+    {    
+        Vector3 forward = transform.TransformDirection(PlayerProperties.rayCastTransform.position);
+        Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(rayCastOrigin, forward, out hit,resourceMask))
-        {          
+        if (Physics.Raycast(ray, out hit, 10))
+        {
+            if (hit.collider.tag == "Wood")
+                Debug.Log("Wood!");
+
             if (hit.collider.tag == "Wood" && Input.GetMouseButton(0) && woodCutterEquiped)
             {
                 Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
