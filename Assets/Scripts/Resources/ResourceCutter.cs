@@ -50,8 +50,6 @@ public class ResourceCutter : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 10))
         {
-            if (hit.collider.tag == "Wood")
-                Debug.Log("Wood!");
 
             if (hit.collider.tag == "Wood" && Input.GetMouseButton(0) && woodCutterEquiped)
             {

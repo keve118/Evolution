@@ -16,30 +16,29 @@ public class BuildingMenu : MonoBehaviour
     public GameObject primitiveHut;
     public GameObject firePlace;
     public GameObject workshop;
-    private bool placed = false;
 
-    [Header("Button Settings")]
-    public Button primitiveHutButton;
-    public Button fireplaceButton;
-    public Button workshopButton;
+    [Header("Tools")]
+    public GameObject stoneAgeAxe;
+    public GameObject stoneAgePickAxe;
+    public GameObject stoneAgeSpear;
 
-    [Header("Text Settings")]
+
+    [Header("Building Text Settings")]
     public Text primitiveHutCost;
     public Text firePlaceCost;
     public Text workshopCost;
+
+    [Header("Building Text Settings")]
+    public Text stoneAgeAxeCost;
+    public Text stoneAgePickAxeCost;
+    public Text stoneAgeSpearCost;
+
 
     [Header("Tools Settings")]
     public GameObject toolUI; 
     public static bool activeToolUI = false;
 
     private ResourceCutter resourceCutterScript;
-
-    private void Start()
-    {
-        primitiveHutCost.text= "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
-        firePlaceCost.text = "Cost of Building:\n Wood:" + firePlace.GetComponent<Cost>().woodCost + "\n Stone:" + firePlace.GetComponent<Cost>().stoneCost;
-        workshopCost.text = "Cost of Building:\n Wood:" + workshop.GetComponent<Cost>().woodCost + "\n Stone:" + workshop.GetComponent<Cost>().stoneCost;
-    }
 
     private void Update()
     {
@@ -63,8 +62,6 @@ public class BuildingMenu : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 10))
         {
-            //if (hit.collider.tag == "Wood")
-            //    Debug.Log("Wood!");
 
             if (hit.collider.gameObject.name =="Workshop" && Input.GetMouseButton(1) && activeToolUI)
             {
@@ -79,6 +76,15 @@ public class BuildingMenu : MonoBehaviour
 
             }
         }
+
+        primitiveHutCost.text = "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
+        firePlaceCost.text = "Cost of Building:\n Wood:" + firePlace.GetComponent<Cost>().woodCost + "\n Stone:" + firePlace.GetComponent<Cost>().stoneCost;
+        workshopCost.text = "Cost of Building:\n Wood:" + workshop.GetComponent<Cost>().woodCost + "\n Stone:" + workshop.GetComponent<Cost>().stoneCost;
+
+        stoneAgeAxeCost.text = "Cost of Building:\n Wood:" + stoneAgeAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeAxe.GetComponent<Cost>().stoneCost;
+        stoneAgePickAxeCost.text = "Cost of Building:\n Wood:" +stoneAgePickAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgePickAxe.GetComponent<Cost>().stoneCost;
+        stoneAgeSpearCost.text = "Cost of Building:\n Wood:" + stoneAgeSpear.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeSpear.GetComponent<Cost>().stoneCost;
+
     }
 
 

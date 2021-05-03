@@ -27,24 +27,10 @@ public class PlayerProperties : MonoBehaviour
     [HideInInspector] public static int resourceLayerID = 3;
     [HideInInspector] public static int resourceMask = 1 << 3;
 
-
-
-
-
     private void Update()
     {
-  
-
-
         rayCastTransform = rayCastObject.transform;
-        rayCastOrigin = rayCastTransform.position;
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(rayCastOrigin, forward, out hit, resourceMask))
-        {
-           
-        }
+        rayCastOrigin = rayCastTransform.position;         
     }
 
 }

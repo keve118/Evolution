@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4407318af028c31408cfc5474730e582
+guid: af741f7abf1226948b2a56959f2fca83
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tip
-    second: {fileID: 2100000, guid: 2fba53ea84ca85b43b7028c289b8e9af, type: 2}
+    second: {fileID: 2100000, guid: 42a1d3983b167b045983468d06fa3179, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wood
-    second: {fileID: 2100000, guid: 94387ac3fe852d549966d245def277be, type: 2}
+    second: {fileID: 2100000, guid: abb5c1bbaa289294182256a8b727ff31, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6451513809947861507}
   - component: {fileID: 5372357407575553949}
   - component: {fileID: 5372357407575553948}
+  - component: {fileID: 7985054456487320097}
   m_Layer: 0
   m_Name: StoneAgeAxeEQ
   m_TagString: Untagged
@@ -162,3 +163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timePassed: 1
+--- !u!114 &7985054456487320097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747328573594026170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodCost: 1
+  stoneCost: 1
+  foodCost: 0
