@@ -10,7 +10,8 @@ public class BuildingMenu : MonoBehaviour
     public GameObject buildUI;
 
     [Header("Spawn Settings")]
-    public Transform positionObject;
+    public Transform positionBuildings;
+    private Transform positionTools;
 
     [Header("Buildings")]
     public GameObject primitiveHut;
@@ -63,13 +64,15 @@ public class BuildingMenu : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 10))
         {
 
-            if (hit.collider.gameObject.name =="Workshop" && Input.GetMouseButton(1) && activeToolUI)
+            if (hit.collider.tag =="Workshop" && Input.GetMouseButton(1) && activeToolUI)
             {
                 CloseToolUI();
                 Cursor.visible = false;
 
+                positionTools = hit.collider.gameObject.transform.Find("spawnPoint");
+
             }
-            else if (hit.collider.gameObject.name == "Workshop" && Input.GetMouseButton(1) && !activeToolUI)
+            else if (hit.collider.tag == "Workshop" && Input.GetMouseButton(1) && !activeToolUI)
             {
                 OpenToolUI();
                 Cursor.visible = true;
@@ -145,7 +148,6 @@ public class BuildingMenu : MonoBehaviour
                     PlayerProperties.amountWood -= costOfWood;
                     PlayerProperties.amountFood -= costOfFood;
                     PlayerProperties.amountStone -= costOfStone;
-
                 }
             }
         }
@@ -154,7 +156,12 @@ public class BuildingMenu : MonoBehaviour
     }
     public void SpawnObject(GameObject buildingObject)
     {
-        Instantiate(buildingObject, positionObject.transform.position, transform.rotation);
+        if(buildingObject.tag=="Tool")
+            Instantiate(buildingObject, positionTools.transform.position, transform.rotation);
+        else
+            Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
+
+        CloseToolUI();
         CloseBuildUI();
     }
 }
