@@ -11,6 +11,8 @@ TagManager:
   - Waypoint
   - Spear
   - GameObject
+  - Tool
+  - Workshop
   layers:
   - Default
   - TransparentFX

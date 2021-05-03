@@ -4632,31 +4632,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2824562455141743641, guid: afa67385874b3b14bb341a99ad025708, type: 3}
   m_PrefabInstance: {fileID: 304933274}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &312884837 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6004852539913925660, guid: 8e2ae6aacf73cfa42991de564dfbe403, type: 3}
-  m_PrefabInstance: {fileID: 918390536}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &312884838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6349606247009595046, guid: 8e2ae6aacf73cfa42991de564dfbe403, type: 3}
   m_PrefabInstance: {fileID: 918390536}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &312884839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312884837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  woodCost: 4
-  stoneCost: 4
-  foodCost: 0
 --- !u!4 &313571411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8520498011110941213, guid: 0bb350fe1f53896498b6e9a9a1f5a118, type: 3}
@@ -11716,26 +11696,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db574d43a7d7774fac0b95ff17f01c0, type: 3}
---- !u!1 &717949034 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1670027388966508954, guid: b35d365a42459db44af15b9933d3c707, type: 3}
-  m_PrefabInstance: {fileID: 1370804275016840835}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &717949041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717949034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  woodCost: 2
-  stoneCost: 2
-  foodCost: 0
 --- !u!1001 &718927180
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13839,7 +13799,7 @@ MonoBehaviour:
         m_MethodName: CostOfObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 5950577846415049388, guid: 6fd6452d2f4f5b748b3375121b39e24a, type: 3}
+          m_ObjectArgument: {fileID: 1670027388966508954, guid: b35d365a42459db44af15b9933d3c707, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -13952,10 +13912,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2007554362}
     m_Modifications:
-    - target: {fileID: 312884841, guid: 8e2ae6aacf73cfa42991de564dfbe403, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6004852539913925660, guid: 8e2ae6aacf73cfa42991de564dfbe403, type: 3}
       propertyPath: m_Name
       value: StoneAgeSpear
@@ -14087,6 +14043,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924289922}
   m_CullTransparentMesh: 1
+--- !u!4 &926190137 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2733175395216646748, guid: 7dbc7eeb8e7f69245bd9bdb9d7856478, type: 3}
+  m_PrefabInstance: {fileID: 7679292113625309772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &929413319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133907718702694436, guid: d9ad123011ee86c49b0ff622a503d78b, type: 3}
@@ -26796,7 +26757,7 @@ MonoBehaviour:
         m_MethodName: CostOfObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 5561681059196933574, guid: 7dbc7eeb8e7f69245bd9bdb9d7856478, type: 3}
+          m_ObjectArgument: {fileID: 6004852539913925660, guid: 8e2ae6aacf73cfa42991de564dfbe403, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -28903,7 +28864,7 @@ MonoBehaviour:
         m_MethodName: CostOfObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7014695599563017691, guid: 59511ae9ca52fde42b81667706582f53, type: 3}
+          m_ObjectArgument: {fileID: 3439313927132962054, guid: 82e3cc244c9dcba478e195e7cf5ad99e, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -33655,26 +33616,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fb4b1774fc765e459879e3a6c08e283, type: 3}
---- !u!1 &3083910710413103017 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3439313927132962054, guid: 82e3cc244c9dcba478e195e7cf5ad99e, type: 3}
-  m_PrefabInstance: {fileID: 393684230571446959}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3083910710413103019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3083910710413103017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  woodCost: 3
-  stoneCost: 3
-  foodCost: 0
 --- !u!1001 &3962429251169480726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33865,7 +33806,7 @@ PrefabInstance:
     - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
       propertyPath: stoneAgeAxe
       value: 
-      objectReference: {fileID: 6747328573594026170, guid: 09318d286e0a62f439eca1a66f71e8d5, type: 3}
+      objectReference: {fileID: 1670027388966508954, guid: b35d365a42459db44af15b9933d3c707, type: 3}
     - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
       propertyPath: workshopCost
       value: 
@@ -33875,9 +33816,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 111669323}
     - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
+      propertyPath: positionTools
+      value: 
+      objectReference: {fileID: 926190137}
+    - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
       propertyPath: stoneAgeSpear
       value: 
-      objectReference: {fileID: 722883915559213040, guid: eae015bd19a51a64a977e4e532dc5ad0, type: 3}
+      objectReference: {fileID: 6004852539913925660, guid: 8e2ae6aacf73cfa42991de564dfbe403, type: 3}
     - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
       propertyPath: positionObject
       value: 
@@ -33897,7 +33842,7 @@ PrefabInstance:
     - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
       propertyPath: stoneAgePickAxe
       value: 
-      objectReference: {fileID: 4026307528071039406, guid: 5e4ba440c6b0d7d4cb199dc19b6764c5, type: 3}
+      objectReference: {fileID: 3439313927132962054, guid: 82e3cc244c9dcba478e195e7cf5ad99e, type: 3}
     - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
       propertyPath: primitiveHutCost
       value: 
@@ -33906,6 +33851,10 @@ PrefabInstance:
       propertyPath: primitiveHutcost
       value: 
       objectReference: {fileID: 1674702463}
+    - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
+      propertyPath: positionBuildings
+      value: 
+      objectReference: {fileID: 144844853}
     - target: {fileID: 5147021479861900396, guid: d1020b46cd2710643a432cbae910bf31, type: 3}
       propertyPath: stoneAgeSpearCost
       value: 

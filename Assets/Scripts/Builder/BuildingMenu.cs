@@ -23,7 +23,6 @@ public class BuildingMenu : MonoBehaviour
     public GameObject stoneAgePickAxe;
     public GameObject stoneAgeSpear;
 
-
     [Header("Building Text Settings")]
     public Text primitiveHutCost;
     public Text firePlaceCost;
@@ -33,7 +32,6 @@ public class BuildingMenu : MonoBehaviour
     public Text stoneAgeAxeCost;
     public Text stoneAgePickAxeCost;
     public Text stoneAgeSpearCost;
-
 
     [Header("Tools Settings")]
     public GameObject toolUI; 
@@ -47,7 +45,7 @@ public class BuildingMenu : MonoBehaviour
         Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
         RaycastHit hit;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             if (activeBuildUI)
             {
@@ -64,7 +62,7 @@ public class BuildingMenu : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 10))
         {
 
-            if (hit.collider.tag =="Workshop" && Input.GetMouseButton(1) && activeToolUI)
+            if (hit.collider.tag =="Workshop" && Input.GetKeyDown(KeyCode.E) && activeToolUI)
             {
                 CloseToolUI();
                 Cursor.visible = false;
@@ -72,7 +70,7 @@ public class BuildingMenu : MonoBehaviour
                 positionTools = hit.collider.gameObject.transform.Find("spawnPoint");
 
             }
-            else if (hit.collider.tag == "Workshop" && Input.GetMouseButton(1) && !activeToolUI)
+            else if (hit.collider.tag == "Workshop" && Input.GetKeyDown(KeyCode.E) && !activeToolUI)
             {
                 OpenToolUI();
                 Cursor.visible = true;
@@ -151,8 +149,17 @@ public class BuildingMenu : MonoBehaviour
                 }
             }
         }
-        else
+        else 
+        {
             Debug.Log("Insufficient Funds!");
+
+            if (activeBuildUI)
+                CloseBuildUI();
+
+            if (activeToolUI)
+                CloseToolUI();
+
+        }
     }
     public void SpawnObject(GameObject buildingObject)
     {
@@ -161,7 +168,10 @@ public class BuildingMenu : MonoBehaviour
         else
             Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
 
-        CloseToolUI();
-        CloseBuildUI();
+        if(activeBuildUI)
+            CloseBuildUI();
+
+        if(activeToolUI)
+            CloseToolUI();
     }
 }
