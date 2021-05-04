@@ -65,15 +65,12 @@ public class BuildingMenu : MonoBehaviour
             {
                 CloseToolUI();
                 Cursor.visible = false;
-
                 positionTools = hit.collider.gameObject.transform.Find("spawnPoint");
-
             }
             else if (hit.collider.tag == "Workshop" && Input.GetKeyDown(KeyCode.E) && !activeToolUI)
             {
                 OpenToolUI();
                 Cursor.visible = true;
-
             }
         }
 
@@ -102,8 +99,6 @@ public class BuildingMenu : MonoBehaviour
         activeBuildUI = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
-
-
     public void CloseToolUI()
     {
         toolUI.SetActive(false);
@@ -118,15 +113,6 @@ public class BuildingMenu : MonoBehaviour
         activeToolUI = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
-
-
-
-
-
-
-
-
-
 
     public void CostOfObject(GameObject buildingObject)
     {
@@ -151,13 +137,10 @@ public class BuildingMenu : MonoBehaviour
         else 
         {
             Debug.Log("Insufficient Funds!");
-
             if (activeBuildUI)
                 CloseBuildUI();
-
             if (activeToolUI)
                 CloseToolUI();
-
         }
     }
     public void SpawnObject(GameObject buildingObject)

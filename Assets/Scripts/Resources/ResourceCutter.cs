@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class ResourceCutter : MonoBehaviour
 {
+    [Header("WoodCutter Settings")]
     public GameObject woodCutter;
     public static bool woodCutterAvailable = false;
     public static bool woodCutterEquiped;
 
+    [Header("StoneCutter Settings")]
     public GameObject stoneCutter;
     public static bool stoneCutterAvailable = false;
     public static bool stoneCutterEquiped;
 
+    [Header("HuntingTool Settings")]
     public GameObject huntingTool;
     public static bool huntingToolAvailable = false;
     public static bool huntingToolEquiped;
-   
+
+    [Header("General Settings")]
     public static bool anyToolEquiped=false;
 
     private void Start()
@@ -50,7 +54,6 @@ public class ResourceCutter : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 10))
         {
-
             if (hit.collider.tag == "Wood" && Input.GetMouseButton(0) && woodCutterEquiped)
             {
                 Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
