@@ -41,7 +41,6 @@ public class BuildingMenu : MonoBehaviour
 
     private void Update()
     {
-        Vector3 forward = transform.TransformDirection(PlayerProperties.rayCastTransform.position);
         Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
         RaycastHit hit;
 

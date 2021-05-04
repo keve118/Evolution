@@ -5,49 +5,54 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     private Transform middleHand;
-    private bool middleCarry = false;
-    private Rigidbody gRigidbody;
+    private GameObject pickedUpObject;
+    private bool pickedUp = false;
 
     private void Start()
     {
-        gRigidbody = GetComponent<Rigidbody>();
         middleHand = GameObject.Find("MiddleHand").transform;
-
-        RaycastHit hit = new RaycastHit();
-        if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
-        {
-            transform.Rotate(0, 0, 0);
-            transform.position = hit.point;
-        }
-        transform.rotation = new Quaternion(0, 0, 0, 0);
-        transform.position += new Vector3(0, 0.1f, 0);
+        pickedUpObject = gameObject;
+        SnapToGround();
     }
 
-
-    private void OnMouseDown()
+    private void Update()
     {
-        GetComponent<Rigidbody>().useGravity = false;
-        GetComponent<Rigidbody>().isKinematic = true;    
-        gRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        this.transform.position = middleHand.position;
-        this.transform.parent = GameObject.Find("MiddleHand").transform;
-
-    }
-
-
-    private void OnMouseUp()
-    {
-        this.transform.parent = null;
-        GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<Rigidbody>().useGravity = false;
-        RaycastHit hit = new RaycastHit();
-        if(Physics.Raycast(transform.position,-transform.up,out hit, Mathf.Infinity))
+        Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 10)) //RayCast To find object that should be carried
         {
-            transform.Rotate(0, 0, 0);
-            transform.position = hit.point;
+            if ((hit.collider.tag == "GameObject" || hit.collider.tag == "Workshop") && Input.GetMouseButton(0) && !pickedUp)
+            {
+                pickedUp = true;
+                pickedUpObject = hit.collider.gameObject;      
+                pickedUpObject.GetComponent<Rigidbody>().useGravity = false;
+                pickedUpObject.GetComponent<Rigidbody>().isKinematic = true;
+                hit.collider.gameObject.transform.position = middleHand.transform.position;
+            }
+            else if (Input.GetMouseButton(1) && pickedUp)          
+                SnapToGround();           
+            if (pickedUp)            
+                RotateObject();                
         }
-        transform.rotation = new Quaternion(0, 0, 0,0);
-        transform.position += new Vector3(0, 0.1f, 0);
+        if (pickedUp)
+            pickedUpObject.transform.position = middleHand.position;           
     }
 
+
+    public void RotateObject()
+    {
+        if (Input.GetKey(KeyCode.E))        pickedUpObject.transform.Rotate(0.0f, 40 * Time.deltaTime, 0.0f);       
+        else if (Input.GetKey(KeyCode.Q))   pickedUpObject.transform.Rotate(0.0f, -40.0f * Time.deltaTime, 0.0f);
+    }
+
+    public void SnapToGround() 
+    {
+        RaycastHit hit = new RaycastHit();
+        if (Physics.Raycast(pickedUpObject.transform.position, -transform.up, out hit, Mathf.Infinity))        
+            pickedUpObject.transform.position = hit.point;
+        
+        pickedUpObject.transform.position += new Vector3(0, 0.1f, 0); //0.1f margin for aesthetics 
+        pickedUp = false;
+        pickedUpObject = null;
+    }
 }
