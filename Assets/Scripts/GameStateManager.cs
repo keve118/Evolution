@@ -18,7 +18,7 @@ public class GameStateManager : MonoBehaviour
             PauseGame();
         }
 
-        else if (isPaused && Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
+        else if (isPaused && Input.GetKeyDown("p"))
         {
             ResumeGame();
         }
