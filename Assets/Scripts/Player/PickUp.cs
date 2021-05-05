@@ -21,7 +21,7 @@ public class PickUp : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 10)) //RayCast To find object that should be carried
         {
-            if ((hit.collider.tag == "GameObject" || hit.collider.tag == "Workshop") && Input.GetMouseButton(0) && !pickedUp)
+            if ((hit.collider.tag == "GameObject" /*|| hit.collider.tag == "Workshop"*/) && Input.GetMouseButton(0) && !pickedUp)
             {
                 pickedUp = true;
                 pickedUpObject = hit.collider.gameObject;      
