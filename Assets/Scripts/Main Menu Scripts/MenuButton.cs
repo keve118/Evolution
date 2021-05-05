@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Class that defines the custom text menu button and handles input response
 /// </summary>
-public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Assign delegate function to the button")]
     public UnityEvent buttonEvent;
@@ -15,15 +15,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
     private MenuButtonHandler menuButtonHandler;
-    private bool isMouseKeyDown;
     private bool isKeyDown;
 
     #region Event implementation for reacting to mouse input 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        buttonEvent.Invoke();
-        isMouseKeyDown = true;
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -52,19 +46,18 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if (!isKeyDown || Input.GetButtonDown("Fire1"))
             {
                 animator.SetBool("selected", true);
-                if (Input.GetAxis("Submit") == 1 || Input.GetButtonDown("Fire1"))
+                if (Input.GetAxisRaw("Submit") == 1 || Input.GetButtonDown("Fire1"))
                 {
-                    Debug.Log("Here be Mice");
                     animator.SetBool("pressed", true);
-
                 }
                 else if (animator.GetBool("pressed"))
                 {
+                    buttonEvent.Invoke();
                     animator.SetBool("pressed", false);
                     animatorAudioHelper.disableOnce = true;
 
                 }
-
+                
                 isKeyDown = true;
             }
             else

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -22,34 +19,28 @@ public class GameStateManager : MonoBehaviour
             PauseGame();
         }
 
-        else if (isPaused && Input.GetKeyDown("p"))
+        else if (isPaused && Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
         {
-            ResumeGame();
+            UnPauseGame();
         }
     }
 
     public void PauseGame()
     {
-        StopGame();
+        Time.timeScale = 0;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         pause.SetActive(true);
         isPaused = true;
     }
 
-    public void ResumeGame()
-    {
-        StartGame();
-        Cursor.visible = false;
-        pause.SetActive(false);
-        isPaused = false;
-    }
-
-    public void StopGame()
-    {
-        Time.timeScale = 0;
-    }
-    public void StartGame()
+    public void UnPauseGame()
     {
         Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        isPaused = false;
+        pause.SetActive(false);
+        isPaused = false;
     }
 }
