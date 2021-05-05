@@ -20,25 +20,32 @@ public class GameStateManager : MonoBehaviour
 
         else if (isPaused && Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
         {
-            UnPauseGame();
+            ResumeGame();
         }
     }
 
     public void PauseGame()
     {
-        Time.timeScale = 0;
+        StopGame();
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
         pause.SetActive(true);
         isPaused = true;
     }
 
-    public void UnPauseGame()
+    public void ResumeGame()
+    {
+        StartGame();
+        Cursor.visible = false;
+        pause.SetActive(false);
+        isPaused = false;
+    }
+
+    public void StopGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void StartGame()
     {
         Time.timeScale = 1;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        isPaused = false;
-        pause.SetActive(false);
     }
 }

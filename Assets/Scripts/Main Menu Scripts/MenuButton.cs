@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Class that defines the custom text menu button and handles input response
 /// </summary>
-public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler 
+public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Assign delegate function to the button")]
     
@@ -18,9 +18,14 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
     
     private MenuButtonHandler menuButtonHandler;
+    private bool isMouseKeyDown;
     private bool isKeyDown;
 
     #region Event implementation for reacting to mouse input 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        isMouseKeyDown = true;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -51,7 +56,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 animator.SetBool("selected", true);
                 if (Input.GetAxisRaw("Submit") == 1 || Input.GetButtonDown("Fire1"))
                 {
+                    Debug.Log("Here be Mice");
                     animator.SetBool("pressed", true);
+
                 }
                 else if (animator.GetBool("pressed"))
                 {
