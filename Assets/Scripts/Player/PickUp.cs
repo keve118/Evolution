@@ -7,6 +7,7 @@ public class PickUp : MonoBehaviour
     private Transform middleHand;
     private GameObject pickedUpObject;
     private bool pickedUp = false;
+    public GameObject rayObject;
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class PickUp : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
+        Ray ray = new Ray(rayObject.transform.position, rayObject.transform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 10)) //RayCast To find object that should be carried
         {
