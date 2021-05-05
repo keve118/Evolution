@@ -8,15 +8,12 @@ using UnityEngine.EventSystems;
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Assign delegate function to the button")]
-    
     public UnityEvent buttonEvent;
     public int buttonIndex;
-   
+
     [HideInInspector] public bool isMouseOver;
-    
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
-    
     private MenuButtonHandler menuButtonHandler;
     private bool isMouseKeyDown;
     private bool isKeyDown;
@@ -24,6 +21,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     #region Event implementation for reacting to mouse input 
     public void OnPointerClick(PointerEventData eventData)
     {
+        buttonEvent.Invoke();
         isMouseKeyDown = true;
     }
 
@@ -64,7 +62,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 {
                     animator.SetBool("pressed", false);
                     animatorAudioHelper.disableOnce = true;
-                    buttonEvent.Invoke();
+
                 }
 
                 isKeyDown = true;
