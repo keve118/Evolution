@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +11,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MenuDelegateCollection : MonoBehaviour
 {
+    public delegate void MenuDelegateAction();
+    public delegate void LoadScene(int number);
+    public MenuDelegateAction menuDelegateVoidAction;
+    public LoadScene sceneLoaderDelegate;
+
+    public int milliSecondDelay;
+
     public void RunDemo()
     {
         Debug.Log("Start function works and goes here");
@@ -21,16 +30,40 @@ public class MenuDelegateCollection : MonoBehaviour
 
     public void QuitGame() //Will after build quit the game
     {
-        Application.Quit();
+        menuDelegateVoidAction = Application.Quit;
+        ExecuteAfterTime(500, menuDelegateVoidAction);
     }
 
     public void LoadMainMenuScene()
     {
-        SceneManager.LoadScene(0);
+        sceneLoaderDelegate = LoadSceneNumber;
+        ExecuteAfterTime(500, sceneLoaderDelegate, 0);
     }
 
     public void ResumeGame() //To leverage this funciton the pause screen gameobject must implement the pause script!
     {
-        gameObject.GetComponent<PauseMenu>().UIManager.GetComponent<GameStateManager>().StartGame();
+        menuDelegateVoidAction = gameObject.GetComponent<PauseMenu>().UIManager.GetComponent<GameStateManager>().UnPauseGame;
+        ExecuteAfterTime(500, menuDelegateVoidAction);
+    }
+
+    public void LoadSceneNumber(int number)
+    {
+        SceneManager.LoadScene(number);
+    }
+
+    //Delays void action to allow menu sound to play before execution
+    async void ExecuteAfterTime(int milliSeconds, MenuDelegateAction e)
+    {
+        await Task.Delay(milliSeconds);
+
+        e.Invoke();
+    }
+
+    //Delays scene loading to allow menu sound to play. If string not number, create a method overload
+    async void ExecuteAfterTime(int milliSeconds, LoadScene e, int sceneNumber)
+    {
+        await Task.Delay(milliSeconds);
+
+        e.Invoke(sceneNumber);
     }
 }
