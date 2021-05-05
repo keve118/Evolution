@@ -59,16 +59,16 @@ public class MenuButtonHandler : MonoBehaviour
             return;
         }
 
-        if (Input.GetAxis(vertical) != 0)
+        if (Input.GetAxisRaw(vertical) != 0)
         {
 
             if (!isKeyDown)
             {
-                if (Input.GetAxis(vertical) < 0)
+                if (Input.GetAxisRaw(vertical) < 0)
                 {
                     HandleUpwardIncrement();
                 }
-                else if (Input.GetAxis(vertical) > 0)
+                else if (Input.GetAxisRaw(vertical) > 0)
                 {
                     HandleDownwardIncrement();
 
