@@ -4,54 +4,57 @@ using UnityEngine;
 
 public class ResourceCutter : MonoBehaviour
 {
+    [Header("WoodCutter Settings")]
     public GameObject woodCutter;
     public static bool woodCutterAvailable = false;
-    public static bool woodCutterEquiped =false;
+    public static bool woodCutterEquiped;
 
+    [Header("StoneCutter Settings")]
     public GameObject stoneCutter;
     public static bool stoneCutterAvailable = false;
-    public static bool stoneCutterEquiped =false;
+    public static bool stoneCutterEquiped;
 
+    [Header("HuntingTool Settings")]
     public GameObject huntingTool;
     public static bool huntingToolAvailable = false;
-    public static bool huntingToolEquiped = false;
+    public static bool huntingToolEquiped;
 
-    public GameObject fishingRod;
-    public static bool fishingRodAvailable = false;
-    public static bool fishingRodEquiped =false;
-   
+    [Header("General Settings")]
     public static bool anyToolEquiped=false;
+
+    private void Start()
+    {
+        huntingToolEquiped = false;
+        woodCutterEquiped = false;
+        stoneCutterEquiped = false;
+    }
 
     private void Update()
     {
-        while (woodCutterEquiped || stoneCutterEquiped || fishingRodEquiped || huntingToolEquiped)
+        while (woodCutterEquiped || stoneCutterEquiped || huntingToolEquiped)
         {
             anyToolEquiped = true;
-
-            if (!woodCutterEquiped || !stoneCutterEquiped || !fishingRodEquiped || !huntingToolEquiped)
+            if (!woodCutterEquiped || !stoneCutterEquiped || !huntingToolEquiped)
                 break;
-        }            
-        
+        }
+
         if (woodCutterAvailable)
-            WoodCutter();
-
-         if (stoneCutterAvailable)
-            StoneCutter();
-
+            EnableTool(woodCutter, KeyCode.Alpha1);            
+        if (stoneCutterAvailable)
+            EnableTool(stoneCutter, KeyCode.Alpha2);
         if (huntingToolAvailable)
-            HuntCollector();
+            EnableTool(huntingTool, KeyCode.Alpha3);
+    }
 
-        if (fishingRodAvailable)
-            FishCollector();
+    private void FixedUpdate()
+    {    
+        Vector3 forward = transform.TransformDirection(PlayerProperties.rayCastTransform.position);
+        Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
+        RaycastHit hit;
 
-
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        RaycastHit hit; 
-
-        //Origin, direction, raycasthit, length
-        if(Physics.Raycast(transform.position,fwd,out hit, 10)) 
-        { 
-            if(hit.collider.tag=="Wood" && Input.GetMouseButton(0) && woodCutterEquiped) 
+        if (Physics.Raycast(ray, out hit, 10))
+        {
+            if (hit.collider.tag == "Wood" && Input.GetMouseButton(0) && woodCutterEquiped)
             {
                 Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
                 FindObjectOfType<SoundManager>().Play("CutWood");
@@ -69,97 +72,35 @@ public class ResourceCutter : MonoBehaviour
                 FindObjectOfType<SoundManager>().Play("SpearAnimal");
                 harvestScript.health--;
             }
-            if (hit.collider.tag == "Food" && Input.GetMouseButton(0) && fishingRodEquiped)
-            {
-                Harvest harvestScript = hit.collider.gameObject.GetComponent<Harvest>();
-                harvestScript.health--;
-            }
-
-
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-    public void WoodCutter() 
-    {
-        if (!woodCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha1) && !anyToolEquiped)
-        {
-            woodCutterEquiped = true;
-            anyToolEquiped = true;
-            woodCutter.SetActive(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            woodCutterEquiped = false;
-            anyToolEquiped = false;
-            woodCutter.SetActive(false);
-            return;
-        }
-    }
-    public void StoneCutter() 
-    {
-        if (!stoneCutter.activeSelf && Input.GetKeyDown(KeyCode.Alpha2) && !anyToolEquiped)
-        {
-            stoneCutterEquiped = true;
-            anyToolEquiped = true;
-            stoneCutter.SetActive(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            stoneCutterEquiped = false;
-            anyToolEquiped = false;
-            stoneCutter.SetActive(false);
-            return;
         }
     }
 
-
-    public void HuntCollector() 
+    public void EnableTool(GameObject toolObject, KeyCode activate) 
     {
-        if (!huntingTool.activeSelf && Input.GetKeyDown(KeyCode.Alpha3) && !anyToolEquiped)
+        if (!toolObject.activeSelf && Input.GetKeyDown(activate) && !anyToolEquiped)
         {
-            huntingToolEquiped = true;
+            if (toolObject == woodCutter)
+                woodCutterEquiped = true;
+            if (toolObject == stoneCutter)
+                stoneCutterEquiped = true;
+            if (toolObject == huntingTool)
+                huntingToolEquiped = true;
+    
             anyToolEquiped = true;
-            huntingTool.SetActive(true);
+            toolObject.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(activate))
         {
-            huntingToolEquiped = false;
+            if (toolObject == woodCutter)
+                woodCutterEquiped = false;
+            if (toolObject == stoneCutter)
+                stoneCutterEquiped = false;
+            if (toolObject == huntingTool)
+                huntingToolEquiped = false;
+     
             anyToolEquiped = false;
-            huntingTool.SetActive(false);
+            toolObject.SetActive(false);
             return;
         }
-    }
-
-
-    public void FishCollector() 
-    {
-                    
-       if (!fishingRod.activeSelf && Input.GetKeyDown(KeyCode.Alpha4) && !anyToolEquiped)
-       {
-           fishingRodEquiped = true;
-            anyToolEquiped = true;
-            fishingRod.SetActive(true);
-
-       }
-       else if (Input.GetKeyDown(KeyCode.Alpha4))
-       {
-           fishingRodEquiped = false;
-            anyToolEquiped = false;
-            fishingRod.SetActive(false);
-            return;
-       }
     }
 }

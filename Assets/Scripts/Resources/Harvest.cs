@@ -16,33 +16,26 @@ public class Harvest : MonoBehaviour
 
     private void Start()
     {
-         thisResource = transform.gameObject;
-         health=startHealth;
+        thisResource = transform.gameObject;
+        health =startHealth;
     }
 
     private void Update()
     {       
         ////Faller
-        if (health <= 0 && gameObject.tag == "Stone")
+        if (health == 0 && gameObject.tag == "Stone")
         {
             Falling();
-            return;
         }
-        if (health <= 0 && gameObject.tag == "Wood")
+        if (health == 0 && gameObject.tag == "Wood")
         {
-            Falling();
-            return;
+            Falling();      
         }
-        if (health <= 0 && gameObject.tag == "Food")
+        if (health == 0 && gameObject.tag == "Food")
         {
             Falling();       
         }
-        if (health <= 0 && gameObject.tag == "Food")
-        {
-            Falling();
-
-        }
-
+  
         // We have two types of food, FISH & Deer, we have to differ these
         //Think sound for animals will be implemented in the Animator
         //Or we just tag them with FoodFish and FoodAnimal?? /Jessica
@@ -52,17 +45,17 @@ public class Harvest : MonoBehaviour
     {
         if (gameObject.tag == "Food" && !isFallen) 
         {
-            Animator an = gameObject.GetComponent<Animator>();
-            an.SetBool("isDead", true);
+            Animator animator = gameObject.GetComponent<Animator>();
+            animator.SetBool("isDead", true);
             isFallen = true;
         }
         if (gameObject.tag != "Food" && !isFallen)
         {
-            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-            rb.isKinematic = false;
-            rb.useGravity = true;
-            rb.mass = mass;
-            rb.AddForce(Vector3.forward * force, ForceMode.Impulse);
+            Rigidbody rigidBody = gameObject.AddComponent<Rigidbody>();
+            rigidBody.isKinematic = false;
+            rigidBody.useGravity = true;
+            rigidBody.mass = mass;
+            rigidBody.AddForce(Vector3.forward * force, ForceMode.Impulse);
             isFallen = true;
         }
 
@@ -71,9 +64,6 @@ public class Harvest : MonoBehaviour
 
     IEnumerator DestroyThisResource()
     {
-        //coll.enabled = false;
-        //myRend.enabled = false;
-
         yield return new WaitForSeconds(timeFallen);
         Instantiate(rest, transform.position, transform.rotation);
         Destroy(gameObject);

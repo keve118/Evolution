@@ -228,9 +228,10 @@ GameObject:
   - component: {fileID: 2388308870757895962}
   - component: {fileID: 6542007832947992527}
   - component: {fileID: 6542007832947992526}
+  - component: {fileID: 1032396030}
   m_Layer: 0
   m_Name: FirePlaceSmall
-  m_TagString: Untagged
+  m_TagString: GameObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +278,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7014695599563017691}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -297,7 +298,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1d665e198241e48bea3a04badc37bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  middleHand: {fileID: 0}
+--- !u!114 &1032396030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014695599563017691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodCost: 5
+  stoneCost: 4
+  foodCost: 0
 --- !u!1 &9038894966037631271
 GameObject:
   m_ObjectHideFlags: 0

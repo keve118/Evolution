@@ -12,7 +12,7 @@ public class MovementPlayerScript : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private float currentSpeed;
+    public float currentSpeed;
 
     AudioSource audioSource;
     bool isMoving = false;
@@ -47,6 +47,16 @@ public class MovementPlayerScript : MonoBehaviour
         {
             currentSpeed = runSpeed;
             isMoving = true;
+
+            float amountOfStaminaToUse = 0.1f;
+            //if staminabar is 0 (empty) you can't run
+            if (StaminaBar.instance.currentStamina - amountOfStaminaToUse <= 0)
+                currentSpeed = walkSpeed;
+
+            //can only use staminabar when player is moving
+            if (controller.velocity.x != 0)
+                StaminaBar.instance.UseStamina(amountOfStaminaToUse);
+                
         }
         else if (isGrounded)
         {

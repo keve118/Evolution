@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6547776640880967566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6547776640880967600}
+  - component: {fileID: 6547776640880967601}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6547776640880967600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6547776640880967566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6547776640880967601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6547776640880967566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75bc05c72cfaf9249854fdfc061d52e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PickUpResource
+    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+    volume: 0.218
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Background
+    clip: {fileID: 8300000, guid: c23df35eb01861f48a5faa6ff7bfd41d, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: PickUpTool
+    clip: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+    volume: 0.313
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CutWood
+    clip: {fileID: 8300000, guid: 2696ef4f847e05f47bef797d7bdaaa40, type: 3}
+    volume: 0.864
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CutStone
+    clip: {fileID: 8300000, guid: 3c283dedc9406ef45ae7696bb3201103, type: 3}
+    volume: 0.947
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BirdsBackground
+    clip: {fileID: 0}
+    volume: 0.828
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: CaughtFish
+    clip: {fileID: 8300000, guid: cf50b58300e377d44ad76a5e8581c89f, type: 3}
+    volume: 0.828
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StoneDown
+    clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+    volume: 0.828
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WoodDown
+    clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+    volume: 0.828
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SpearAnimal
+    clip: {fileID: 8300000, guid: 4cd0826e81d28bc438b130180bd241e6, type: 3}
+    volume: 0.295
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

@@ -1,77 +1,159 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingMenu : MonoBehaviour
 {
-    public static bool activeUI = false;
+    [Header("UI Settings")]
+    public static bool activeBuildUI = false;
     public GameObject buildUI;
 
-    public Transform positionObject;
+    [Header("Spawn Settings")]
+    public Transform positionBuildings;
+    private Transform positionTools;
 
+    [Header("Buildings")]
     public GameObject primitiveHut;
     public GameObject firePlace;
+    public GameObject workshop;
 
-    private bool placed = false;
+    [Header("Tools")]
+    public GameObject stoneAgeAxe;
+    public GameObject stoneAgePickAxe;
+    public GameObject stoneAgeSpear;
+
+    [Header("Building Text Settings")]
+    public Text primitiveHutCost;
+    public Text firePlaceCost;
+    public Text workshopCost;
+
+    [Header("Building Text Settings")]
+    public Text stoneAgeAxeCost;
+    public Text stoneAgePickAxeCost;
+    public Text stoneAgeSpearCost;
+
+    [Header("Tools Settings")]
+    public GameObject toolUI; 
+    public static bool activeToolUI = false;
+
+    private ResourceCutter resourceCutterScript;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
+        RaycastHit hit;
+
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            if (activeUI)
+            if (activeBuildUI)
             {
-                CloseUI();
+                CloseBuildUI();
                 Cursor.visible = false;
             }
             else
             {
-                OpenUI();
-                Cursor.visible = true;              
-               
+                OpenBuildUI();
+                Cursor.visible = true;                           
             }        
         }
+
+        if (Physics.Raycast(ray, out hit, 10))
+        {
+
+            if (hit.collider.tag =="Workshop" && Input.GetKeyDown(KeyCode.E) && activeToolUI)
+            {
+                CloseToolUI();
+                Cursor.visible = false;
+                positionTools = hit.collider.gameObject.transform.Find("spawnPoint");
+            }
+            else if (hit.collider.tag == "Workshop" && Input.GetKeyDown(KeyCode.E) && !activeToolUI)
+            {
+                OpenToolUI();
+                Cursor.visible = true;
+            }
+        }
+
+        primitiveHutCost.text = "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
+        firePlaceCost.text = "Cost of Building:\n Wood:" + firePlace.GetComponent<Cost>().woodCost + "\n Stone:" + firePlace.GetComponent<Cost>().stoneCost;
+        workshopCost.text = "Cost of Building:\n Wood:" + workshop.GetComponent<Cost>().woodCost + "\n Stone:" + workshop.GetComponent<Cost>().stoneCost;
+
+        stoneAgeAxeCost.text = "Cost of Building:\n Wood:" + stoneAgeAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeAxe.GetComponent<Cost>().stoneCost;
+        stoneAgePickAxeCost.text = "Cost of Building:\n Wood:" +stoneAgePickAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgePickAxe.GetComponent<Cost>().stoneCost;
+        stoneAgeSpearCost.text = "Cost of Building:\n Wood:" + stoneAgeSpear.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeSpear.GetComponent<Cost>().stoneCost;
+
     }
 
-    public void CloseUI() 
+
+    public void CloseBuildUI() 
     {
         buildUI.SetActive(false);
         Time.timeScale = 1f;
-        activeUI = false;
+        activeBuildUI = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-    public void OpenUI()
+    public void OpenBuildUI()
     {
         buildUI.SetActive(true);
         Time.timeScale = 0f;
-        activeUI = true;
+        activeBuildUI = true;
         Cursor.lockState = CursorLockMode.Confined;
-
     }
-    public void PlacePrimitiveHut() 
+    public void CloseToolUI()
     {
-        Debug.Log("Hut selected");   
-        Instantiate(primitiveHut,positionObject.transform.position , transform.rotation);
-        CloseUI();
-
-
+        toolUI.SetActive(false);
+        Time.timeScale = 1f;
+        activeToolUI = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
-    public void PlaceFirePlace()
+    public void OpenToolUI()
     {
-        Debug.Log("Fireplace selected");
-        Instantiate(firePlace, positionObject.transform.position, transform.rotation);
-        CloseUI();
-
-
+        toolUI.SetActive(true);
+        Time.timeScale = 0f;
+        activeToolUI = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
+    public void CostOfObject(GameObject buildingObject)
+    {
+        int costOfWood = buildingObject.GetComponent<Cost>().woodCost;
+        int costOfStone = buildingObject.GetComponent<Cost>().stoneCost;
+        int costOfFood = buildingObject.GetComponent<Cost>().foodCost;
 
+        if (costOfWood <= PlayerProperties.amountWood)
+        {
+            if (costOfStone <= PlayerProperties.amountStone)
+            {
+                if (costOfFood <= PlayerProperties.amountFood)
+                {
+                    SpawnObject(buildingObject);
 
+                    PlayerProperties.amountWood -= costOfWood;
+                    PlayerProperties.amountFood -= costOfFood;
+                    PlayerProperties.amountStone -= costOfStone;
+                }
+            }
+        }
+        else 
+        {
+            Debug.Log("Insufficient Funds!");
+            if (activeBuildUI)
+                CloseBuildUI();
+            if (activeToolUI)
+                CloseToolUI();
+        }
+    }
+    public void SpawnObject(GameObject buildingObject)
+    {
+        if(buildingObject.tag=="Tool")
+            Instantiate(buildingObject, positionTools.transform.position, transform.rotation);
+        else
+            Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
 
+        if(activeBuildUI)
+            CloseBuildUI();
 
-
-
-
-
-
+        if(activeToolUI)
+            CloseToolUI();
+    }
 }

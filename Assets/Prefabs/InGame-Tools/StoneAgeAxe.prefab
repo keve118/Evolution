@@ -11,12 +11,14 @@ GameObject:
   - component: {fileID: 2046588765185884960}
   - component: {fileID: 3155099426309721221}
   - component: {fileID: 877601043463682127}
-  - component: {fileID: 2012063253373423222}
-  - component: {fileID: 2012063253373423223}
+  - component: {fileID: 1370804275169983260}
   - component: {fileID: 2012063253373423210}
+  - component: {fileID: 1370804275169983267}
+  - component: {fileID: 1370804275169983262}
+  - component: {fileID: 717949041}
   m_Layer: 0
   m_Name: StoneAgeAxe
-  m_TagString: Untagged
+  m_TagString: Tool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670027388966508954}
-  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
-  m_LocalPosition: {x: 75.039, y: 0.22875047, z: 4.46}
+  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0.77, y: 0.382, z: -4.795}
   m_LocalScale: {x: 0.5058846, y: 0.5058846, z: 0.5058846}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!33 &3155099426309721221
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2012063253373423222
+--- !u!54 &1370804275169983260
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,26 +96,13 @@ Rigidbody:
   m_GameObject: {fileID: 1670027388966508954}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2012063253373423223
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670027388966508954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.24406151, y: 0.40761945, z: 0.86094224}
-  m_Center: {x: -0.00000000745058, y: -0.019641364, z: 0.39037174}
 --- !u!64 &2012063253373423210
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -128,3 +117,43 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 50618aa4277a2e645b2d93ab9bec2399, type: 3}
+--- !u!65 &1370804275169983267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670027388966508954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24406151, y: 0.4076196, z: 0.86094254}
+  m_Center: {x: -0.00000000745058, y: -0.019640418, z: 0.3903719}
+--- !u!114 &1370804275169983262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670027388966508954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33d267168fd6ab468f039bcccfc843e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &717949041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670027388966508954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodCost: 2
+  stoneCost: 2
+  foodCost: 0

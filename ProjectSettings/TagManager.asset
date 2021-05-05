@@ -10,11 +10,14 @@ TagManager:
   - Food
   - Waypoint
   - Spear
+  - GameObject
+  - Tool
+  - Workshop
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Resources
   - Water
   - UI
   - 
