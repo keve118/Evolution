@@ -7,7 +7,6 @@ public class SoundManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    // Start is called before the first frame update
     void Awake()
     {
         foreach (Sound s in sounds)
@@ -22,11 +21,13 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
+        //play background music from start
         Play("Background");
     }
 
     public void Play(string name)
     {
+        //finding the sound clip to play (in other scripts)
         Sound s = Array.Find(sounds, sound => sound.name == name);
        
         if(s == null)

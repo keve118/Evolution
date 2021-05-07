@@ -6,14 +6,11 @@ public class CollectResource : MonoBehaviour
 {
     public int resourceHP = 10; 
 
-    void Start()
-    {
-
-    }
     void Update()
     {
         if (resourceHP < 1)
         {
+            //sound clip when picking up a resource
             FindObjectOfType<SoundManager>().Play("PickUpResource");
 
             if (gameObject.tag=="Wood")
