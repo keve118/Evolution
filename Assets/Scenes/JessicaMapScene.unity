@@ -10663,6 +10663,7 @@ MonoBehaviour:
   woodCutter: {fileID: 1233847617}
   stoneCutter: {fileID: 429218107}
   huntingTool: {fileID: 1109995043}
+  rayObject: {fileID: 0}
 --- !u!1001 &2080413165
 PrefabInstance:
   m_ObjectHideFlags: 0
