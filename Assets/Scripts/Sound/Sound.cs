@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 [System.Serializable]
+
+//Class for sound settings
 public class Sound
 {
     public string name;
