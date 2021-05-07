@@ -1,20 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static PlayerControls;
 
-public class MovementPlayerScript : MonoBehaviour, IGameplayActions
+public class MovementPlayerScript : MonoBehaviour
 {
-    private PlayerControls playerControls; //Holds an auto generated class from the Input System
-    [SerializeField]private Camera mainFpsCamera; 
-
-    private Vector2 Direction { get; set; }
-    
-
-    #region OLD LOGIC
-
     public float walkSpeed, runSpeed;
     public float jumpHeight;
     public float gravity = -9.18f;
@@ -23,24 +12,12 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
 
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private float currentSpeed;
+    public float currentSpeed;
 
     AudioSource audioSource;
     bool isMoving = false;
 
-    #endregion OLD LOGIC
-
-    void Awake()
-    {
-        playerControls = new PlayerControls();
-        playerControls.Gameplay.SetCallbacks(this);
-    }
-
-    public void OnMovement(InputAction.CallbackContext context) // Player Controller IGameplayActions interface implementation
-    {
-        Direction = context.ReadValue<Vector2>();
-    }
-
+    // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -48,31 +25,31 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnEnable() // Input System helper
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable() // Input System helper
-    {
-        playerControls.Disable();
-    }
-
+    // Update is called once per frame
     void Update()
     {
         isGrounded = controller.isGrounded;
         if (isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
+
         }
 
-        Vector3 moveDirection = transform.right * (Direction.x * 0.75f) + (transform.forward * Direction.y);
+
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
+
+        Vector3 moveDirection = transform.right * (x * 0.75f) + transform.forward * z;
+
         controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
         if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
         {
             currentSpeed = runSpeed;
             isMoving = true;
+
+            CheckStamina();
+                
         }
         else if (isGrounded)
         {
@@ -114,8 +91,6 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
         else
             audioSource.Stop();
     }
-<<<<<<< Updated upstream
-=======
 
     void CheckStamina()
     {
@@ -128,11 +103,5 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
         if (controller.velocity.x != 0)
             StaminaBar.instance.UseStamina(amountOfStaminaToUse);
     }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        Debug.Log("Looking AF");
-    }
->>>>>>> Stashed changes
 }
 
