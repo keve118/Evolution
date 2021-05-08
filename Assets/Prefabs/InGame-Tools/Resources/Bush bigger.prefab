@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5672740411620483835, guid: 0bb350fe1f53896498b6e9a9a1f5a118, type: 3}
+      propertyPath: distanceToAppear
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2297493492964727159, guid: 0bb350fe1f53896498b6e9a9a1f5a118, type: 3}
       propertyPath: startHealth
       value: 14

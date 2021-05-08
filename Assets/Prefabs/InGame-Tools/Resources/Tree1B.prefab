@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5403470471198791707}
   - component: {fileID: 146150081705445204}
   - component: {fileID: 6143099969552262845}
+  - component: {fileID: 912446970511742574}
   m_Layer: 0
   m_Name: Tree1B
   m_TagString: Wood
@@ -156,6 +157,19 @@ MonoBehaviour:
   force: 10
   timeFallen: 3
   rest: {fileID: 5949395493869644678, guid: e432e3baccb526e4a9315ce0c2a34a51, type: 3}
+--- !u!114 &912446970511742574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3943077248776192934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1178cd5338cd30468b4767333a57965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToAppear: 30
 --- !u!1 &4308149546507731540
 GameObject:
   m_ObjectHideFlags: 0
