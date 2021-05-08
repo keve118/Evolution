@@ -35,12 +35,8 @@ public class Harvest : MonoBehaviour
         {
             Falling();       
         }
-  
-        // We have two types of food, FISH & Deer, we have to differ these
-        //Think sound for animals will be implemented in the Animator
-        //Or we just tag them with FoodFish and FoodAnimal?? /Jessica
-
     }
+
     public void Falling()    
     {
         if (gameObject.tag == "Food" && !isFallen) 
