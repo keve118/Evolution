@@ -37,7 +37,20 @@ public class BuildingMenu : MonoBehaviour
     public GameObject toolUI; 
     public static bool activeToolUI = false;
 
-    private ResourceCutter resourceCutterScript;
+    [Header("General Settings")]
+    public Camera MainCamera;
+    public Camera UsingCamera;
+    private Animator animator;
+    private bool isAnimating = false;
+    public float timePassed = 2f;
+
+    private void Start()
+    {
+        MainCamera.enabled = true;
+        UsingCamera.enabled = false;
+
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -45,16 +58,23 @@ public class BuildingMenu : MonoBehaviour
         RaycastHit hit;
 
         if (Input.GetKeyDown(KeyCode.B))
-        {
+        {         
             if (activeBuildUI)
-            {
+            {       
+                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", true);
+                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", false);
                 CloseBuildUI();
                 Cursor.visible = false;
+                MainCamera.enabled = true;
+                UsingCamera.enabled = false;
             }
             else
             {
-                OpenBuildUI();
-                Cursor.visible = true;                           
+                MainCamera.enabled = false;
+                UsingCamera.enabled = true;
+                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", true);
+                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", false);
+                OpenBuildUI();        
             }        
         }
 
@@ -81,23 +101,23 @@ public class BuildingMenu : MonoBehaviour
         stoneAgeAxeCost.text = "Cost of Building:\n Wood:" + stoneAgeAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeAxe.GetComponent<Cost>().stoneCost;
         stoneAgePickAxeCost.text = "Cost of Building:\n Wood:" +stoneAgePickAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgePickAxe.GetComponent<Cost>().stoneCost;
         stoneAgeSpearCost.text = "Cost of Building:\n Wood:" + stoneAgeSpear.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeSpear.GetComponent<Cost>().stoneCost;
-
     }
 
-
-    public void CloseBuildUI() 
+    public void CloseBuildUI()
     {
         buildUI.SetActive(false);
         Time.timeScale = 1f;
         activeBuildUI = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public void OpenBuildUI()
     {
         buildUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         activeBuildUI = true;
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
     public void CloseToolUI()
     {
@@ -136,11 +156,11 @@ public class BuildingMenu : MonoBehaviour
         }
         else 
         {
-            Debug.Log("Insufficient Funds!");
-            if (activeBuildUI)
-                CloseBuildUI();
-            if (activeToolUI)
-                CloseToolUI();
+            //Debug.Log("Insufficient Funds!");
+            //if (activeBuildUI)
+            //    CloseBuildUI();
+            //if (activeToolUI)
+            //    CloseToolUI();
         }
     }
     public void SpawnObject(GameObject buildingObject)
@@ -148,7 +168,7 @@ public class BuildingMenu : MonoBehaviour
         if(buildingObject.tag=="Tool")
             Instantiate(buildingObject, positionTools.transform.position, transform.rotation);
         else
-            Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
+            Instantiate(buildingObject, positionBuildings.transform.position + new Vector3(0, 3, 0), transform.rotation);
 
         if(activeBuildUI)
             CloseBuildUI();
