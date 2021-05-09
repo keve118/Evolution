@@ -43,13 +43,16 @@ public class BuildingMenu : MonoBehaviour
     private Animator animator;
     private bool isAnimating = false;
     public float timePassed = 2f;
+    public GameObject pointer;
+    public GameObject player;
+    [SerializeField] private bool GodMode = false;
 
     private void Start()
     {
         MainCamera.enabled = true;
-        UsingCamera.enabled = false;
-
+        UsingCamera.enabled = false;       
         animator = GetComponent<Animator>();
+
     }
 
     private void Update()
@@ -60,21 +63,34 @@ public class BuildingMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {         
             if (activeBuildUI)
-            {       
-                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", true);
-                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", false);
+            {
+                if (GodMode) 
+                {
+                    pointer.SetActive(false);
+                    player.GetComponent<MouseLook>().buildingModeOn = false;
+                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", true);
+                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", false);
+                    MainCamera.enabled = true;
+                    UsingCamera.enabled = false;
+
+                }
                 CloseBuildUI();
-                Cursor.visible = false;
-                MainCamera.enabled = true;
-                UsingCamera.enabled = false;
+                Cursor.visible = false; 
             }
             else
             {
-                MainCamera.enabled = false;
-                UsingCamera.enabled = true;
-                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", true);
-                UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", false);
-                OpenBuildUI();        
+                if (GodMode) 
+                {
+                    player.GetComponent<MouseLook>().buildingModeOn = true;
+                    pointer.SetActive(true);
+                    MainCamera.enabled = false;
+                    UsingCamera.enabled = true;
+                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", true);
+                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", false);
+                }
+
+                OpenBuildUI();
+                Cursor.visible = true;
             }        
         }
 
@@ -114,7 +130,12 @@ public class BuildingMenu : MonoBehaviour
     public void OpenBuildUI()
     {
         buildUI.SetActive(true);
-        Time.timeScale = 1f;
+
+        if (GodMode)
+            Time.timeScale = 1f;
+        else
+            Time.timeScale = 0f;
+
         activeBuildUI = true;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -168,7 +189,7 @@ public class BuildingMenu : MonoBehaviour
         if(buildingObject.tag=="Tool")
             Instantiate(buildingObject, positionTools.transform.position, transform.rotation);
         else
-            Instantiate(buildingObject, positionBuildings.transform.position + new Vector3(0, 3, 0), transform.rotation);
+            Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
 
         if(activeBuildUI)
             CloseBuildUI();
