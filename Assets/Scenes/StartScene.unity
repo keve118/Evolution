@@ -40076,6 +40076,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoneAgePickAxeEQ
       objectReference: {fileID: 0}
+    - target: {fileID: 4672361925482960888, guid: 5e4ba440c6b0d7d4cb199dc19b6764c5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e4ba440c6b0d7d4cb199dc19b6764c5, type: 3}
 --- !u!114 &371822411488118812
