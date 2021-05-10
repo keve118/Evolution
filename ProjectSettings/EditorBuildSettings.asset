@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MikaelBScene.unity
     guid: f250be4863baa844e92bcf5d4ae84e6b
   - enabled: 1
-    path: Assets/Scenes/KevinNewScene.unity
+    path: Assets/Scenes/StartScene.unity
     guid: 1774865ed29a348499e1b66717f981da
   - enabled: 0
     path: Assets/Scenes/KevinScene.unity
