@@ -12686,7 +12686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &776715672
 Transform:
   m_ObjectHideFlags: 0
@@ -12860,6 +12860,14 @@ PrefabInstance:
     - target: {fileID: 246541756, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_BaseOffset
       value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316113031270667126, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
+      propertyPath: speedMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316113031270667126, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
+      propertyPath: speedMin
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9066149152807896736, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
       propertyPath: m_Layer
@@ -29188,8 +29196,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ba6029ca248ff2247a1a9ca238be48ff, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.772
-  m_Pitch: 1
+  m_Volume: 0.537
+  m_Pitch: 0.69
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -29197,7 +29205,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -41604,6 +41612,14 @@ PrefabInstance:
     - target: {fileID: 6547776640880967600, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547776640880967601, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547776640880967601, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.165
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
