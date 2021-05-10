@@ -20,7 +20,8 @@ public class MenuDelegateCollection : MonoBehaviour
 
     public void RunDemo()
     {
-        Debug.Log("Start function works and goes here");
+        sceneLoaderDelegate = LoadSceneNumber;
+        ExecuteAfterTime(500, sceneLoaderDelegate, 1);
     }
 
     public void Options()
