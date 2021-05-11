@@ -1,14 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
 	private float xRotation;
 	public float sensitivity = 300f;
+
 	[HideInInspector] public bool buildingModeOn = false;
 
 	[SerializeField] private Transform playerBody;
+
+    private PlayerControls playerControls;
+    private InputAction mouseCoordinates;
+    private Vector2 mousePosition;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        mouseCoordinates = playerControls.Gameplay.Look;
+        mouseCoordinates.performed += OnLookingChanged;
+        mouseCoordinates.canceled += OnLookingChanged;
+    }
+
+    private void OnLookingChanged(InputAction.CallbackContext context)
+    {
+        mousePosition = context.ReadValue<Vector2>();
+    }
 
     void Start()
     {
@@ -19,8 +39,8 @@ public class MouseLook : MonoBehaviour
 	{
         if (!buildingModeOn) 
 		{
-            float mouseX = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
-            float mouseY = Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
+            float mouseX = mousePosition.x * sensitivity * Time.deltaTime;
+            float mouseY = mousePosition.y * sensitivity * Time.deltaTime;
 
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -29,4 +49,14 @@ public class MouseLook : MonoBehaviour
         }
 
 	}
+
+    private void OnEnable() // Input System helper
+    {
+        mouseCoordinates.Enable();
+    }
+
+    private void OnDisable() // Input System helper
+    {
+        mouseCoordinates.Disable();
+    }
 }

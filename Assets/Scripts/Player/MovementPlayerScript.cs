@@ -5,15 +5,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControls;
 
-public class MovementPlayerScript : MonoBehaviour, IGameplayActions
+public class MovementPlayerScript : MonoBehaviour
 {
     private PlayerControls playerControls; //Holds an auto generated class from the Input System
+    private InputAction directionalMovement;
     [SerializeField]private Camera mainFpsCamera; 
 
     private Vector2 Direction { get; set; }
-    
 
-    #region OLD LOGIC
 
     public float walkSpeed, runSpeed;
     public float jumpHeight;
@@ -28,15 +27,15 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
     AudioSource audioSource;
     bool isMoving = false;
 
-    #endregion OLD LOGIC
-
     void Awake()
     {
         playerControls = new PlayerControls();
-        playerControls.Gameplay.SetCallbacks(this);
+        directionalMovement = playerControls.Gameplay.Movement;
+        directionalMovement.performed += OnMovement; //What happens when the control is used
+        directionalMovement.canceled += OnMovement; //What happens when tontrol is not used any more
     }
 
-    public void OnMovement(InputAction.CallbackContext context) // Player Controller IGameplayActions interface implementation
+    public void OnMovement(InputAction.CallbackContext context) // Listens to the movment of the controls
     {
         Direction = context.ReadValue<Vector2>();
     }
@@ -50,12 +49,12 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
 
     private void OnEnable() // Input System helper
     {
-        playerControls.Enable();
+        directionalMovement.Enable();
     }
 
     private void OnDisable() // Input System helper
     {
-        playerControls.Disable();
+        directionalMovement.Disable();
     }
 
     void Update()
@@ -118,7 +117,6 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
             audioSource.Stop();
     }
 
-
     void CheckStamina()
     {
         float amountOfStaminaToUse = 0.1f;
@@ -129,11 +127,6 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
         //can only use staminabar when player is moving
         if (controller.velocity.x != 0)
             StaminaBar.instance.UseStamina(amountOfStaminaToUse);
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        Debug.Log("Looking");
     }
 }
 

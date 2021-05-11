@@ -38,13 +38,13 @@ public class MenuDelegateCollection : MonoBehaviour
     public void QuitGame() //Will after build quit the game
     {
         menuDelegateVoidAction = Application.Quit;
-        ExecuteAfterTime(500, menuDelegateVoidAction);
+        ExecuteAfterTime(milliSecondDelay, menuDelegateVoidAction);
     }
 
     public void LoadMainMenuScene()
     {
         sceneLoaderDelegate = LoadSceneNumber;
-        ExecuteAfterTime(500, sceneLoaderDelegate, 0);
+        ExecuteAfterTime(milliSecondDelay, sceneLoaderDelegate, 0);
     }
 
     public void ResumeGame() //To leverage this funciton the pause screen gameobject must implement the pause script!
