@@ -133,7 +133,7 @@ public class MovementPlayerScript : MonoBehaviour, IGameplayActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        Debug.Log("Looking AF");
+        Debug.Log("Looking");
     }
 }
 
