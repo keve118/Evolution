@@ -64,33 +64,41 @@ public class BuildingMenu : MonoBehaviour
         {         
             if (activeBuildUI)
             {
-                if (GodMode) 
-                {
-                    pointer.SetActive(false);
-                    player.GetComponent<MouseLook>().buildingModeOn = false;
-                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", true);
-                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", false);
-                    MainCamera.enabled = true;
-                    UsingCamera.enabled = false;
-
-                }
-                CloseBuildUI();
-                Cursor.visible = false; 
+                //if (GodMode) 
+                //{
+                //    pointer.SetActive(false);
+                //    player.GetComponent<MouseLook>().buildingModeOn = false;
+                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", true);
+                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", false);
+                //    MainCamera.enabled = true;
+                //    UsingCamera.enabled = false;
+                //    CloseBuildUI();
+                //    Cursor.visible = false;
+                //}
+                //else 
+                //{ 
+                    CloseBuildUI();
+                    Cursor.visible = false;              
+                //}
             }
             else
             {
-                if (GodMode) 
-                {
-                    player.GetComponent<MouseLook>().buildingModeOn = true;
-                    pointer.SetActive(true);
-                    MainCamera.enabled = false;
-                    UsingCamera.enabled = true;
-                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", true);
-                    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", false);
-                }
-
-                OpenBuildUI();
-                Cursor.visible = true;
+                //if (GodMode) 
+                //{
+                //    player.GetComponent<MouseLook>().buildingModeOn = true;
+                //    pointer.SetActive(true);
+                //    MainCamera.enabled = false;
+                //    UsingCamera.enabled = true;
+                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", true);
+                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", false);
+                //    OpenBuildUI();
+                //    Cursor.visible = true;
+                //}
+                //else 
+                //{                 
+                    OpenBuildUI();
+                    Cursor.visible = true;                
+                //}
             }        
         }
 
@@ -131,10 +139,10 @@ public class BuildingMenu : MonoBehaviour
     {
         buildUI.SetActive(true);
 
-        if (GodMode)
-            Time.timeScale = 1f;
-        else
-            Time.timeScale = 0f;
+        //if (GodMode)
+        //    Time.timeScale = 1f;
+        //else
+        Time.timeScale = 0f;
 
         activeBuildUI = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -178,10 +186,10 @@ public class BuildingMenu : MonoBehaviour
         else 
         {
             //Debug.Log("Insufficient Funds!");
-            //if (activeBuildUI)
-            //    CloseBuildUI();
-            //if (activeToolUI)
-            //    CloseToolUI();
+            if (activeBuildUI)
+                CloseBuildUI();
+            if (activeToolUI)
+                CloseToolUI();
         }
     }
     public void SpawnObject(GameObject buildingObject)
