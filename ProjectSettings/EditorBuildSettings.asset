@@ -11,8 +11,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/JessicaMapScene.unity
     guid: c507a4b3ba419f344adf073b78ec4b3a
-  - enabled: 0
-    path: Assets/Scenes/MikaelBScene.unity
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
     guid: f250be4863baa844e92bcf5d4ae84e6b
   - enabled: 1
     path: Assets/Scenes/StartScene.unity

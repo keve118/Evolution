@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using System.Collections;
 
 /// <summary>
 /// Class collecting all methods tied to menu button behavoir
@@ -12,15 +14,20 @@ public class MenuDelegateCollection : MonoBehaviour
 {
     public delegate void MenuDelegateAction();
     public delegate void LoadScene(int number);
-    public MenuDelegateAction menuDelegateVoidAction;
     public LoadScene sceneLoaderDelegate;
 
-    public int milliSecondDelay;
 
+    [SerializeField] private GameObject loadingScreen;
+    public Slider slider;
+    
+    [SerializeField] private int milliSecondDelay = 500;
+    
+    private MenuDelegateAction menuDelegateVoidAction;
 
     public void RunDemo()
     {
-        Debug.Log("Start function works and goes here");
+        sceneLoaderDelegate = LoadSceneNumber;
+        ExecuteAfterTime(milliSecondDelay, sceneLoaderDelegate, 1);
     }
 
     public void Options()
@@ -31,24 +38,37 @@ public class MenuDelegateCollection : MonoBehaviour
     public void QuitGame() //Will after build quit the game
     {
         menuDelegateVoidAction = Application.Quit;
-        ExecuteAfterTime(500, menuDelegateVoidAction);
+        ExecuteAfterTime(milliSecondDelay, menuDelegateVoidAction);
     }
 
     public void LoadMainMenuScene()
     {
         sceneLoaderDelegate = LoadSceneNumber;
-        ExecuteAfterTime(500, sceneLoaderDelegate, 0);
+        ExecuteAfterTime(milliSecondDelay, sceneLoaderDelegate, 0);
     }
 
     public void ResumeGame() //To leverage this funciton the pause screen gameobject must implement the pause script!
     {
         menuDelegateVoidAction = gameObject.GetComponent<PauseMenu>().UIManager.GetComponent<GameStateManager>().UnPauseGame;
-        ExecuteAfterTime(500, menuDelegateVoidAction);
+        ExecuteAfterTime(milliSecondDelay, menuDelegateVoidAction);
     }
 
     public void LoadSceneNumber(int number)
     {
-        SceneManager.LoadScene(number);
+        StartCoroutine(LoadAsync(number));
+    }
+
+    IEnumerator LoadAsync (int sceneNumber)
+    {
+        var asyncOperation = SceneManager.LoadSceneAsync(sceneNumber);
+
+        while (!asyncOperation.isDone)
+        {
+            loadingScreen.SetActive(true);
+            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+            slider.value = progress;
+            yield return null;
+        }
     }
 
     //Delays void action to allow menu sound to play before execution
