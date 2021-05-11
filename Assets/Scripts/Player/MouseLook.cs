@@ -21,8 +21,8 @@ public class MouseLook : MonoBehaviour
     {
         playerControls = new PlayerControls();
         mouseCoordinates = playerControls.Gameplay.Look;
-        mouseCoordinates.performed += OnLookingChanged;
-        mouseCoordinates.canceled += OnLookingChanged;
+        mouseCoordinates.performed += OnLookingChanged; //What happens when the control is used (callback to auto generated class)
+        mouseCoordinates.canceled += OnLookingChanged; //What happens when tontrol is not used any more (callback to auto generated class)
     }
 
     private void OnLookingChanged(InputAction.CallbackContext context)

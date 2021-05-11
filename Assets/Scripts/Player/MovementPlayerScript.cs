@@ -31,8 +31,8 @@ public class MovementPlayerScript : MonoBehaviour
     {
         playerControls = new PlayerControls();
         directionalMovement = playerControls.Gameplay.Movement;
-        directionalMovement.performed += OnMovement; //What happens when the control is used
-        directionalMovement.canceled += OnMovement; //What happens when tontrol is not used any more
+        directionalMovement.performed += OnMovement; //What happens when the control is used (callback to auto generated class)
+        directionalMovement.canceled += OnMovement; //What happens when tontrol is not used any more (callback to auto generated class)
     }
 
     public void OnMovement(InputAction.CallbackContext context) // Listens to the movment of the controls
