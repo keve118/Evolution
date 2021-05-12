@@ -1,39 +1,43 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static PlayerControls;
 
 public class MovementPlayerScript : MonoBehaviour
 {
-    private PlayerControls playerControls; //Holds an auto generated class from the Input System
-    private InputAction directionalMovement;
-    [SerializeField]private Camera mainFpsCamera; 
-
     private Vector2 Direction { get; set; }
-
 
     public float walkSpeed, runSpeed;
     public float jumpHeight;
     public float gravity = -9.18f;
-
-    [SerializeField] bool isGrounded;
-
-    private CharacterController controller;
-    private Vector3 playerVelocity;
     public float currentSpeed;
 
-    AudioSource audioSource;
-    bool isMoving = false;
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private Camera mainFpsCamera;
+
+    private PlayerControls playerControls; //Holds an auto generated class from the Input System
+    private InputAction directionalMovement;
+    private InputAction jump;
+    private CharacterController controller;
+    private AudioSource audioSource;
+    private Vector3 playerVelocity;
+    private bool isMoving = false;
+    private bool isJump;
 
     void Awake()
     {
         playerControls = new PlayerControls();
+
         directionalMovement = playerControls.Gameplay.Movement;
-        directionalMovement.performed += OnMovement; //What happens when the control is used (callback to auto generated class)
-        directionalMovement.canceled += OnMovement; //What happens when tontrol is not used any more (callback to auto generated class)
+        directionalMovement.performed += OnMovement; //When input call this method to read value
+        directionalMovement.canceled += OnMovement;
+
+        jump = playerControls.Gameplay.Jump;
+        jump.performed += context => isJump = true; //Overridning returntype float setting it to bool
+        jump.canceled += context => isJump = false;
     }
+
+    private void OnEnable() => playerControls.Gameplay.Enable(); // When object enabled, actionmap is enabled
+
+    private void OnDisable() => playerControls.Gameplay.Disable();  // When object enabled, actionmap is enabled
 
     public void OnMovement(InputAction.CallbackContext context) // Listens to the movment of the controls
     {
@@ -45,16 +49,6 @@ public class MovementPlayerScript : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         currentSpeed = walkSpeed;
         audioSource = GetComponent<AudioSource>();
-    }
-
-    private void OnEnable() // Input System helper
-    {
-        directionalMovement.Enable();
-    }
-
-    private void OnDisable() // Input System helper
-    {
-        directionalMovement.Disable();
     }
 
     void Update()
@@ -74,7 +68,7 @@ public class MovementPlayerScript : MonoBehaviour
             isMoving = true;
 
             CheckStamina();
-                
+
         }
         else if (isGrounded)
         {
@@ -83,9 +77,10 @@ public class MovementPlayerScript : MonoBehaviour
         }
 
         if (isGrounded)
+
             Jump();
 
-        if(isMoving)
+        if (isMoving)
             FootstepsSound();
 
         playerVelocity.y += gravity * Time.deltaTime;
@@ -95,7 +90,7 @@ public class MovementPlayerScript : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (isJump)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
