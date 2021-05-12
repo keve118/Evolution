@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
@@ -11,15 +12,58 @@ public class MenuButtonHandler : MonoBehaviour
     public AudioSource audioSource;
     public Text[] textButtons;
 
-    [SerializeField] private bool isKeyDown;
-    [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
-
     [HideInInspector] public bool isMouseInputDevice;
     [HideInInspector] public int index;
 
+    [SerializeField] private bool isKeyDown;
+    [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
+
+
+    private PlayerControls playerControls;
+    private InputAction menuMovment;
+    private InputAction menuSelect;
+    private Vector2 previousMousePosition;
+    private Vector2 currentMousePosition;
     private int indexMax;
-    private Vector3 previousMousePosition;
-    private const string vertical = "Vertical";
+    private int verticalInput;
+    private InputAction mouseCoordinates;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+
+        menuMovment = playerControls.Menu.Move;
+        menuMovment.performed += OnMenuMove;
+        menuMovment.canceled += OnMenuMove;
+
+        mouseCoordinates = playerControls.Menu.MouseCoordinates;
+        mouseCoordinates.performed += context => currentMousePosition = context.ReadValue<Vector2>();
+        mouseCoordinates.canceled += context => currentMousePosition = context.ReadValue<Vector2>();
+    }
+
+    private void OnMenuMove(InputAction.CallbackContext context)
+    {
+        var value = context.ReadValue<Vector2>().y;
+
+        //Turns float to int from gamepad feed
+        if (value > 0)
+        {
+            verticalInput = value > 0.5f ? 1 : 0;
+
+        }
+        else if (value < 0)
+        {
+            verticalInput = value < -0.5f ? -1 : 0;
+        }
+        else
+        {
+            verticalInput = 0;
+        }
+    }
+
+    private void OnEnable() => playerControls.Menu.Enable();
+
+    private void OnDisable() => playerControls.Menu.Disable();
 
     void Start()
     {
@@ -32,14 +76,14 @@ public class MenuButtonHandler : MonoBehaviour
             textButtons[i].GetComponent<MenuButton>().buttonIndex = i;
         }
 
-        previousMousePosition = Input.mousePosition;
+        previousMousePosition = currentMousePosition;
     }
 
     //Mouse State Fetching Methods
 
     void Update()
     {
-        if (previousMousePosition != Input.mousePosition)
+        if (previousMousePosition != currentMousePosition)
         {
             isMouseInputDevice = true;
         }
@@ -54,59 +98,60 @@ public class MenuButtonHandler : MonoBehaviour
                     index = textButtons[i].gameObject.GetComponent<MenuButton>().buttonIndex;
                 }
             }
-            previousMousePosition = Input.mousePosition;
+            previousMousePosition = currentMousePosition;
             isMouseInputDevice = false;
             return;
         }
 
-        if (Input.GetAxisRaw(vertical) != 0)
+        if (verticalInput != 0)
         {
-
             if (!isKeyDown)
             {
-                if (Input.GetAxisRaw(vertical) < 0)
-                {
-                    HandleUpwardIncrement();
-                }
-                else if (Input.GetAxisRaw(vertical) > 0)
+                if (verticalInput > 0.5)
                 {
                     HandleDownwardIncrement();
-
+                }
+                else if (verticalInput < -0.5)
+                {
+                    HandleUpwardIncrement();
                 }
                 isKeyDown = true;
             }
         }
+
         else
         {
             isKeyDown = false;
         }
 
-        previousMousePosition = Input.mousePosition;
+        previousMousePosition = currentMousePosition;
 
-        //Counts down and makes menu loop on itself when it reaches below min index
-        void HandleDownwardIncrement()
+    }
+
+    //Counts down and makes menu loop on itself when it reaches below min index
+
+    private void HandleDownwardIncrement()
+    {
+        if (index > 0)
         {
-            if (index > 0)
-            {
-                index--;
-            }
-            else
-            {
-                index = indexMax;
-            }
+            index--;
         }
-
-        //Counts up and makes menu loop on itself when it reaches above max index
-        void HandleUpwardIncrement()
+        else
         {
-            if (index < indexMax)
-            {
-                index++;
-            }
-            else
-            {
-                index = 0;
-            }
+            index = indexMax;
+        }
+    }
+
+    //Counts up and makes menu loop on itself when it reaches above max index
+    private void HandleUpwardIncrement()
+    {
+        if (index < indexMax)
+        {
+            index++;
+        }
+        else
+        {
+            index = 0;
         }
     }
 }

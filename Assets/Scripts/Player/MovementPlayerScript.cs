@@ -37,7 +37,7 @@ public class MovementPlayerScript : MonoBehaviour
 
     private void OnEnable() => playerControls.Gameplay.Enable(); // When object enabled, actionmap is enabled
 
-    private void OnDisable() => playerControls.Gameplay.Disable();  // When object enabled, actionmap is enabled
+    private void OnDisable() => playerControls.Gameplay.Disable();
 
     public void OnMovement(InputAction.CallbackContext context) // Listens to the movment of the controls
     {
