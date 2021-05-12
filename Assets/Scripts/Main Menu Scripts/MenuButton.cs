@@ -57,7 +57,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if (menuButtonHandler.index == this.buttonIndex)
         {
-            if (!isKeyDown || isSelecting)
+            if (!isKeyDown)
             {
                 animator.SetBool("selected", true);
                 if (isSelecting)
@@ -69,7 +69,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     buttonEvent.Invoke();
                     animator.SetBool("pressed", false);
                     animatorAudioHelper.disableOnce = true;
-
                 }
                 
                 isKeyDown = true;
