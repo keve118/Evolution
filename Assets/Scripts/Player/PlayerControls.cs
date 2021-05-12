@@ -669,6 +669,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e20d32fa-cfa7-405e-851c-0c05da80f8c8"",
+                    ""path"": ""<Keyboard>/numpadEnter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""17e8bb0d-e136-47e5-a4a1-17762f355b3d"",
                     ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
