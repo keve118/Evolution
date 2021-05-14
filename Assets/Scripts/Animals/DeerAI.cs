@@ -112,14 +112,13 @@ public class DeerAI : MonoBehaviour
                     {
                         agent.transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
                     }
-
-                    agent.speed = walkSpeed;
-                    agent.transform.position += transform.forward * walkSpeed * Time.deltaTime;
-                    
-                    
+                                        
                     animator.SetBool("isRunning", false);
                     animator.SetBool("isEating", false);
                     animator.SetBool("isWalking", true);
+
+                    agent.speed = walkSpeed;
+                    agent.transform.position += transform.forward * walkSpeed * Time.deltaTime;
 
                     //distance = distance between player and the deer
                     if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
