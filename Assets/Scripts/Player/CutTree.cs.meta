@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 6ded09f1dd81b264ea53e0514636e74a
-=======
-<<<<<<< HEAD:Assets/CameraTransition.cs.meta
-guid: f446c22ab74e2654d9bce556f055ddb8
-=======
-guid: 6ded09f1dd81b264ea53e0514636e74a
->>>>>>> parent of 99746f9 (Tool switching):Assets/Scripts/Player/CutTree.cs.meta
->>>>>>> parent of 99746f9 (Tool switching)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

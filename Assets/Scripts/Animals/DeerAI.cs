@@ -33,11 +33,13 @@ public class DeerAI : MonoBehaviour
     private bool isRotRight = false;
     public float rotSpeed = 100f;
 
+    Animator animator;
     public enum DeerState
     {
         Eating,
         Running, 
-        Walking
+        Walking, 
+        Dieing
     }
     public DeerState currentState;
 
@@ -45,6 +47,7 @@ public class DeerAI : MonoBehaviour
     {
         player = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        animator = agent.GetComponent<Animator>();
 
         randomWaypoint = Random.Range(0, Waypoint.waypoints.Length);
         waypointTarget = Waypoint.waypoints[randomWaypoint];
@@ -70,10 +73,9 @@ public class DeerAI : MonoBehaviour
 
                     if(isWalking == false)
                     {
-                        Animator an = agent.GetComponent<Animator>();
-                        an.SetBool("isWalking", false);
-                        an.SetBool("isRunning", false);
-                        an.SetBool("isEating", true);
+                        animator.SetBool("isWalking", false);
+                        animator.SetBool("isRunning", false);
+                        animator.SetBool("isEating", true);
                     }
 
                     if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
@@ -88,6 +90,12 @@ public class DeerAI : MonoBehaviour
 
                     if (distance > runAwayRadius)
                         currentState = DeerState.Eating;
+
+                    Harvest harvestScript = gameObject.GetComponent<Harvest>();
+                    if (harvestScript.health <= 0)
+                    {
+                        currentState = DeerState.Dieing;
+                    }
 
                     break;
                 }
@@ -104,14 +112,13 @@ public class DeerAI : MonoBehaviour
                     {
                         agent.transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
                     }
+                                        
+                    animator.SetBool("isRunning", false);
+                    animator.SetBool("isEating", false);
+                    animator.SetBool("isWalking", true);
 
                     agent.speed = walkSpeed;
                     agent.transform.position += transform.forward * walkSpeed * Time.deltaTime;
-                    
-                    Animator an = agent.GetComponent<Animator>();
-                    an.SetBool("isRunning", false);
-                    an.SetBool("isEating", false);
-                    an.SetBool("isWalking", true);
 
                     //distance = distance between player and the deer
                     if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
@@ -123,16 +130,24 @@ public class DeerAI : MonoBehaviour
                     break;
                 }
 
+            case DeerState.Dieing:
+                {
+                    agent.speed = 0;
+                    animator.SetBool("isRunning", false);
+                    animator.SetBool("isDead", true);
+
+                    break;
+                }
+
         }
 
     }
 
     public void RunAway()
     {
-        Animator an = agent.GetComponent<Animator>();
-        an.SetBool("isWalking", false);
-        an.SetBool("isEating", false);
-        an.SetBool("isRunning", true);
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isEating", false);
+        animator.SetBool("isRunning", true);
 
         //random speed and run towards the assigned waypoint
         randomSpeed = Random.Range(speedMin, speedMax);
