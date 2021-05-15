@@ -22,16 +22,16 @@ public class Harvest : MonoBehaviour
 
     private void Update()
     {       
-        ////Faller, health == 0 is a bad idea since the tools sometimes makes the health < 0 --> falling never happens
-        if (health <= 0 && gameObject.tag == "Stone")
+        ////Faller
+        if (health == 0 && gameObject.tag == "Stone")
         {
             Falling();
         }
-        if (health <= 0 && gameObject.tag == "Wood")
+        if (health == 0 && gameObject.tag == "Wood")
         {
             Falling();      
         }
-        if (health <= 0 && gameObject.tag == "Food")
+        if (health == 0 && gameObject.tag == "Food")
         {
             Falling();       
         }

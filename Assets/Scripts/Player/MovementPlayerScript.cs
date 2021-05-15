@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,20 +6,23 @@ public class MovementPlayerScript : MonoBehaviour
 {
     private Vector2 Direction { get; set; }
 
+=======
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovementPlayerScript : MonoBehaviour
+{
+>>>>>>> parent of 99746f9 (Tool switching)
     public float walkSpeed, runSpeed;
     public float jumpHeight;
     public float gravity = -9.18f;
-    public float currentSpeed;
 
-    [SerializeField] private bool isGrounded;
-    [SerializeField] private Camera mainFpsCamera;
+    [SerializeField] bool isGrounded;
 
-    private PlayerControls playerControls; //Holds an auto generated class from the Input System
-    private InputAction directionalMovement;
-    private InputAction jump;
     private CharacterController controller;
-    private AudioSource audioSource;
     private Vector3 playerVelocity;
+<<<<<<< HEAD
     private bool isMoving = false;
     private bool isJump;
 
@@ -38,12 +42,17 @@ public class MovementPlayerScript : MonoBehaviour
     private void OnEnable() => playerControls.Gameplay.Enable(); // When object enabled, actionmap is enabled
 
     private void OnDisable() => playerControls.Gameplay.Disable();
+=======
+    public float currentSpeed;
+>>>>>>> parent of 99746f9 (Tool switching)
 
-    public void OnMovement(InputAction.CallbackContext context) // Listens to the movment of the controls
-    {
-        Direction = context.ReadValue<Vector2>();
-    }
+    AudioSource audioSource;
+    bool isMoving = false;
 
+<<<<<<< HEAD
+=======
+    // Start is called before the first frame update
+>>>>>>> parent of 99746f9 (Tool switching)
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
@@ -51,6 +60,10 @@ public class MovementPlayerScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+<<<<<<< HEAD
+=======
+    // Update is called once per frame
+>>>>>>> parent of 99746f9 (Tool switching)
     void Update()
     {
         isGrounded = controller.isGrounded;
@@ -68,7 +81,7 @@ public class MovementPlayerScript : MonoBehaviour
             isMoving = true;
 
             CheckStamina();
-
+                
         }
         else if (isGrounded)
         {
@@ -77,10 +90,9 @@ public class MovementPlayerScript : MonoBehaviour
         }
 
         if (isGrounded)
-
             Jump();
 
-        if (isMoving)
+        if(isMoving)
             FootstepsSound();
 
         playerVelocity.y += gravity * Time.deltaTime;
@@ -90,7 +102,7 @@ public class MovementPlayerScript : MonoBehaviour
 
     void Jump()
     {
-        if (isJump)
+        if (Input.GetButtonDown("Jump"))
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
