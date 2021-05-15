@@ -8,9 +8,9 @@ public class PlayerProperties : MonoBehaviour
     #region Singleton
     [HideInInspector] public PlayerProperties instance;
 
-    public static int amountWood = 0;
-    public static int amountStone = 0;
-    public static int amountFood = 0;
+    public static double amountWood = 0;
+    public static double amountStone = 0;
+    public static double amountFood = 0;
     
     private void Awake()
     {

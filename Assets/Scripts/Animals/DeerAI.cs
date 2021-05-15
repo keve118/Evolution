@@ -142,7 +142,6 @@ public class DeerAI : MonoBehaviour
         }
 
     }
-
     public void RunAway()
     {
         animator.SetBool("isWalking", false);

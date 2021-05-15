@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ToolSwitching : MonoBehaviour
 {
-    public int selectedTool = 0;
-
     [Header("WoodCutter Settings")]
     public GameObject woodCutter;
     public static bool woodCutterAvailable;
@@ -25,30 +23,30 @@ public class ToolSwitching : MonoBehaviour
     public static bool anyToolEquiped = false;
     private Ray ray;
     public GameObject rayObject;
-    private GameObject activeObject;
+    public int selectedTool = 0;
 
-    // Start is called before the first frame update
+    public enum ToolState
+    {
+        WoodAxe,
+        StoneAxe,
+        Spear,
+        Empty
+    }
+    public ToolState currentState;
+
     void Start()
     {
         huntingToolEquiped = true;
         woodCutterEquiped = true;
         stoneCutterEquiped = true;
-
         huntingToolAvailable = false;
         woodCutterAvailable = false;
-        stoneCutterAvailable = false;
-
+        stoneCutterAvailable = false;     
         SelectTool();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        IsAxeEquiped();
-        IsSpearEquiped();
-        IsPickAxeEquiped();
-        InputManager();
-
         int previousSelectedTool = selectedTool;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -69,16 +67,23 @@ public class ToolSwitching : MonoBehaviour
         {
             SelectTool();
         }
+        InputManager();
+        SelectTool();
+        Switcher();
     }
 
     void InputManager()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
             selectedTool = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
             selectedTool = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
             selectedTool = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            selectedTool = 3;
+
+
     }
 
     void SelectTool()
@@ -86,62 +91,62 @@ public class ToolSwitching : MonoBehaviour
         int i = 0;
         foreach (Transform tool in transform)
         {
-            if (i == selectedTool)
-            {
-                Debug.Log("Selected Tool is:" + selectedTool);
-                //tool.gameObject.SetActive(true);
-            }
-            else
-            {
-                Debug.Log("Setting Previous tool to false");
-                //tool.gameObject.SetActive(false);
-            }
+            if (selectedTool == 0)
+                currentState = ToolState.Empty;
+            if (selectedTool == 1 && woodCutterAvailable)
+                currentState = ToolState.WoodAxe;
+            if (selectedTool == 2 && huntingToolAvailable)
+                currentState = ToolState.Spear;
+            if (selectedTool == 3 && stoneCutterAvailable)
+                currentState = ToolState.StoneAxe;
             i++;
         }
     }
 
-
-
-    void IsAxeEquiped()
+    void Switcher() 
     {
-        if (selectedTool == 0 && woodCutterAvailable)
+        switch (currentState)
         {
-            woodCutterEquiped = true;
-            woodCutter.SetActive(true);
-
-            Debug.Log("WoodCutter Enabled:" + woodCutterEquiped);
-        }
-        else
-        {
-            woodCutter.SetActive(false);
-            woodCutterEquiped = false;
-            Debug.Log("WoodCutter Enabled:" + woodCutterEquiped);
-        }
-    }
-    void IsSpearEquiped()
-    {
-        if (selectedTool == 1 && huntingToolAvailable)
-        {
-            huntingToolEquiped = true;
-            huntingTool.SetActive(true);
-        }
-        else
-        {
-            huntingTool.SetActive(false);
-            huntingToolEquiped = false;
-        }
-    }
-    void IsPickAxeEquiped()
-    {
-        if (selectedTool == 2 && stoneCutterAvailable)
-        {
-            stoneCutterEquiped = true;
-            stoneCutter.SetActive(true);
-        }
-        else
-        {
-            stoneCutterEquiped = false;
-            stoneCutter.SetActive(false);
+            case ToolState.Empty:
+                {
+                    woodCutter.SetActive(false);
+                    stoneCutter.SetActive(false);
+                    huntingTool.SetActive(false);
+                    woodCutterEquiped = false;
+                    stoneCutterEquiped = false;
+                    huntingToolEquiped = false;
+                    break;
+                }
+            case ToolState.WoodAxe:
+                {
+                    woodCutter.SetActive(true);
+                    stoneCutter.SetActive(false);
+                    huntingTool.SetActive(false);
+                    woodCutterEquiped = true;
+                    stoneCutterEquiped = false;
+                    huntingToolEquiped = false;
+                    break;
+                }
+            case ToolState.StoneAxe:
+                {
+                    woodCutter.SetActive(false);
+                    stoneCutter.SetActive(true);
+                    huntingTool.SetActive(false);
+                    woodCutterEquiped = false;
+                    stoneCutterEquiped = true;
+                    huntingToolEquiped = false;
+                    break;
+                }
+            case ToolState.Spear:
+                {
+                    woodCutter.SetActive(false);
+                    stoneCutter.SetActive(false);
+                    huntingTool.SetActive(true);
+                    woodCutterEquiped = false;
+                    stoneCutterEquiped = false;
+                    huntingToolEquiped = true;
+                    break;
+                }
         }
     }
 }

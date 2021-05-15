@@ -11,7 +11,6 @@ public class ResourceCutter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Vector3 forward = transform.TransformDirection(PlayerProperties.rayCastTransform.position);
         Ray ray = new Ray(rayObject.transform.position, rayObject.transform.forward);
         RaycastHit hit;
 

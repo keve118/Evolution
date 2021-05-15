@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class HUDResources : MonoBehaviour
 {
 
-    private int woodAmount = PlayerProperties.amountWood;
-    private int stoneAmount = PlayerProperties.amountStone;
-    private int foodAmount = PlayerProperties.amountFood;
+    private double woodAmount = PlayerProperties.amountWood;
+    private double stoneAmount = PlayerProperties.amountStone;
+    private double foodAmount = PlayerProperties.amountFood;
 
     public Text woodText;
     public Text stoneText;

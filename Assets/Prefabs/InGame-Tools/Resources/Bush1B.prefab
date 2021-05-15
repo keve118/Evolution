@@ -115,7 +115,7 @@ MonoBehaviour:
   mass: 10
   force: 0
   timeFallen: 5
-  rest: {fileID: 1702469770009373958, guid: fe64692ab0b3c1646b501ad37ae41946, type: 3}
+  rest: {fileID: 8736640211202262541, guid: a26c897bef4ee2d4bafd521e10c77cde, type: 3}
 --- !u!114 &-5672740411620483835
 MonoBehaviour:
   m_ObjectHideFlags: 0

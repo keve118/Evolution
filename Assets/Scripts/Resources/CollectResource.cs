@@ -15,7 +15,9 @@ public class CollectResource : MonoBehaviour
 
             if (gameObject.tag=="Wood")
                 PlayerProperties.amountWood += 1;
-                
+
+            if (gameObject.tag == "SmallWood")
+                PlayerProperties.amountWood += 0.25f;
 
             if (gameObject.tag == "Stone")
                 PlayerProperties.amountStone += 1;

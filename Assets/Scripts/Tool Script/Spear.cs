@@ -11,7 +11,6 @@ public class Spear : MonoBehaviour
             FindObjectOfType<SoundManager>().Play("PickUpTool");
             Destroy(gameObject);
             ToolSwitching.huntingToolAvailable = true;
-
         }
     }
 }

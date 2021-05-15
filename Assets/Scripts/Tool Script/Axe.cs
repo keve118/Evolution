@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Axe : MonoBehaviour
 {  
-    void OnTriggerStay(Collider other) //Click??
+    void OnTriggerStay(Collider other) 
     {
         if (other.tag == "Player") 
         {
