@@ -9,8 +9,6 @@ public class BuildingMenu : MonoBehaviour
     public static bool activeBuildUI = false;
     public GameObject buildUI;
 
-    
-
     [Header("Spawn Settings")]
     public Transform positionBuildings;
     private Transform positionTools;

@@ -10,7 +10,7 @@ public class Axe : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().Play("PickUpTool");
             Destroy(gameObject);
-            ToolSwitching.woodCutterAvailable = true;           
+            ResourceCutter.woodCutterAvailable = true;           
         }         
     }
 }

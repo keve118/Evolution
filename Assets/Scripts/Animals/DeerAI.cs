@@ -78,7 +78,7 @@ public class DeerAI : MonoBehaviour
                         animator.SetBool("isEating", true);
                     }
 
-                    if (distance <= lookRadius && ToolSwitching.huntingToolEquiped)
+                    if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
                         currentState = DeerState.Running;
 
                     break;
@@ -121,7 +121,7 @@ public class DeerAI : MonoBehaviour
                     agent.transform.position += transform.forward * walkSpeed * Time.deltaTime;
 
                     //distance = distance between player and the deer
-                    if (distance <= lookRadius && ToolSwitching.huntingToolEquiped)
+                    if (distance <= lookRadius && ResourceCutter.huntingToolEquiped)
                         currentState = DeerState.Running;
 
                     if (isWandering == false)
