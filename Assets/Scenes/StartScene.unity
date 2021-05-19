@@ -66535,6 +66535,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6547776640880967601, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
+      propertyPath: sounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f10e9483952c29942b40f217f916d4ba, type: 3}
+    - target: {fileID: 6547776640880967601, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
+      propertyPath: sounds.Array.data[6].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547776640880967601, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
+      propertyPath: sounds.Array.data[6].name
+      value: Rain
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547776640880967601, guid: d01bd2fde13dc254bbd35b87b0262acd, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 0.117
       objectReference: {fileID: 0}

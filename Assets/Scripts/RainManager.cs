@@ -32,7 +32,7 @@ public class RainManager : MonoBehaviour
             case RainState.raining:
                 {
                     Rain();
-
+                    //FindObjectOfType<SoundManager>().Play("Rain");
                     if (countdown <= 0)
                     {
                         waitBetweenRain = 10f;
@@ -67,9 +67,6 @@ public class RainManager : MonoBehaviour
                 
         }
 
-        //while (raining == true)
-        //    FindObjectOfType<SoundManager>().Play("Rain");
-
         Debug.Log("Count: " + countdown + "    Wait: " + waitBetweenRain);
     }
 
@@ -77,7 +74,6 @@ public class RainManager : MonoBehaviour
     {
         rainObject.Play();
         countdown -= Time.deltaTime;
-        raining = true;
         //Debug.Log("Count: " + countdown);
     }
 
@@ -85,7 +81,6 @@ public class RainManager : MonoBehaviour
     {
         rainObject.Stop();
         waitBetweenRain -= Time.deltaTime;
-        raining = false;
         //Debug.Log("Wait: " + waitBetweenRain);
     }
 }
