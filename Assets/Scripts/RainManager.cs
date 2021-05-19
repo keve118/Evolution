@@ -67,8 +67,8 @@ public class RainManager : MonoBehaviour
                 
         }
 
-        while (raining == true)
-            FindObjectOfType<SoundManager>().Play("Rain");
+        //while (raining == true)
+        //    FindObjectOfType<SoundManager>().Play("Rain");
 
         Debug.Log("Count: " + countdown + "    Wait: " + waitBetweenRain);
     }
