@@ -11,29 +11,33 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 }
 public class DeerAI : MonoBehaviour
 {
-    public float lookRadius = 10f;
-    public float runAwayRadius = 40f;
     Transform player;
     NavMeshAgent agent;
-    public float speedMin = 2f;
-    public float speedMax = 7f;
-    public float randomSpeed;
-    public float walkSpeed = 1f;
+    Animator animator;
+
+    [SerializeField] private float lookRadius = 10f;
+    [SerializeField] private float runAwayRadius = 40f;
     float distance;
+
+    //speed variables
+    [SerializeField] private float speedMin = 2f;
+    [SerializeField] private float speedMax = 7f;
+    private float randomSpeed;
+    [SerializeField] private float walkSpeed = 1f;
 
     //Waypoint variables
     private Transform waypointTarget;
     private int waypointIndex = 0;
     int randomWaypoint;
 
-    //walking variables
+    //walking/rotate variables
     private bool isWandering = false;
     private bool isWalking = false;
     private bool isRotLeft = false;
     private bool isRotRight = false;
-    public float rotSpeed = 100f;
+    [SerializeField] private float rotSpeed = 100f;
 
-    Animator animator;
+    
     public enum DeerState
     {
         Eating,
@@ -70,8 +74,7 @@ public class DeerAI : MonoBehaviour
 
                     if (isWalking)
                         currentState = DeerState.Walking;
-
-                    if(isWalking == false)
+                    else 
                     {
                         animator.SetBool("isWalking", false);
                         animator.SetBool("isRunning", false);
@@ -178,20 +181,17 @@ public class DeerAI : MonoBehaviour
     IEnumerator Wander()
     {
         //moves the deer in random directions (not the waypoints)
-        int rotTime = Random.Range(1, 2);
+
+        float rotTime = Random.Range(0.2f, 1f);
         int rotWait = Random.Range(1, 4);
         int rotLeftOrRight = Random.Range(1, 2);
-        int walkWait = Random.Range(10, 60);
+        int walkWait = Random.Range(10, 20);
         int walkTime = Random.Range(10, 20);
         isWandering = true;
 
         //waits for a random amount of seconds before it starts to walk
         yield return new WaitForSeconds(walkWait);
         isWalking = true;
-
-        //walks for a random amount of seconds before stopping
-        yield return new WaitForSeconds(walkTime);
-        isWalking = false;
 
         //waits for a random amount of seconds before rotating
         yield return new WaitForSeconds(rotWait);
@@ -209,6 +209,12 @@ public class DeerAI : MonoBehaviour
             yield return new WaitForSeconds(rotTime);
             isRotLeft = false;
         }
+
+        //walks for a random amount of seconds before stopping
+        yield return new WaitForSeconds(walkTime);
+        isWalking = false;
+
+        
 
         isWandering = false;
     }
