@@ -95,10 +95,10 @@ public class ToolSwitching : MonoBehaviour
                 currentState = ToolState.Empty;
             if (selectedTool == 1 && woodCutterAvailable)
                 currentState = ToolState.WoodAxe;
-            if (selectedTool == 2 && huntingToolAvailable)
-                currentState = ToolState.Spear;
-            if (selectedTool == 3 && stoneCutterAvailable)
+            if (selectedTool == 2 && stoneCutterAvailable)
                 currentState = ToolState.StoneAxe;
+            if (selectedTool == 3 && huntingToolAvailable)
+                currentState = ToolState.Spear;
             i++;
         }
     }

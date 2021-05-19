@@ -9,8 +9,8 @@ public class HealthBar : MonoBehaviour
     private float maxHealth = 100f;
     private float currentHealth;
 
-    [SerializeField] private float amountOfHealthToAdd = 10f;
-    [SerializeField] private float amountOfHealthToLoose = 0.01f;
+    [SerializeField] private float amountOfHealthToAdd = 10f; //amount of health to regain 
+    [SerializeField] private float amountOfHealthToLoose = 0.01f; //amount of health to loose each frame
 
     public static HealthBar instance;
 
