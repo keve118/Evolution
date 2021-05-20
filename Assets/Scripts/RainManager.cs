@@ -6,12 +6,11 @@ public class RainManager : MonoBehaviour
 {
     Transform player;
     ParticleSystem rainObject;
-    public GameObject rain;
-    float countdown = 5f;
-    float waitBetweenRain = 10f;
+    public float rainCountdown = 5f;
+    public float waitForRain = 10f;
+    private AudioSource audioSource;
 
-    bool raining = false;
-
+    
     public enum RainState
     {
         raining, 
@@ -22,7 +21,7 @@ public class RainManager : MonoBehaviour
     {
         player = PlayerManager.instance.player.transform;
         rainObject = GetComponent<ParticleSystem>();
-        rain = GetComponent<GameObject>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -32,55 +31,66 @@ public class RainManager : MonoBehaviour
             case RainState.raining:
                 {
                     Rain();
-                    //FindObjectOfType<SoundManager>().Play("Rain");
-                    if (countdown <= 0)
+
+                    if (rainCountdown <= 0)
                     {
-                        waitBetweenRain = 10f;
+                        waitForRain = 10f;
                         currentState = RainState.notRaining;
                     }
 
-                    float distance = Vector3.Distance(player.position, transform.position);
-                    if (distance != player.position.x)
-                    {
-                        Vector3 offset = new Vector3(0,20,0);
-                        player.position += offset;
-                        rainObject.transform.position = player.position;
+                    MoveWithPlayer();
 
-                    }
-                        
-                        
                     break;
                 }
+
             case RainState.notRaining:
                 {
                     StopRain();
-                    FindObjectOfType<SoundManager>().Stop("Rain");
-                    if (waitBetweenRain <= 0)
+
+                    if (waitForRain <= 0)
                     {
-                        countdown = 5f;
+                        rainCountdown = 10f;
                         currentState = RainState.raining;
                     }
                     
                     break;
                 }
 
-                
         }
 
-        Debug.Log("Count: " + countdown + "    Wait: " + waitBetweenRain);
+        Debug.Log("Count: " + rainCountdown + "    Wait: " + waitForRain);
     }
+
 
     void Rain()
     {
         rainObject.Play();
-        countdown -= Time.deltaTime;
-        //Debug.Log("Count: " + countdown);
+
+        //rain sound
+        if (!audioSource.isPlaying)
+            audioSource.Play();
+
+        rainCountdown -= Time.deltaTime;
     }
 
     void StopRain()
     {
         rainObject.Stop();
-        waitBetweenRain -= Time.deltaTime;
-        //Debug.Log("Wait: " + waitBetweenRain);
+        audioSource.Stop();
+        waitForRain -= Time.deltaTime;
     }
+
+    void MoveWithPlayer()
+    {
+        //distance from player
+        float distance = Vector3.Distance(player.position, transform.position);
+        if (distance != player.position.x)
+        {
+            Vector3 offset = new Vector3(0, 20, 0); //offset for the rain
+            player.position += offset;
+            rainObject.transform.position = player.position; //new position for the rain, above the player, even when player is moving
+
+        }
+    }
+
 }
