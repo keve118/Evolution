@@ -9,8 +9,8 @@ public class HealthBar : MonoBehaviour
     private float maxHealth = 100f;
     private float currentHealth;
 
-    [SerializeField] private float amountOfHealthToAdd = 10f; //amount of health to regain 
-    [SerializeField] private float amountOfHealthToLoose = 0.01f; //amount of health to loose each frame
+    private float amountOfHealthToAdd = 10f; //amount of health to regain 
+    private float amountOfHealthToLoose = 0.01f; //amount of health to loose each frame
 
     public static HealthBar instance;
 
@@ -38,7 +38,7 @@ public class HealthBar : MonoBehaviour
             LooseHealth(amountOfHealthToLoose);
     }
 
-    public void AddHealth(float amount)
+    public void AddHealth(float amount) //amount = amount of health to add
     {
         if (currentHealth < maxHealth)
         {
@@ -49,7 +49,7 @@ public class HealthBar : MonoBehaviour
 
     }
 
-    public void LooseHealth(float amount)
+    public void LooseHealth(float amount) //amount = amount of health to loose
     {
         currentHealth -= amount;
         healthBar.value = currentHealth;

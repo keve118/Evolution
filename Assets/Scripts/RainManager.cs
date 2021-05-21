@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RainManager : MonoBehaviour
 {
-    Transform player;
-    ParticleSystem rainObject;
-    float rainCountdown;
-    float waitForRain;
-    private AudioSource audioSource;
+    private Transform player;
+    private ParticleSystem rainObject;
+    private float rainCountdown;
+    private float notRainingCountDown;
+    private AudioSource rainAudioSource;
 
-    public float randomCountMin;
-    public float randomCountMax;
+    [SerializeField] float randomCountMin;
+    [SerializeField] float randomCountMax;
 
     public enum RainState
     {
@@ -23,11 +23,13 @@ public class RainManager : MonoBehaviour
     {
         player = PlayerManager.instance.player.transform;
         rainObject = GetComponent<ParticleSystem>();
-        audioSource = GetComponent<AudioSource>();
+        rainAudioSource = GetComponent<AudioSource>();
 
+        //start values for the rain and not rain countdowns
         rainCountdown = Random.Range(randomCountMin, randomCountMax);
-        waitForRain = Random.Range(randomCountMin, randomCountMax);
+        notRainingCountDown = Random.Range(randomCountMin, randomCountMax);
 
+        //start with no rain
         currentState = RainState.notRaining;
     }
 
@@ -41,7 +43,7 @@ public class RainManager : MonoBehaviour
 
                     if (rainCountdown <= 0)
                     {
-                        waitForRain = Random.Range(randomCountMin, randomCountMax);
+                        notRainingCountDown = Random.Range(randomCountMin, randomCountMax);
                         currentState = RainState.notRaining;
                     }
 
@@ -54,7 +56,7 @@ public class RainManager : MonoBehaviour
                 {
                     StopRain();
 
-                    if (waitForRain <= 0)
+                    if (notRainingCountDown <= 0)
                     {
                         rainCountdown = Random.Range(randomCountMin, randomCountMax);
                         currentState = RainState.raining;
@@ -62,10 +64,7 @@ public class RainManager : MonoBehaviour
                     
                     break;
                 }
-
         }
-
-        Debug.Log("Count: " + rainCountdown + "    Wait: " + waitForRain);
     }
 
     void Rain()
@@ -73,8 +72,8 @@ public class RainManager : MonoBehaviour
         rainObject.Play();
 
         //rain sound
-        if (!audioSource.isPlaying)
-            audioSource.Play();
+        if (!rainAudioSource.isPlaying)
+            rainAudioSource.Play();
 
         rainCountdown -= Time.deltaTime;
     }
@@ -82,19 +81,20 @@ public class RainManager : MonoBehaviour
     void StopRain()
     {
         rainObject.Stop();
-        audioSource.Stop();
-        waitForRain -= Time.deltaTime;
+        rainAudioSource.Stop();
+        notRainingCountDown -= Time.deltaTime;
     }
 
+    //the rain particle system moves with the player
     void MoveWithPlayer()
     {
         //distance from player
         float distance = Vector3.Distance(player.position, transform.position);
         if (distance != player.position.x)
         {
-            Vector3 offset = new Vector3(0, 20, 0); //offset for the rain
+            Vector3 offset = new Vector3(0, 20, 0); //offset for the rain, otherwise the particles are created on the ground and not in the "sky"
             player.position += offset;
-            rainObject.transform.position = player.position; //new position for the rain, above the player, even when player is moving
+            rainObject.transform.position = player.position; //new position for the rain, above the player
 
         }
     }

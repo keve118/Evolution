@@ -7,12 +7,12 @@ public class StaminaBar : MonoBehaviour
 {
     public Slider staminaBar;
     private float maxStamina = 100f;
-    public float currentStamina;
+    private float currentStamina;
 
     private WaitForSeconds regenTick = new WaitForSeconds(0.3f);
     private Coroutine regen;
 
-    public static StaminaBar instance;
+    public static StaminaBar instance; //used for referensing the staminabar in MovementPlayerScript
 
     private void Awake()
     {
