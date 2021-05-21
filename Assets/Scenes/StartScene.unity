@@ -9568,8 +9568,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 401867943}
-  amountOfHealthToAdd: 10
-  amountOfHealthToLoose: 0.01
 --- !u!114 &401867943
 MonoBehaviour:
   m_ObjectHideFlags: 0

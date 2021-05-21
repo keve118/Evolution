@@ -7,7 +7,7 @@ public class StaminaBar : MonoBehaviour
 {
     public Slider staminaBar;
     private float maxStamina = 100f;
-    private float currentStamina;
+    public float currentStamina;
 
     private WaitForSeconds regenTick = new WaitForSeconds(0.3f);
     private Coroutine regen;
