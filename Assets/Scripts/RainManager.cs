@@ -6,11 +6,13 @@ public class RainManager : MonoBehaviour
 {
     Transform player;
     ParticleSystem rainObject;
-    public float rainCountdown = 5f;
-    public float waitForRain = 10f;
+    float rainCountdown;
+    float waitForRain;
     private AudioSource audioSource;
 
-    
+    public float randomCountMin;
+    public float randomCountMax;
+
     public enum RainState
     {
         raining, 
@@ -22,6 +24,11 @@ public class RainManager : MonoBehaviour
         player = PlayerManager.instance.player.transform;
         rainObject = GetComponent<ParticleSystem>();
         audioSource = GetComponent<AudioSource>();
+
+        rainCountdown = Random.Range(randomCountMin, randomCountMax);
+        waitForRain = Random.Range(randomCountMin, randomCountMax);
+
+        currentState = RainState.notRaining;
     }
 
     void Update()
@@ -34,7 +41,7 @@ public class RainManager : MonoBehaviour
 
                     if (rainCountdown <= 0)
                     {
-                        waitForRain = 10f;
+                        waitForRain = Random.Range(randomCountMin, randomCountMax);
                         currentState = RainState.notRaining;
                     }
 
@@ -49,7 +56,7 @@ public class RainManager : MonoBehaviour
 
                     if (waitForRain <= 0)
                     {
-                        rainCountdown = 10f;
+                        rainCountdown = Random.Range(randomCountMin, randomCountMax);
                         currentState = RainState.raining;
                     }
                     
@@ -60,7 +67,6 @@ public class RainManager : MonoBehaviour
 
         Debug.Log("Count: " + rainCountdown + "    Wait: " + waitForRain);
     }
-
 
     void Rain()
     {

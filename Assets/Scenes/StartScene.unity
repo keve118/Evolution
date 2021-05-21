@@ -4052,6 +4052,10 @@ PrefabInstance:
       value: Landscape1.1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 99ba2523fe4b68743aea83e733781339, type: 3}
+      propertyPath: m_TagString
+      value: Landscape
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99ba2523fe4b68743aea83e733781339, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -12911,7 +12915,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552969270}
   serializedVersion: 7
-  lengthInSec: 1
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -27996,7 +28000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!198 &916138474
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -28187,7 +28191,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.68293875, g: 0.8403147, b: 0.9716981, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -28249,8 +28253,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.08
-      minScalar: 1
+      scalar: 0.2
+      minScalar: 0.08
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -28571,7 +28575,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 0.6
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -28940,8 +28944,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 4
-        minScalar: 1
+        scalar: 6
+        minScalar: 2
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -32835,8 +32839,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916138473}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3.3986664, y: -12.587347, z: 38.302288}
-  m_LocalScale: {x: 0.1776518, y: 0.1798439, z: 1}
+  m_LocalPosition: {x: -4.8899994, y: -17.84, z: -1.5799999}
+  m_LocalScale: {x: 0.1776518, y: 0.17984392, z: 1}
   m_Children: []
   m_Father: {fileID: 1091733131}
   m_RootOrder: 1
@@ -39514,8 +39518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bea21023f195734ab9637f15dcaaf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rainCountdown: 10
-  waitForRain: 0
+  randomCountMin: 20
+  randomCountMax: 60
 --- !u!199 &1091733129
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -44301,7 +44305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091733127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.4, y: 20, z: -7.4}
+  m_LocalPosition: {x: 77.76, y: 20, z: -12.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 552969273}
