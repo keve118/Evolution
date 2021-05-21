@@ -1,13 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickUp : MonoBehaviour
 {
+    public GameObject rayObject;
+    
+    private PlayerControls playerControls;
+    private InputAction pickUpItem;
+    private InputAction rotatePickedUpObject;
     private Transform middleHand;
     private GameObject pickedUpObject;
     private bool pickedUp = false;
-    public GameObject rayObject;
+    private bool whenPickUpItem;
+    private float rotationModifier;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        pickUpItem = playerControls.Gameplay.PickUpObject;
+        rotatePickedUpObject = playerControls.Gameplay.RotateBuilding;
+
+        pickUpItem.performed += context => whenPickUpItem = true;
+        pickUpItem.canceled += context => whenPickUpItem = false;
+
+        rotatePickedUpObject.performed += OnRotate;
+        rotatePickedUpObject.canceled += OnRotate;
+    }
+
+    private void OnRotate(InputAction.CallbackContext context)
+    {
+        rotationModifier = context.ReadValue<float>();
+    }
+
+    private void OnEnable() => playerControls.Enable();
+
+    private void OnDisable() => playerControls.Disable();
 
     private void Start()
     {
@@ -22,7 +52,7 @@ public class PickUp : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 10)) //RayCast To find object that should be carried
         {
-            if ((hit.collider.tag == "GameObject" /*|| hit.collider.tag == "Workshop"*/) && Input.GetMouseButton(0) && !pickedUp)
+            if ((hit.collider.tag == "GameObject" /*|| hit.collider.tag == "Workshop"*/) && whenPickUpItem && !pickedUp)
             {
                 pickedUp = true;
                 pickedUpObject = hit.collider.gameObject;      
@@ -30,7 +60,7 @@ public class PickUp : MonoBehaviour
                 pickedUpObject.GetComponent<Rigidbody>().isKinematic = true;
                 hit.collider.gameObject.transform.position = middleHand.transform.position;
             }
-            else if (Input.GetMouseButton(1) && pickedUp)          
+            else if (whenPickUpItem && pickedUp)          
                 SnapToGround();           
             if (pickedUp)            
                 RotateObject();                
@@ -42,8 +72,8 @@ public class PickUp : MonoBehaviour
 
     public void RotateObject()
     {
-        if (Input.GetKey(KeyCode.E))        pickedUpObject.transform.Rotate(0.0f, 40 * Time.deltaTime, 0.0f);       
-        else if (Input.GetKey(KeyCode.Q))   pickedUpObject.transform.Rotate(0.0f, -40.0f * Time.deltaTime, 0.0f);
+        if (rotationModifier != 0 && rotationModifier > 0)        pickedUpObject.transform.Rotate(0.0f, 40 * Time.deltaTime, 0.0f);       
+        else if (rotationModifier != 0 && rotationModifier < 0)   pickedUpObject.transform.Rotate(0.0f, -40.0f * Time.deltaTime, 0.0f);
     }
 
     public void SnapToGround() 

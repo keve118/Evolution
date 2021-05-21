@@ -137,6 +137,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateBuilding"",
+                    ""type"": ""Button"",
+                    ""id"": ""28bf2ca8-d7ff-475c-95d8-c63fb0e2917d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -429,7 +437,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""12bc2b40-ec2c-48b3-a2d6-fa9b7b650bc7"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -451,7 +459,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""43d141a2-806e-42e3-96da-1646cb7d2738"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -560,17 +568,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a24647f9-9807-4cf6-871b-b9b5a8eee5ad"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""InteractBuilding"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""89805a34-dcd6-452e-91e2-dcbc4e6562cd"",
                     ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
@@ -579,6 +576,72 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""InteractBuilding"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""id"": ""fb86e4f3-d3b0-41a1-b0e9-7021f77da96f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateBuilding"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""dc043035-8c0e-42a0-919c-eb10b090522f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""RotateBuilding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""48e47199-5330-4c3f-8b9b-5427f6961666"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""RotateBuilding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""RotateGamePad"",
+                    ""id"": ""66260b18-fdbd-444b-af25-f1d9795ff252"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateBuilding"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""fb63ed52-36fc-437a-a4d8-49bdde75472e"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateBuilding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""7fea05ca-4557-446b-9b2c-edcfb196147c"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RotateBuilding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -871,6 +934,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_InteractPauseMenu = m_Gameplay.FindAction("InteractPauseMenu", throwIfNotFound: true);
         m_Gameplay_InteractInventory = m_Gameplay.FindAction("InteractInventory", throwIfNotFound: true);
         m_Gameplay_InteractBuilding = m_Gameplay.FindAction("InteractBuilding", throwIfNotFound: true);
+        m_Gameplay_RotateBuilding = m_Gameplay.FindAction("RotateBuilding", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Select = m_Menu.FindAction("Select", throwIfNotFound: true);
@@ -940,6 +1004,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_InteractPauseMenu;
     private readonly InputAction m_Gameplay_InteractInventory;
     private readonly InputAction m_Gameplay_InteractBuilding;
+    private readonly InputAction m_Gameplay_RotateBuilding;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -959,6 +1024,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @InteractPauseMenu => m_Wrapper.m_Gameplay_InteractPauseMenu;
         public InputAction @InteractInventory => m_Wrapper.m_Gameplay_InteractInventory;
         public InputAction @InteractBuilding => m_Wrapper.m_Gameplay_InteractBuilding;
+        public InputAction @RotateBuilding => m_Wrapper.m_Gameplay_RotateBuilding;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1013,6 +1079,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InteractBuilding.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractBuilding;
                 @InteractBuilding.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractBuilding;
                 @InteractBuilding.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractBuilding;
+                @RotateBuilding.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateBuilding;
+                @RotateBuilding.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateBuilding;
+                @RotateBuilding.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateBuilding;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -1062,6 +1131,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InteractBuilding.started += instance.OnInteractBuilding;
                 @InteractBuilding.performed += instance.OnInteractBuilding;
                 @InteractBuilding.canceled += instance.OnInteractBuilding;
+                @RotateBuilding.started += instance.OnRotateBuilding;
+                @RotateBuilding.performed += instance.OnRotateBuilding;
+                @RotateBuilding.canceled += instance.OnRotateBuilding;
             }
         }
     }
@@ -1150,6 +1222,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnInteractPauseMenu(InputAction.CallbackContext context);
         void OnInteractInventory(InputAction.CallbackContext context);
         void OnInteractBuilding(InputAction.CallbackContext context);
+        void OnRotateBuilding(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
