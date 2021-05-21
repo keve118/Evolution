@@ -83,7 +83,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""PlaceObject"",
+                    ""name"": ""DropItem"",
                     ""type"": ""Button"",
                     ""id"": ""44d332b4-4b7c-4491-8001-636bcee7085e"",
                     ""expectedControlType"": ""Button"",
@@ -131,7 +131,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""InteractBuilding"",
+                    ""name"": ""BuildingMenu"",
                     ""type"": ""Button"",
                     ""id"": ""304141bf-57f5-4144-a4ef-feb90ed39fb7"",
                     ""expectedControlType"": ""Button"",
@@ -142,6 +142,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""RotateBuilding"",
                     ""type"": ""Button"",
                     ""id"": ""28bf2ca8-d7ff-475c-95d8-c63fb0e2917d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CraftItemMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""eab6de57-62da-4cbc-95a1-b76f0fc57d5a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -430,7 +438,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""PlaceObject"",
+                    ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -441,7 +449,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""PlaceObject"",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6c539a4-6f3c-48da-9690-edd44fab6e47"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -573,7 +592,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""InteractBuilding"",
+                    ""action"": ""BuildingMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -642,6 +661,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""RotateBuilding"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca30e35d-cc3e-4906-9e41-dd6092d3b016"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""CraftItemMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -927,14 +957,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_Throw = m_Gameplay.FindAction("Throw", throwIfNotFound: true);
         m_Gameplay_PickUpObject = m_Gameplay.FindAction("PickUpObject", throwIfNotFound: true);
         m_Gameplay_ActivateObject = m_Gameplay.FindAction("ActivateObject", throwIfNotFound: true);
-        m_Gameplay_PlaceObject = m_Gameplay.FindAction("PlaceObject", throwIfNotFound: true);
+        m_Gameplay_DropItem = m_Gameplay.FindAction("DropItem", throwIfNotFound: true);
         m_Gameplay_Eat = m_Gameplay.FindAction("Eat", throwIfNotFound: true);
         m_Gameplay_SelectTool = m_Gameplay.FindAction("SelectTool", throwIfNotFound: true);
         m_Gameplay_InteractMainMenu = m_Gameplay.FindAction("InteractMainMenu", throwIfNotFound: true);
         m_Gameplay_InteractPauseMenu = m_Gameplay.FindAction("InteractPauseMenu", throwIfNotFound: true);
         m_Gameplay_InteractInventory = m_Gameplay.FindAction("InteractInventory", throwIfNotFound: true);
-        m_Gameplay_InteractBuilding = m_Gameplay.FindAction("InteractBuilding", throwIfNotFound: true);
+        m_Gameplay_BuildingMenu = m_Gameplay.FindAction("BuildingMenu", throwIfNotFound: true);
         m_Gameplay_RotateBuilding = m_Gameplay.FindAction("RotateBuilding", throwIfNotFound: true);
+        m_Gameplay_CraftItemMenu = m_Gameplay.FindAction("CraftItemMenu", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Select = m_Menu.FindAction("Select", throwIfNotFound: true);
@@ -997,14 +1028,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Throw;
     private readonly InputAction m_Gameplay_PickUpObject;
     private readonly InputAction m_Gameplay_ActivateObject;
-    private readonly InputAction m_Gameplay_PlaceObject;
+    private readonly InputAction m_Gameplay_DropItem;
     private readonly InputAction m_Gameplay_Eat;
     private readonly InputAction m_Gameplay_SelectTool;
     private readonly InputAction m_Gameplay_InteractMainMenu;
     private readonly InputAction m_Gameplay_InteractPauseMenu;
     private readonly InputAction m_Gameplay_InteractInventory;
-    private readonly InputAction m_Gameplay_InteractBuilding;
+    private readonly InputAction m_Gameplay_BuildingMenu;
     private readonly InputAction m_Gameplay_RotateBuilding;
+    private readonly InputAction m_Gameplay_CraftItemMenu;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -1017,14 +1049,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Throw => m_Wrapper.m_Gameplay_Throw;
         public InputAction @PickUpObject => m_Wrapper.m_Gameplay_PickUpObject;
         public InputAction @ActivateObject => m_Wrapper.m_Gameplay_ActivateObject;
-        public InputAction @PlaceObject => m_Wrapper.m_Gameplay_PlaceObject;
+        public InputAction @DropItem => m_Wrapper.m_Gameplay_DropItem;
         public InputAction @Eat => m_Wrapper.m_Gameplay_Eat;
         public InputAction @SelectTool => m_Wrapper.m_Gameplay_SelectTool;
         public InputAction @InteractMainMenu => m_Wrapper.m_Gameplay_InteractMainMenu;
         public InputAction @InteractPauseMenu => m_Wrapper.m_Gameplay_InteractPauseMenu;
         public InputAction @InteractInventory => m_Wrapper.m_Gameplay_InteractInventory;
-        public InputAction @InteractBuilding => m_Wrapper.m_Gameplay_InteractBuilding;
+        public InputAction @BuildingMenu => m_Wrapper.m_Gameplay_BuildingMenu;
         public InputAction @RotateBuilding => m_Wrapper.m_Gameplay_RotateBuilding;
+        public InputAction @CraftItemMenu => m_Wrapper.m_Gameplay_CraftItemMenu;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1058,9 +1091,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @ActivateObject.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnActivateObject;
                 @ActivateObject.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnActivateObject;
                 @ActivateObject.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnActivateObject;
-                @PlaceObject.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlaceObject;
-                @PlaceObject.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlaceObject;
-                @PlaceObject.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPlaceObject;
+                @DropItem.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDropItem;
+                @DropItem.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDropItem;
+                @DropItem.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDropItem;
                 @Eat.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEat;
                 @Eat.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEat;
                 @Eat.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEat;
@@ -1076,12 +1109,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InteractInventory.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractInventory;
                 @InteractInventory.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractInventory;
                 @InteractInventory.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractInventory;
-                @InteractBuilding.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractBuilding;
-                @InteractBuilding.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractBuilding;
-                @InteractBuilding.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractBuilding;
+                @BuildingMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBuildingMenu;
+                @BuildingMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBuildingMenu;
+                @BuildingMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBuildingMenu;
                 @RotateBuilding.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateBuilding;
                 @RotateBuilding.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateBuilding;
                 @RotateBuilding.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotateBuilding;
+                @CraftItemMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCraftItemMenu;
+                @CraftItemMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCraftItemMenu;
+                @CraftItemMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCraftItemMenu;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -1110,9 +1146,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @ActivateObject.started += instance.OnActivateObject;
                 @ActivateObject.performed += instance.OnActivateObject;
                 @ActivateObject.canceled += instance.OnActivateObject;
-                @PlaceObject.started += instance.OnPlaceObject;
-                @PlaceObject.performed += instance.OnPlaceObject;
-                @PlaceObject.canceled += instance.OnPlaceObject;
+                @DropItem.started += instance.OnDropItem;
+                @DropItem.performed += instance.OnDropItem;
+                @DropItem.canceled += instance.OnDropItem;
                 @Eat.started += instance.OnEat;
                 @Eat.performed += instance.OnEat;
                 @Eat.canceled += instance.OnEat;
@@ -1128,12 +1164,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InteractInventory.started += instance.OnInteractInventory;
                 @InteractInventory.performed += instance.OnInteractInventory;
                 @InteractInventory.canceled += instance.OnInteractInventory;
-                @InteractBuilding.started += instance.OnInteractBuilding;
-                @InteractBuilding.performed += instance.OnInteractBuilding;
-                @InteractBuilding.canceled += instance.OnInteractBuilding;
+                @BuildingMenu.started += instance.OnBuildingMenu;
+                @BuildingMenu.performed += instance.OnBuildingMenu;
+                @BuildingMenu.canceled += instance.OnBuildingMenu;
                 @RotateBuilding.started += instance.OnRotateBuilding;
                 @RotateBuilding.performed += instance.OnRotateBuilding;
                 @RotateBuilding.canceled += instance.OnRotateBuilding;
+                @CraftItemMenu.started += instance.OnCraftItemMenu;
+                @CraftItemMenu.performed += instance.OnCraftItemMenu;
+                @CraftItemMenu.canceled += instance.OnCraftItemMenu;
             }
         }
     }
@@ -1215,14 +1254,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnThrow(InputAction.CallbackContext context);
         void OnPickUpObject(InputAction.CallbackContext context);
         void OnActivateObject(InputAction.CallbackContext context);
-        void OnPlaceObject(InputAction.CallbackContext context);
+        void OnDropItem(InputAction.CallbackContext context);
         void OnEat(InputAction.CallbackContext context);
         void OnSelectTool(InputAction.CallbackContext context);
         void OnInteractMainMenu(InputAction.CallbackContext context);
         void OnInteractPauseMenu(InputAction.CallbackContext context);
         void OnInteractInventory(InputAction.CallbackContext context);
-        void OnInteractBuilding(InputAction.CallbackContext context);
+        void OnBuildingMenu(InputAction.CallbackContext context);
         void OnRotateBuilding(InputAction.CallbackContext context);
+        void OnCraftItemMenu(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

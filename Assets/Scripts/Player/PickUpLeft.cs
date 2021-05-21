@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PickUpLeft : MonoBehaviour
 {
@@ -14,6 +15,24 @@ public class PickUpLeft : MonoBehaviour
    
     public bool equipped;
     public static bool slotFull;
+    
+    private PlayerControls playerControls;
+    private InputAction dropItem;
+    private bool isPressedKeyE;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        dropItem = playerControls.Gameplay.DropItem;
+
+        dropItem.performed += context => isPressedKeyE = true;
+        dropItem.canceled += context => isPressedKeyE = false;
+    }
+
+    private void OnEnable() => playerControls.Enable();
+
+    private void OnDisable() => playerControls.Disable();
+
 
     private void Start()
     {
