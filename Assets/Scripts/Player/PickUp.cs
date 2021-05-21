@@ -10,26 +10,21 @@ public class PickUp : MonoBehaviour
     
     private PlayerControls playerControls;
     private InputAction pickUpItem;
-    private InputAction placeItem;
     private InputAction rotatePickedUpObject;
     private Transform middleHand;
     private GameObject pickedUpObject;
     private bool pickedUp = false;
     private bool whenPickUpItem;
-    private bool whenPlaceItem;
     private float rotationModifier;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         pickUpItem = playerControls.Gameplay.PickUpObject;
-        placeItem = playerControls.Gameplay.PlaceObject;
         rotatePickedUpObject = playerControls.Gameplay.RotateBuilding;
 
         pickUpItem.performed += context => whenPickUpItem = true;
         pickUpItem.canceled += context => whenPickUpItem = false;
-        placeItem.performed += context => whenPlaceItem = true;
-        placeItem.canceled += context => whenPlaceItem = false;
 
         rotatePickedUpObject.performed += OnRotate;
         rotatePickedUpObject.canceled += OnRotate;
@@ -37,7 +32,6 @@ public class PickUp : MonoBehaviour
 
     private void OnRotate(InputAction.CallbackContext context)
     {
-        Debug.Log("Does it work?");
         rotationModifier = context.ReadValue<float>();
     }
 
