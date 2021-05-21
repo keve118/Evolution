@@ -124,6 +124,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RotateBuilding",
+                    "type": "Button",
+                    "id": "28bf2ca8-d7ff-475c-95d8-c63fb0e2917d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -416,7 +424,7 @@
                 {
                     "name": "",
                     "id": "12bc2b40-ec2c-48b3-a2d6-fa9b7b650bc7",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -438,7 +446,7 @@
                 {
                     "name": "",
                     "id": "43d141a2-806e-42e3-96da-1646cb7d2738",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -547,17 +555,6 @@
                 },
                 {
                     "name": "",
-                    "id": "a24647f9-9807-4cf6-871b-b9b5a8eee5ad",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "InteractBuilding",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "89805a34-dcd6-452e-91e2-dcbc4e6562cd",
                     "path": "<Keyboard>/b",
                     "interactions": "",
@@ -566,6 +563,72 @@
                     "action": "InteractBuilding",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Rotate",
+                    "id": "fb86e4f3-d3b0-41a1-b0e9-7021f77da96f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBuilding",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "dc043035-8c0e-42a0-919c-eb10b090522f",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "RotateBuilding",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "48e47199-5330-4c3f-8b9b-5427f6961666",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "RotateBuilding",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "RotateGamePad",
+                    "id": "66260b18-fdbd-444b-af25-f1d9795ff252",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateBuilding",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "fb63ed52-36fc-437a-a4d8-49bdde75472e",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateBuilding",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "7fea05ca-4557-446b-9b2c-edcfb196147c",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateBuilding",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
