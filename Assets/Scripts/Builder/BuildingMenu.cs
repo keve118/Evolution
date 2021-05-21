@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class BuildingMenu : MonoBehaviour
@@ -34,34 +33,63 @@ public class BuildingMenu : MonoBehaviour
     public Text stoneAgeSpearCost;
 
     [Header("Tools Settings")]
-    public GameObject toolUI; 
+    public GameObject toolUI;
     public static bool activeToolUI = false;
 
     [Header("General Settings")]
     public Camera MainCamera;
     public Camera UsingCamera;
-    private Animator animator;
-    private bool isAnimating = false;
     public float timePassed = 2f;
     public GameObject pointer;
     public GameObject player;
+    private Animator animator;
+    private bool isAnimating = false;
     [SerializeField] private bool GodMode = false;
+
+    //Input
+    private PlayerControls playerContols;
+    private InputAction openCraftMenu;
+    private InputAction openBuildingMenu;
+    private bool isOpenCraftMenu;
+    private bool isOpenBuildingMenu;
+    private bool isCraftKeyDown;
+    private bool isBuildKeyDown;
+
+    private void Awake()
+    {
+        playerContols = new PlayerControls();
+        openCraftMenu = playerContols.Gameplay.CraftItemMenu;
+        openBuildingMenu = playerContols.Gameplay.BuildingMenu;
+
+        openCraftMenu.performed += context => isOpenCraftMenu = true;
+        openCraftMenu.canceled += context => isOpenCraftMenu = false;
+        openBuildingMenu.performed += context => isOpenBuildingMenu = true;
+        openBuildingMenu.canceled += context => isOpenBuildingMenu = false;
+    }
+
+    private void OnEnable() => playerContols.Enable();
+
+    private void OnDisable() => playerContols.Disable();
 
     private void Start()
     {
         MainCamera.enabled = true;
-        UsingCamera.enabled = false;       
+        UsingCamera.enabled = false;
         animator = GetComponent<Animator>();
-
     }
 
     private void Update()
     {
+        if (!isOpenBuildingMenu && isBuildKeyDown) //Disables spamming menu
+        {
+            isBuildKeyDown = false;
+        }
+
         Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
         RaycastHit hit;
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {         
+        if (isOpenBuildingMenu && !isBuildKeyDown)
+        {
             if (activeBuildUI)
             {
                 //if (GodMode) 
@@ -77,8 +105,8 @@ public class BuildingMenu : MonoBehaviour
                 //}
                 //else 
                 //{ 
-                    CloseBuildUI();
-                    Cursor.visible = false;              
+                CloseBuildUI();
+                Cursor.visible = false;
                 //}
             }
             else
@@ -96,34 +124,46 @@ public class BuildingMenu : MonoBehaviour
                 //}
                 //else 
                 //{                 
-                    OpenBuildUI();
-                    Cursor.visible = true;                
+                OpenBuildUI();
+                Cursor.visible = true;
                 //}
-            }        
+            }
+            isBuildKeyDown = true;
+        }
+
+        if (!isOpenCraftMenu && isCraftKeyDown) //Disables spamming menu
+        {
+            isCraftKeyDown = false;
         }
 
         if (Physics.Raycast(ray, out hit, 10))
         {
 
-            if (hit.collider.tag =="Workshop" && Input.GetKeyDown(KeyCode.E) && activeToolUI)
+            if (isOpenCraftMenu && !isCraftKeyDown)
             {
-                CloseToolUI();
-                Cursor.visible = false;
-                positionTools = hit.collider.gameObject.transform.Find("spawnPoint");
-            }
-            else if (hit.collider.tag == "Workshop" && Input.GetKeyDown(KeyCode.E) && !activeToolUI)
-            {
-                OpenToolUI();
-                Cursor.visible = true;
+                Debug.Log("Program entered");
+
+                if (hit.collider.tag == "Workshop" && isOpenCraftMenu && activeToolUI)
+                {
+                    CloseToolUI();
+                    Cursor.visible = false;
+                    positionTools = hit.collider.gameObject.transform.Find("spawnPoint");
+                }
+                else if (hit.collider.tag == "Workshop" && isOpenCraftMenu && !activeToolUI)
+                {
+                    OpenToolUI();
+                    Cursor.visible = true;
+                }
+                isCraftKeyDown = true;
             }
         }
 
-        primitiveHutCost.text = "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
+            primitiveHutCost.text = "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
         firePlaceCost.text = "Cost of Building:\n Wood:" + firePlace.GetComponent<Cost>().woodCost + "\n Stone:" + firePlace.GetComponent<Cost>().stoneCost;
         workshopCost.text = "Cost of Building:\n Wood:" + workshop.GetComponent<Cost>().woodCost + "\n Stone:" + workshop.GetComponent<Cost>().stoneCost;
 
         stoneAgeAxeCost.text = "Cost of Building:\n Wood:" + stoneAgeAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeAxe.GetComponent<Cost>().stoneCost;
-        stoneAgePickAxeCost.text = "Cost of Building:\n Wood:" +stoneAgePickAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgePickAxe.GetComponent<Cost>().stoneCost;
+        stoneAgePickAxeCost.text = "Cost of Building:\n Wood:" + stoneAgePickAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgePickAxe.GetComponent<Cost>().stoneCost;
         stoneAgeSpearCost.text = "Cost of Building:\n Wood:" + stoneAgeSpear.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeSpear.GetComponent<Cost>().stoneCost;
     }
 
@@ -183,7 +223,7 @@ public class BuildingMenu : MonoBehaviour
                 }
             }
         }
-        else 
+        else
         {
             //Debug.Log("Insufficient Funds!");
             if (activeBuildUI)
@@ -194,15 +234,15 @@ public class BuildingMenu : MonoBehaviour
     }
     public void SpawnObject(GameObject buildingObject)
     {
-        if(buildingObject.tag=="Tool")
+        if (buildingObject.tag == "Tool")
             Instantiate(buildingObject, positionTools.transform.position, transform.rotation);
         else
             Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
 
-        if(activeBuildUI)
+        if (activeBuildUI)
             CloseBuildUI();
 
-        if(activeToolUI)
+        if (activeToolUI)
             CloseToolUI();
     }
 }

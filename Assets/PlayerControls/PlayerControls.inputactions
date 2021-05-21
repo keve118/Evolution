@@ -70,7 +70,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "PlaceObject",
+                    "name": "DropItem",
                     "type": "Button",
                     "id": "44d332b4-4b7c-4491-8001-636bcee7085e",
                     "expectedControlType": "Button",
@@ -118,7 +118,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "InteractBuilding",
+                    "name": "BuildingMenu",
                     "type": "Button",
                     "id": "304141bf-57f5-4144-a4ef-feb90ed39fb7",
                     "expectedControlType": "Button",
@@ -129,6 +129,14 @@
                     "name": "RotateBuilding",
                     "type": "Button",
                     "id": "28bf2ca8-d7ff-475c-95d8-c63fb0e2917d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CraftItemMenu",
+                    "type": "Button",
+                    "id": "eab6de57-62da-4cbc-95a1-b76f0fc57d5a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -417,7 +425,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "PlaceObject",
+                    "action": "DropItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -428,7 +436,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "PlaceObject",
+                    "action": "DropItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6c539a4-6f3c-48da-9690-edd44fab6e47",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "DropItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -560,7 +579,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "InteractBuilding",
+                    "action": "BuildingMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -629,6 +648,17 @@
                     "action": "RotateBuilding",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ca30e35d-cc3e-4906-9e41-dd6092d3b016",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "CraftItemMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
