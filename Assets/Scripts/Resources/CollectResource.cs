@@ -25,10 +25,7 @@ public class CollectResource : MonoBehaviour
 
             if (gameObject.tag == "Food")
                 PlayerProperties.amountFood += 1;
-
             Destroy(gameObject);
-            Debug.Log("Wood:" + PlayerProperties.amountWood + "    Stone:" + PlayerProperties.amountStone + "   Food:" + PlayerProperties.amountFood);
-
         }
     }
 

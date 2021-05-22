@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -56998,6 +56998,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9066149152808065676, guid: 4357262e09fb80f4e8d3a0b6f8acb42c, type: 3}
   m_PrefabInstance: {fileID: 933917447}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2016339180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2016339181}
+  m_Layer: 0
+  m_Name: Empty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2016339181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016339180}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1081899733}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2019895691
 GameObject:
   m_ObjectHideFlags: 0
@@ -60340,7 +60370,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1006987017758640242, guid: 5e4ba440c6b0d7d4cb199dc19b6764c5, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1006987017758640242, guid: 5e4ba440c6b0d7d4cb199dc19b6764c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -61119,7 +61149,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6262399567549569536, guid: 09318d286e0a62f439eca1a66f71e8d5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6262399567549569536, guid: 09318d286e0a62f439eca1a66f71e8d5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -61614,7 +61644,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 91166813038071114, guid: eae015bd19a51a64a977e4e532dc5ad0, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 91166813038071114, guid: eae015bd19a51a64a977e4e532dc5ad0, type: 3}
       propertyPath: m_LocalPosition.x
