@@ -28,13 +28,28 @@ public class SoundManager : MonoBehaviour
     public void Play(string name)
     {
         //finding the sound clip to play (in other scripts)
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound soundToPlay = Array.Find(sounds, sound => sound.name == name);
        
-        if(s == null)
+        if(soundToPlay == null) //soundclip name dosen't exist
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
-        s.source.Play();
+
+        soundToPlay.source.Play();
+    }
+
+    public void Stop(string name)
+    {
+        //finding the sound clip to play (in other scripts)
+        Sound soundToStop = Array.Find(sounds, sound => sound.name == name);
+
+        if (soundToStop == null) //soundclip name dosen't exist
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        soundToStop.source.Stop();
     }
 }

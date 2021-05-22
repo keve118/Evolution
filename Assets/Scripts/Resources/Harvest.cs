@@ -22,7 +22,7 @@ public class Harvest : MonoBehaviour
 
     private void Update()
     {       
-        ////Falling, health == 0 is a bad idea since the tools sometimes makes the health < 0 --> falling never happens
+        //Falling, health == 0 is a bad idea since the tools sometimes makes the health < 0 --> falling never happens
         if (health <= 0 && gameObject.tag == "Stone")
         {
             Falling();
@@ -41,8 +41,7 @@ public class Harvest : MonoBehaviour
     {
         if (gameObject.tag == "Food" && !isFallen) 
         {
-            Animator animator = gameObject.GetComponent<Animator>();
-            animator.SetBool("isDead", true);
+            //animation is handled by the DeerAI script
             isFallen = true;
         }
         if (gameObject.tag != "Food" && !isFallen)

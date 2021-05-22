@@ -12,7 +12,7 @@ public class StaminaBar : MonoBehaviour
     private WaitForSeconds regenTick = new WaitForSeconds(0.3f);
     private Coroutine regen;
 
-    public static StaminaBar instance;
+    public static StaminaBar instance; //used for referensing the staminabar in MovementPlayerScript
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class StaminaBar : MonoBehaviour
 
         while(currentStamina < maxStamina)
         {
-            currentStamina += maxStamina / 100; //amount to regen each frame
+            currentStamina += maxStamina / 100; //amount to regen each frame (1%)
             staminaBar.value = currentStamina;
             yield return regenTick; //time before regen again (low number = fast regen, high number = slow regen)
         }
