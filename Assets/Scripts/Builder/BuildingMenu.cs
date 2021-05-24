@@ -42,9 +42,6 @@ public class BuildingMenu : MonoBehaviour
     public float timePassed = 2f;
     public GameObject pointer;
     public GameObject player;
-    private Animator animator;
-    private bool isAnimating = false;
-    [SerializeField] private bool GodMode = false;
 
     //Input
     private PlayerControls playerContols;
@@ -75,7 +72,6 @@ public class BuildingMenu : MonoBehaviour
     {
         MainCamera.enabled = true;
         UsingCamera.enabled = false;
-        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -92,41 +88,15 @@ public class BuildingMenu : MonoBehaviour
         {
             if (activeBuildUI)
             {
-                //if (GodMode) 
-                //{
-                //    pointer.SetActive(false);
-                //    player.GetComponent<MouseLook>().buildingModeOn = false;
-                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", true);
-                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", false);
-                //    MainCamera.enabled = true;
-                //    UsingCamera.enabled = false;
-                //    CloseBuildUI();
-                //    Cursor.visible = false;
-                //}
-                //else 
-                //{ 
+            
                 CloseBuildUI();
                 Cursor.visible = false;
-                //}
+             
             }
             else
-            {
-                //if (GodMode) 
-                //{
-                //    player.GetComponent<MouseLook>().buildingModeOn = true;
-                //    pointer.SetActive(true);
-                //    MainCamera.enabled = false;
-                //    UsingCamera.enabled = true;
-                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("OpenMenu", true);
-                //    UsingCamera.GetComponent<CameraTransition>().animator.SetBool("CloseMenu", false);
-                //    OpenBuildUI();
-                //    Cursor.visible = true;
-                //}
-                //else 
-                //{                 
+            {                            
                 OpenBuildUI();
-                Cursor.visible = true;
-                //}
+               Cursor.visible = true;            
             }
             isBuildKeyDown = true;
         }
@@ -158,7 +128,7 @@ public class BuildingMenu : MonoBehaviour
             }
         }
 
-            primitiveHutCost.text = "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
+        primitiveHutCost.text = "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
         firePlaceCost.text = "Cost of Building:\n Wood:" + firePlace.GetComponent<Cost>().woodCost + "\n Stone:" + firePlace.GetComponent<Cost>().stoneCost;
         workshopCost.text = "Cost of Building:\n Wood:" + workshop.GetComponent<Cost>().woodCost + "\n Stone:" + workshop.GetComponent<Cost>().stoneCost;
 
@@ -178,12 +148,7 @@ public class BuildingMenu : MonoBehaviour
     public void OpenBuildUI()
     {
         buildUI.SetActive(true);
-
-        //if (GodMode)
-        //    Time.timeScale = 1f;
-        //else
         Time.timeScale = 0f;
-
         activeBuildUI = true;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -225,7 +190,6 @@ public class BuildingMenu : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Insufficient Funds!");
             if (activeBuildUI)
                 CloseBuildUI();
             if (activeToolUI)

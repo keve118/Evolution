@@ -98,7 +98,6 @@ MonoBehaviour:
   runAwayRadius: 40
   speedMin: 1
   speedMax: 3
-  randomSpeed: 0
   walkSpeed: 1
   rotSpeed: 100
   currentState: 0
@@ -109,6 +108,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2824562455134737397, guid: afa67385874b3b14bb341a99ad025708, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824562455134737397, guid: afa67385874b3b14bb341a99ad025708, type: 3}
+      propertyPath: m_CullingMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2824562455139052853, guid: afa67385874b3b14bb341a99ad025708, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

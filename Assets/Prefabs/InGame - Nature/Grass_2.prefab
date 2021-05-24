@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 502212098823814639}
   - component: {fileID: 970279027768163910}
   - component: {fileID: 7241180101806194131}
-  - component: {fileID: 8153345353079307034}
+  - component: {fileID: -5272634830323970677}
   m_Layer: 0
   m_Name: Grass_2
   m_TagString: Untagged
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf70d8768e0f23a4887b4635c81f6838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8153345353079307034
+--- !u!114 &-5272634830323970677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1178cd5338cd30468b4767333a57965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToAppear: 20
+  distanceToAppear: 1
