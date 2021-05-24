@@ -27,7 +27,8 @@ Material:
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2225
-  stringTagMap: {}
+  stringTagMap:
+    MotionVector: User
   disabledShaderPasses:
   - DistortionVectors
   - MOTIONVECTORS
@@ -38,6 +39,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_13abc39ef1cb477490e7e7259ecc0aad:
+        m_Texture: {fileID: 2800000, guid: f8526de50359246c18b9745c0eb88005, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_1e6b57f8bb4743d0b1fd912be5d054a3:
+        m_Texture: {fileID: 2800000, guid: 9f3d40aa925afa04a81a1c88fa352095, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_b99ee121034f4d7f82181b425a5c80e7:
+        m_Texture: {fileID: 2800000, guid: f4f8542f13431ef4b9a0157ae6eea8aa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -167,6 +180,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_50de028a9b9f4db19a75768169f406bc: 0.6
+    - Vector1_59fb4e7c5131418aa292ffe2986b1ef7: 0.3
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -259,6 +274,8 @@ Material:
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -304,6 +321,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - Vector2_b65ae6cc590b438c936d78c9fd471326: {r: 6, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.06803141, g: 0.9056604, b: 0.063225314, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.068031386, g: 0.9056604, b: 0.06322529, a: 1}

@@ -6,8 +6,8 @@ public class Remove : MonoBehaviour
 {
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")        
-            Destroy(gameObject);      
+        if (other.tag == "Player")
+            gameObject.SetActive(false);     
     }
 }
 
