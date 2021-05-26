@@ -22,7 +22,7 @@ public class MenuDelegateCollection : MonoBehaviour
     
     [SerializeField] private int milliSecondDelay = 500;
     
-    private MenuDelegateAction menuDelegateVoidAction;
+    private MenuDelegateAction menuDelegateAction;
 
     public void RunDemo()
     {
@@ -37,20 +37,22 @@ public class MenuDelegateCollection : MonoBehaviour
 
     public void QuitGame() //Will after build quit the game
     {
-        menuDelegateVoidAction = Application.Quit;
-        ExecuteAfterTime(milliSecondDelay, menuDelegateVoidAction);
+        menuDelegateAction = Application.Quit;
+        ExecuteAfterTime(milliSecondDelay, menuDelegateAction);
     }
 
     public void LoadMainMenuScene()
     {
+        Time.timeScale = 1;
         sceneLoaderDelegate = LoadSceneNumber;
         ExecuteAfterTime(milliSecondDelay, sceneLoaderDelegate, 0);
     }
 
     public void ResumeGame() //To leverage this funciton the pause screen gameobject must implement the pause script!
     {
-        menuDelegateVoidAction = gameObject.GetComponent<PauseMenu>().UIManager.GetComponent<GameStateManager>().UnPauseGame;
-        ExecuteAfterTime(milliSecondDelay, menuDelegateVoidAction);
+        menuDelegateAction = gameObject.GetComponent<PauseMenu>().GameMaster.GetComponent<GameStateManager>().UnPauseGame;
+        gameObject.GetComponent<PauseMenu>().GameMaster.GetComponent<GameStateManager>().isPaused = false;
+        ExecuteAfterTime(milliSecondDelay, menuDelegateAction);
     }
 
     public void LoadSceneNumber(int number)

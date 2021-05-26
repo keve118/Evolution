@@ -13,7 +13,7 @@ public class MenuButtonHandler : MonoBehaviour
     public Text[] textButtons;
 
     [HideInInspector] public bool isMouseInputDevice;
-    [HideInInspector] public int index;
+    [HideInInspector] public int index = 0;
 
     [SerializeField] private bool isKeyDown;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
@@ -21,7 +21,6 @@ public class MenuButtonHandler : MonoBehaviour
 
     private PlayerControls playerControls;
     private InputAction menuMovment;
-    private InputAction menuSelect;
     private Vector2 previousMousePosition;
     private Vector2 currentMousePosition;
     private int indexMax;
@@ -83,6 +82,8 @@ public class MenuButtonHandler : MonoBehaviour
 
     void Update()
     {
+
+
         if (previousMousePosition != currentMousePosition)
         {
             isMouseInputDevice = true;
