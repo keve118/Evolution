@@ -107,14 +107,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""InteractMainMenu"",
-                    ""type"": ""Button"",
-                    ""id"": ""c3072744-6b84-4b3e-83da-475713a5b888"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
                     ""name"": ""InteractPauseMenu"",
                     ""type"": ""Button"",
                     ""id"": ""b51da435-cee7-416c-b433-46080ebee726"",
@@ -475,7 +467,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fb7886fd-1ad2-4b87-9bb0-ce3f31a9f59a"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -486,7 +478,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""43d141a2-806e-42e3-96da-1646cb7d2738"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -508,33 +500,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d0b10b5d-d96d-4572-aa44-b6442a62157c"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""SelectTool"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9be52867-4007-46b6-9d17-1a968d1a9c8b"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""InteractMainMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""eaab9282-bb48-496f-b7e9-27a21742e044"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""InteractMainMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -600,6 +570,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""BuildingMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff157ca9-ab77-4277-9e5b-ff841a5849d1"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""BuildingMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -677,6 +658,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""CraftItemMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5225a1f6-3e00-4235-b330-8d95acac0038"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""CraftItemMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -990,7 +982,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_DropItem = m_Gameplay.FindAction("DropItem", throwIfNotFound: true);
         m_Gameplay_Eat = m_Gameplay.FindAction("Eat", throwIfNotFound: true);
         m_Gameplay_SelectTool = m_Gameplay.FindAction("SelectTool", throwIfNotFound: true);
-        m_Gameplay_InteractMainMenu = m_Gameplay.FindAction("InteractMainMenu", throwIfNotFound: true);
         m_Gameplay_InteractPauseMenu = m_Gameplay.FindAction("InteractPauseMenu", throwIfNotFound: true);
         m_Gameplay_InteractInventory = m_Gameplay.FindAction("InteractInventory", throwIfNotFound: true);
         m_Gameplay_BuildingMenu = m_Gameplay.FindAction("BuildingMenu", throwIfNotFound: true);
@@ -1062,7 +1053,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_DropItem;
     private readonly InputAction m_Gameplay_Eat;
     private readonly InputAction m_Gameplay_SelectTool;
-    private readonly InputAction m_Gameplay_InteractMainMenu;
     private readonly InputAction m_Gameplay_InteractPauseMenu;
     private readonly InputAction m_Gameplay_InteractInventory;
     private readonly InputAction m_Gameplay_BuildingMenu;
@@ -1084,7 +1074,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @DropItem => m_Wrapper.m_Gameplay_DropItem;
         public InputAction @Eat => m_Wrapper.m_Gameplay_Eat;
         public InputAction @SelectTool => m_Wrapper.m_Gameplay_SelectTool;
-        public InputAction @InteractMainMenu => m_Wrapper.m_Gameplay_InteractMainMenu;
         public InputAction @InteractPauseMenu => m_Wrapper.m_Gameplay_InteractPauseMenu;
         public InputAction @InteractInventory => m_Wrapper.m_Gameplay_InteractInventory;
         public InputAction @BuildingMenu => m_Wrapper.m_Gameplay_BuildingMenu;
@@ -1133,9 +1122,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SelectTool.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectTool;
                 @SelectTool.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectTool;
                 @SelectTool.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSelectTool;
-                @InteractMainMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractMainMenu;
-                @InteractMainMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractMainMenu;
-                @InteractMainMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractMainMenu;
                 @InteractPauseMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractPauseMenu;
                 @InteractPauseMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractPauseMenu;
                 @InteractPauseMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteractPauseMenu;
@@ -1191,9 +1177,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SelectTool.started += instance.OnSelectTool;
                 @SelectTool.performed += instance.OnSelectTool;
                 @SelectTool.canceled += instance.OnSelectTool;
-                @InteractMainMenu.started += instance.OnInteractMainMenu;
-                @InteractMainMenu.performed += instance.OnInteractMainMenu;
-                @InteractMainMenu.canceled += instance.OnInteractMainMenu;
                 @InteractPauseMenu.started += instance.OnInteractPauseMenu;
                 @InteractPauseMenu.performed += instance.OnInteractPauseMenu;
                 @InteractPauseMenu.canceled += instance.OnInteractPauseMenu;
@@ -1296,7 +1279,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnDropItem(InputAction.CallbackContext context);
         void OnEat(InputAction.CallbackContext context);
         void OnSelectTool(InputAction.CallbackContext context);
-        void OnInteractMainMenu(InputAction.CallbackContext context);
         void OnInteractPauseMenu(InputAction.CallbackContext context);
         void OnInteractInventory(InputAction.CallbackContext context);
         void OnBuildingMenu(InputAction.CallbackContext context);

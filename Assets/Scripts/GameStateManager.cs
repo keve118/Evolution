@@ -43,26 +43,7 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        playerControls.Enable();
-
-        var buttons = pause.GetComponent<MenuButtonHandler>().textButtons;
-
-        //foreach (var button in buttons)
-        //{
-        //    if (button == buttons[0])
-        //    {
-        //        button.GetComponent<Animator>().SetBool("OnStart", true);
-        //        button.GetComponent<Animator>().SetBool("Pressed", true);
-        //    }
-        //    else
-        //    {
-        //        button.GetComponent<Animator>().SetBool("OnStart", false);
-        //    }
-        //}
-
-    }
+    private void OnEnable() => playerControls.Enable();
 
     private void OnDisable() => playerControls.Disable();
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
@@ -13,12 +14,24 @@ public class HealthBar : MonoBehaviour
     private float amountOfHealthToLoose = 0.01f; //amount of health to loose each frame
 
     public static HealthBar instance;
-
+    private PlayerControls playerControls;
+    private InputAction eat;
+    private bool isEating;
+    private bool isKeyDown;
 
     private void Awake()
     {
         instance = this;
+
+        playerControls = new PlayerControls();
+
+        eat = playerControls.Gameplay.Eat;
+        eat.performed += context => isEating = true;
+        eat.canceled += context => isEating = false;
     }
+
+    private void OnEnable() => playerControls.Enable();
+    private void OnDisable() => playerControls.Disable();
 
     void Start()
     {
@@ -29,9 +42,18 @@ public class HealthBar : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && PlayerProperties.amountFood > 0)
+        if (!isKeyDown)
         {
-            AddHealth(amountOfHealthToAdd);
+            if (isEating && PlayerProperties.amountFood > 0)
+            {
+                AddHealth(amountOfHealthToAdd);
+            }
+
+            isKeyDown = true;
+        }
+        else
+        {
+            isKeyDown = false;
         }
 
         if (currentHealth > 0)

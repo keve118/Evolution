@@ -94,14 +94,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "InteractMainMenu",
-                    "type": "Button",
-                    "id": "c3072744-6b84-4b3e-83da-475713a5b888",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
                     "name": "InteractPauseMenu",
                     "type": "Button",
                     "id": "b51da435-cee7-416c-b433-46080ebee726",
@@ -462,7 +454,7 @@
                 {
                     "name": "",
                     "id": "fb7886fd-1ad2-4b87-9bb0-ce3f31a9f59a",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -473,7 +465,7 @@
                 {
                     "name": "",
                     "id": "43d141a2-806e-42e3-96da-1646cb7d2738",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -495,33 +487,11 @@
                 {
                     "name": "",
                     "id": "d0b10b5d-d96d-4572-aa44-b6442a62157c",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "SelectTool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9be52867-4007-46b6-9d17-1a968d1a9c8b",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "InteractMainMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "eaab9282-bb48-496f-b7e9-27a21742e044",
-                    "path": "<Keyboard>/m",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "InteractMainMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -587,6 +557,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
+                    "action": "BuildingMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff157ca9-ab77-4277-9e5b-ff841a5849d1",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "BuildingMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -664,6 +645,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
+                    "action": "CraftItemMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5225a1f6-3e00-4235-b330-8d95acac0038",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "CraftItemMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
