@@ -16,11 +16,13 @@ public class MovementPlayerScript : MonoBehaviour
     private PlayerControls playerControls; //Holds an auto generated class from the Input System
     private InputAction directionalMovement;
     private InputAction jump;
+    private InputAction run;
     private CharacterController controller;
     private AudioSource audioSource;
     private Vector3 playerVelocity;
     private bool isMoving = false;
     private bool isJump;
+    private bool isRun;
 
     void Awake()
     {
@@ -33,6 +35,11 @@ public class MovementPlayerScript : MonoBehaviour
         jump = playerControls.Gameplay.Jump;
         jump.performed += context => isJump = true; //Overridning returntype float setting it to bool
         jump.canceled += context => isJump = false;
+
+        run = playerControls.Gameplay.Run;
+        run.performed += context => isRun = true;
+        run.canceled += context => isRun = false;
+        
     }
 
     private void OnEnable() => playerControls.Gameplay.Enable(); // When object enabled, actionmap is enabled
@@ -62,7 +69,7 @@ public class MovementPlayerScript : MonoBehaviour
         Vector3 moveDirection = transform.right * (Direction.x * 0.75f) + (transform.forward * Direction.y);
         controller.Move(moveDirection * Time.deltaTime * currentSpeed);
 
-        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        if (isRun && isGrounded)
         {
             currentSpeed = runSpeed;
             isMoving = true;

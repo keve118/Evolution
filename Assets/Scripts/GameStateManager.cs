@@ -12,8 +12,6 @@ public class GameStateManager : MonoBehaviour
     [Header("UI Game State Screens")]
     //[SerializeField] private GameObject start;
     //[SerializeField] private GameObject gameover;
-
-    public UnityEvent gameScreenEventListener;
     
     [SerializeField] private GameObject pause;
 
@@ -51,18 +49,18 @@ public class GameStateManager : MonoBehaviour
 
         var buttons = pause.GetComponent<MenuButtonHandler>().textButtons;
 
-        foreach (var button in buttons)
-        {
-            if (button == buttons[0])
-            {
-                button.GetComponent<Animator>().SetBool("OnStart", true);
-                button.GetComponent<Animator>().SetBool("Pressed", true);
-            }
-            else
-            {
-                button.GetComponent<Animator>().SetBool("OnStart", false);
-            }
-        }
+        //foreach (var button in buttons)
+        //{
+        //    if (button == buttons[0])
+        //    {
+        //        button.GetComponent<Animator>().SetBool("OnStart", true);
+        //        button.GetComponent<Animator>().SetBool("Pressed", true);
+        //    }
+        //    else
+        //    {
+        //        button.GetComponent<Animator>().SetBool("OnStart", false);
+        //    }
+        //}
 
     }
 

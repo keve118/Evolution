@@ -153,6 +153,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""67561abf-ab27-4a00-9563-31b85a93fc1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -672,6 +680,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""CraftItemMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbcfbe15-3b74-4a10-a314-5c37e1af9fce"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf8fbd5d-7f95-49c9-81f0-7b9ec417ecbc"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -966,6 +996,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_BuildingMenu = m_Gameplay.FindAction("BuildingMenu", throwIfNotFound: true);
         m_Gameplay_RotateBuilding = m_Gameplay.FindAction("RotateBuilding", throwIfNotFound: true);
         m_Gameplay_CraftItemMenu = m_Gameplay.FindAction("CraftItemMenu", throwIfNotFound: true);
+        m_Gameplay_Run = m_Gameplay.FindAction("Run", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Select = m_Menu.FindAction("Select", throwIfNotFound: true);
@@ -1037,6 +1068,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_BuildingMenu;
     private readonly InputAction m_Gameplay_RotateBuilding;
     private readonly InputAction m_Gameplay_CraftItemMenu;
+    private readonly InputAction m_Gameplay_Run;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -1058,6 +1090,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @BuildingMenu => m_Wrapper.m_Gameplay_BuildingMenu;
         public InputAction @RotateBuilding => m_Wrapper.m_Gameplay_RotateBuilding;
         public InputAction @CraftItemMenu => m_Wrapper.m_Gameplay_CraftItemMenu;
+        public InputAction @Run => m_Wrapper.m_Gameplay_Run;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1118,6 +1151,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CraftItemMenu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCraftItemMenu;
                 @CraftItemMenu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCraftItemMenu;
                 @CraftItemMenu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCraftItemMenu;
+                @Run.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -1173,6 +1209,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CraftItemMenu.started += instance.OnCraftItemMenu;
                 @CraftItemMenu.performed += instance.OnCraftItemMenu;
                 @CraftItemMenu.canceled += instance.OnCraftItemMenu;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
             }
         }
     }
@@ -1263,6 +1302,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnBuildingMenu(InputAction.CallbackContext context);
         void OnRotateBuilding(InputAction.CallbackContext context);
         void OnCraftItemMenu(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
