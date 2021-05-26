@@ -140,6 +140,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "67561abf-ab27-4a00-9563-31b85a93fc1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -657,6 +665,28 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "CraftItemMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbcfbe15-3b74-4a10-a314-5c37e1af9fce",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf8fbd5d-7f95-49c9-81f0-7b9ec417ecbc",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

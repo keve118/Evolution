@@ -50,6 +50,7 @@ public class MenuDelegateCollection : MonoBehaviour
 
     public void ResumeGame() //To leverage this funciton the pause screen gameobject must implement the pause script!
     {
+        Time.timeScale = 1;
         menuDelegateAction = gameObject.GetComponent<PauseMenu>().GameMaster.GetComponent<GameStateManager>().UnPauseGame;
         gameObject.GetComponent<PauseMenu>().GameMaster.GetComponent<GameStateManager>().isPaused = false;
         ExecuteAfterTime(milliSecondDelay, menuDelegateAction);
