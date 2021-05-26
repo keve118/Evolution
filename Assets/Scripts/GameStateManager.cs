@@ -1,28 +1,76 @@
-
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
+/// <summary>
+/// Class governs the gamestates paused (game)
+/// </summary>
 public class GameStateManager : MonoBehaviour
 {
-    [SerializeField] private bool isPaused;
 
     [Header("UI Game State Screens")]
     //[SerializeField] private GameObject start;
-    [SerializeField] private GameObject pause;
     //[SerializeField] private GameObject gameover;
+
+    public UnityEvent gameScreenEventListener;
+    
+    [SerializeField] private GameObject pause;
+
+    [HideInInspector]
+    public bool isPaused = false;
+    
+    private PlayerControls playerControls;
+    private InputAction pauseMenu;
+
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        pauseMenu = playerControls.Gameplay.InteractPauseMenu;
+        pauseMenu.performed += OnPauseGame;
+    }
+
+    private void OnPauseGame(InputAction.CallbackContext context)
+    {
+        if (!isPaused)
+        {
+            PauseGame();
+            isPaused = true;
+        }
+        else
+        {
+            UnPauseGame();
+            isPaused = false;
+        }
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+
+        var buttons = pause.GetComponent<MenuButtonHandler>().textButtons;
+
+        foreach (var button in buttons)
+        {
+            if (button == buttons[0])
+            {
+                button.GetComponent<Animator>().SetBool("OnStart", true);
+                button.GetComponent<Animator>().SetBool("Pressed", true);
+            }
+            else
+            {
+                button.GetComponent<Animator>().SetBool("OnStart", false);
+            }
+        }
+
+    }
+
+    private void OnDisable() => playerControls.Disable();
 
     void Update()
     {
-        //TODO implement Gameover
 
-        if (!isPaused && Input.GetKeyDown("p"))
-        {
-            PauseGame();
-        }
-
-        else if (isPaused && Input.GetKeyDown("p") || Input.GetKeyDown("escape"))
-        {
-            UnPauseGame();
-        }
     }
 
     public void PauseGame()
@@ -31,7 +79,6 @@ public class GameStateManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         pause.SetActive(true);
-        isPaused = true;
     }
 
     public void UnPauseGame()
@@ -39,8 +86,6 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        isPaused = false;
         pause.SetActive(false);
-        isPaused = false;
     }
 }

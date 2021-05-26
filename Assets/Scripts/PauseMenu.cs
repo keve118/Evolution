@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject UIManager;
-
+    /// <summary>
+    /// Attatches the game master object to pause menu.
+    /// </summary>
+    public GameObject GameMaster;
 
 }

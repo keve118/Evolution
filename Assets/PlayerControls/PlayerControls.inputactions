@@ -409,8 +409,8 @@
                 },
                 {
                     "name": "",
-                    "id": "740c6f91-bde7-408e-b651-291d8a83597e",
-                    "path": "<Mouse>/leftButton",
+                    "id": "9455dcc7-3c81-4b8c-9529-c9c6ccedb3f9",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",

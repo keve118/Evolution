@@ -11,10 +11,10 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [Header("Assign delegate function to the button")]
     public UnityEvent buttonEvent;
     public int buttonIndex;
+    public Animator animator;
 
     [HideInInspector] public bool isMouseOver;
 
-    [SerializeField] private Animator animator;
     [SerializeField] private AnimatorAudioHelper animatorAudioHelper;
     private MenuButtonHandler menuButtonHandler;
 
@@ -23,8 +23,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private bool isKeyDown;
     private bool isSelecting;
 
-    #region Event implementation for reacting to mouse input 
-
+    //Event implementation for reacting to mouse input 
     public void OnPointerEnter(PointerEventData eventData) //Consumed in handler
     {
         isMouseOver = true;
@@ -34,8 +33,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         isMouseOver = false;
     }
-    #endregion
-
+   
     private void Awake()
     {
         menuButtonHandler = GetComponentInParent<MenuButtonHandler>();
