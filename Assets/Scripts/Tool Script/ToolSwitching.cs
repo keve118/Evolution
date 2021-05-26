@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ToolSwitching : MonoBehaviour
 {
@@ -32,7 +34,30 @@ public class ToolSwitching : MonoBehaviour
         Spear,
         Empty
     }
+
     public ToolState currentState;
+
+    private PlayerControls playerControls;
+    private InputAction selectTool;
+    private float selectToolvalue;
+    private bool isKeyDown;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+
+        selectTool = playerControls.Gameplay.SelectTool;
+        selectTool.performed += OnSelectTool;
+        selectTool.canceled += OnSelectTool;
+    }
+
+    private void OnEnable() => playerControls.Enable();
+    private void OnDisable() => playerControls.Disable();
+
+    private void OnSelectTool(InputAction.CallbackContext context)
+    {
+        selectToolvalue = context.ReadValue<float>();
+    }
 
     void Start()
     {
@@ -48,15 +73,14 @@ public class ToolSwitching : MonoBehaviour
     void Update()
     {
         int previousSelectedTool = selectedTool;
-
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (selectToolvalue > 0f)
         {
             if (selectedTool >= transform.childCount - 1)
                 selectedTool = 0;
             else
                 selectedTool++;
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        if (selectToolvalue < 0f)
         {
             if (selectedTool <= transform.childCount - 1)
                 selectedTool = transform.childCount - 1;
@@ -74,16 +98,14 @@ public class ToolSwitching : MonoBehaviour
 
     void InputManager()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (Keyboard.current.digit0Key.wasPressedThisFrame)
             selectedTool = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
             selectedTool = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Keyboard.current.digit2Key.wasPressedThisFrame)
             selectedTool = 2;
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Keyboard.current.digit3Key.wasPressedThisFrame)
             selectedTool = 3;
-
-
     }
 
     void SelectTool()

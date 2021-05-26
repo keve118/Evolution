@@ -87,7 +87,7 @@
                 },
                 {
                     "name": "SelectTool",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "42352dd3-03ad-42ba-b336-ee681da122f2",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -475,28 +475,6 @@
                 },
                 {
                     "name": "",
-                    "id": "05435a7c-2fea-42ad-a900-c24dcb416db6",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectTool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d0b10b5d-d96d-4572-aa44-b6442a62157c",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "SelectTool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b72ee744-5e22-459c-b89a-0c289d38bb3b",
                     "path": "<Gamepad>/select",
                     "interactions": "",
@@ -681,6 +659,72 @@
                     "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "MouseScroll",
+                    "id": "f865fc39-d47f-43f9-b09f-2b123a9fb757",
+                    "path": "1DAxis(whichSideWins=1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectTool",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f97a1c28-cbb8-45ce-9a59-ef548bbcfbea",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "SelectTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8584828d-5421-4161-b76a-c1fa2ac22182",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "SelectTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "GamePad Sholders",
+                    "id": "aa384c1f-35ed-40ac-94df-949741e31c4a",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectTool",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "46f83c6b-d5fb-43d8-81cc-21d5a65dff19",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SelectTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4b21b6f1-3323-4c08-843e-5e3e0fa40ed1",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SelectTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
