@@ -26,8 +26,6 @@ public class BuildingMenu : MonoBehaviour
     public Text primitiveHutCost;
     public Text firePlaceCost;
     public Text workshopCost;
-
-    [Header("Building Text Settings")]
     public Text stoneAgeAxeCost;
     public Text stoneAgePickAxeCost;
     public Text stoneAgeSpearCost;
