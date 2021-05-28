@@ -333,7 +333,7 @@
                 {
                     "name": "",
                     "id": "554d1b67-e127-4ecc-8550-80d7c1e72a84",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -633,7 +633,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "CraftItemMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -775,7 +775,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -819,7 +819,7 @@
                     "path": "<Keyboard>/numpadEnter",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard and Mouse",
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -962,7 +962,7 @@
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard and Mouse",
                     "action": "MouseCoordinates",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -970,7 +970,7 @@
             ]
         },
         {
-            "name": "UI",
+            "name": "BuildingUI",
             "id": "32e6f269-b75e-421d-ab92-d4c9c32fd1cc",
             "actions": [
                 {
@@ -1005,7 +1005,7 @@
                     "path": "<VirtualMouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Virtual Mouse",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1016,7 +1016,7 @@
                     "path": "<VirtualMouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Virtual Mouse",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1027,7 +1027,7 @@
                     "path": "<VirtualMouse>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Virtual Mouse",
                     "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1058,6 +1058,17 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Virtual Mouse",
+            "bindingGroup": "Virtual Mouse",
+            "devices": [
+                {
+                    "devicePath": "<VirtualMouse>",
                     "isOptional": true,
                     "isOR": false
                 }

@@ -66,15 +66,16 @@ public class BuildingMenu : MonoBehaviour
         openBuildingMenu.performed += context => isOpenBuildingMenu = true;
         openBuildingMenu.canceled += context => isOpenBuildingMenu = false;
 
-        //desiredMousePosition = playerContols.BuildingMenu.LeftThumb;
-        //desiredMousePosition.performed += OnMovmentMousePosition;
+        desiredMousePosition = playerContols.BuildingUI.Point;
+        desiredMousePosition.performed += OnMovmentMousePosition;
+        desiredMousePosition.canceled += OnMovmentMousePosition;
     }
 
-    //private void OnMovmentMousePosition(InputAction.CallbackContext context)
-    //{
-    //    thumbstick = context.ReadValue<Vector2>() * 50;
-    //    Debug.Log(thumbstick);
-    //}
+    private void OnMovmentMousePosition(InputAction.CallbackContext context)
+    {
+        thumbstick = context.ReadValue<Vector2>() * 50;
+        Debug.Log(thumbstick);
+    }
 
     private void OnEnable() => playerContols.Enable();
     private void OnDisable() => playerContols.Disable();
@@ -87,17 +88,6 @@ public class BuildingMenu : MonoBehaviour
 
     private void Update()
     {
-
-        //if (Cursor.visible == true)
-        //{
-        //    if (thumbstick != Vector2.zero)
-        //    {
-        //        Vector2 currentPosition = Mouse.current.delta.ReadValue();
-        //        currentPosition += thumbstick;
-        //        Mouse.current.WarpCursorPosition(currentPosition);
-        //    }
-
-        //}
 
         if (!isOpenBuildingMenu && isBuildKeyDown) //Disables spamming menu
         {
