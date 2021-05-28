@@ -346,7 +346,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""554d1b67-e127-4ecc-8550-80d7c1e72a84"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -646,7 +646,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""CraftItemMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -788,7 +788,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -832,7 +832,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/numpadEnter"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -975,8 +975,73 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""MouseCoordinates"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""BuildingUI"",
+            ""id"": ""32e6f269-b75e-421d-ab92-d4c9c32fd1cc"",
+            ""actions"": [
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""b701c724-f162-46d2-a5d5-faad7472ff6e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""32a0c173-0b2f-4d04-b185-70341b68048a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""7471a3e8-28a8-4cd4-bfd0-fb59b0f852fc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9f32d864-cbf8-48dd-b25e-a3e046c475ea"",
+                    ""path"": ""<VirtualMouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Virtual Mouse"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a26a8523-2713-4b51-bfc6-9fe301ba2268"",
+                    ""path"": ""<VirtualMouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Virtual Mouse"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2da91548-bddb-44b0-b4de-7a47a14dd322"",
+                    ""path"": ""<VirtualMouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Virtual Mouse"",
+                    ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1010,6 +1075,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Virtual Mouse"",
+            ""bindingGroup"": ""Virtual Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<VirtualMouse>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -1037,6 +1113,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Menu_Select = m_Menu.FindAction("Select", throwIfNotFound: true);
         m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
         m_Menu_MouseCoordinates = m_Menu.FindAction("MouseCoordinates", throwIfNotFound: true);
+        // BuildingUI
+        m_BuildingUI = asset.FindActionMap("BuildingUI", throwIfNotFound: true);
+        m_BuildingUI_Point = m_BuildingUI.FindAction("Point", throwIfNotFound: true);
+        m_BuildingUI_Click = m_BuildingUI.FindAction("Click", throwIfNotFound: true);
+        m_BuildingUI_Scroll = m_BuildingUI.FindAction("Scroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1292,6 +1373,55 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // BuildingUI
+    private readonly InputActionMap m_BuildingUI;
+    private IBuildingUIActions m_BuildingUIActionsCallbackInterface;
+    private readonly InputAction m_BuildingUI_Point;
+    private readonly InputAction m_BuildingUI_Click;
+    private readonly InputAction m_BuildingUI_Scroll;
+    public struct BuildingUIActions
+    {
+        private @PlayerControls m_Wrapper;
+        public BuildingUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Point => m_Wrapper.m_BuildingUI_Point;
+        public InputAction @Click => m_Wrapper.m_BuildingUI_Click;
+        public InputAction @Scroll => m_Wrapper.m_BuildingUI_Scroll;
+        public InputActionMap Get() { return m_Wrapper.m_BuildingUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BuildingUIActions set) { return set.Get(); }
+        public void SetCallbacks(IBuildingUIActions instance)
+        {
+            if (m_Wrapper.m_BuildingUIActionsCallbackInterface != null)
+            {
+                @Point.started -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnPoint;
+                @Click.started -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnClick;
+                @Scroll.started -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnScroll;
+                @Scroll.performed -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnScroll;
+                @Scroll.canceled -= m_Wrapper.m_BuildingUIActionsCallbackInterface.OnScroll;
+            }
+            m_Wrapper.m_BuildingUIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
+            }
+        }
+    }
+    public BuildingUIActions @BuildingUI => new BuildingUIActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -1308,6 +1438,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
             return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
+    private int m_VirtualMouseSchemeIndex = -1;
+    public InputControlScheme VirtualMouseScheme
+    {
+        get
+        {
+            if (m_VirtualMouseSchemeIndex == -1) m_VirtualMouseSchemeIndex = asset.FindControlSchemeIndex("Virtual Mouse");
+            return asset.controlSchemes[m_VirtualMouseSchemeIndex];
         }
     }
     public interface IGameplayActions
@@ -1335,5 +1474,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnMouseCoordinates(InputAction.CallbackContext context);
+    }
+    public interface IBuildingUIActions
+    {
+        void OnPoint(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
     }
 }

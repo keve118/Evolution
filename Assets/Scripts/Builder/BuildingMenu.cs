@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -49,6 +50,8 @@ public class BuildingMenu : MonoBehaviour
     private bool isOpenBuildingMenu;
     private bool isCraftKeyDown;
     private bool isBuildKeyDown;
+    private InputAction desiredMousePosition;
+    private Vector2 thumbstick;
 
     private void Awake()
     {
@@ -60,10 +63,19 @@ public class BuildingMenu : MonoBehaviour
         openCraftMenu.canceled += context => isOpenCraftMenu = false;
         openBuildingMenu.performed += context => isOpenBuildingMenu = true;
         openBuildingMenu.canceled += context => isOpenBuildingMenu = false;
+
+        desiredMousePosition = playerContols.BuildingUI.Point;
+        desiredMousePosition.performed += OnMovmentMousePosition;
+        desiredMousePosition.canceled += OnMovmentMousePosition;
+    }
+
+    private void OnMovmentMousePosition(InputAction.CallbackContext context)
+    {
+        thumbstick = context.ReadValue<Vector2>() * 50;
+        Debug.Log(thumbstick);
     }
 
     private void OnEnable() => playerContols.Enable();
-
     private void OnDisable() => playerContols.Disable();
 
     private void Start()
@@ -74,6 +86,7 @@ public class BuildingMenu : MonoBehaviour
 
     private void Update()
     {
+
         if (!isOpenBuildingMenu && isBuildKeyDown) //Disables spamming menu
         {
             isBuildKeyDown = false;
