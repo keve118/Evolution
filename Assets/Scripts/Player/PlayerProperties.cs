@@ -15,6 +15,9 @@ public class PlayerProperties : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        amountWood = 0;
+        amountStone = 0;
+        amountFood = 0;
     }
 
     #endregion
