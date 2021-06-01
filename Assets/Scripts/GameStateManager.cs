@@ -14,12 +14,15 @@ public class GameStateManager : MonoBehaviour
     //[SerializeField] private GameObject gameover;
     
     [SerializeField] private GameObject pause;
+    [SerializeField] private GameObject gameOver;
 
     [HideInInspector]
     public bool isPaused = false;
     
     private PlayerControls playerControls;
     private InputAction pauseMenu;
+
+    bool gameHasEnded = false;
 
 
     private void Awake()
@@ -67,4 +70,20 @@ public class GameStateManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pause.SetActive(false);
     }
+
+    public void  EndGame()
+    {
+        //only call gameover once
+        if(gameHasEnded == false)
+        {
+            gameHasEnded = true;
+            Debug.Log("GAME OVER");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            gameOver.SetActive(true);
+
+        }
+        
+    }
+
 }

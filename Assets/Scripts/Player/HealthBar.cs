@@ -75,6 +75,11 @@ public class HealthBar : MonoBehaviour
     {
         currentHealth -= amount;
         healthBar.value = currentHealth;
+
+        if(currentHealth <= 0)
+        {
+            FindObjectOfType<GameStateManager>().EndGame();
+        }
     }
 
 }
