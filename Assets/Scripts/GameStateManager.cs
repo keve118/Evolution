@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Class governs the gamestates paused (game)
@@ -76,14 +77,22 @@ public class GameStateManager : MonoBehaviour
         //only call gameover once
         if(gameHasEnded == false)
         {
-            gameHasEnded = true;
+            
             Debug.Log("GAME OVER");
+
+            SceneManager.LoadScene(2);
+            gameHasEnded = true;
+            ResetPlayerProperties();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            gameOver.SetActive(true);
-
         }
-        
+    }
+
+    void ResetPlayerProperties()
+    {
+        PlayerProperties.amountFood = 0;
+        PlayerProperties.amountWood = 0;
+        PlayerProperties.amountStone = 0;
     }
 
 }
