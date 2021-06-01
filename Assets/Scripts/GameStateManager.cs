@@ -60,6 +60,7 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        HealthBar.amountOfHealthToLoose = 0f;
         pause.SetActive(true);
     }
 
@@ -68,6 +69,7 @@ public class GameStateManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        HealthBar.amountOfHealthToLoose = 0.01f;
         pause.SetActive(false);
     }
 
