@@ -15,7 +15,6 @@ public class GameStateManager : MonoBehaviour
     //[SerializeField] private GameObject gameover;
     
     [SerializeField] private GameObject pause;
-    [SerializeField] private GameObject gameOver;
 
     [HideInInspector]
     public bool isPaused = false;
@@ -77,9 +76,6 @@ public class GameStateManager : MonoBehaviour
         //only call gameover once
         if(gameHasEnded == false)
         {
-            
-            Debug.Log("GAME OVER");
-
             SceneManager.LoadScene(2);
             gameHasEnded = true;
             ResetPlayerProperties();

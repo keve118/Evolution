@@ -96,7 +96,6 @@ public class MovementPlayerScript : MonoBehaviour
         if(playerVelocity.y < -50)
         {
             PlayerDies();
-            playerVelocity.y = -50;
         }
     }
 
@@ -140,6 +139,7 @@ public class MovementPlayerScript : MonoBehaviour
     void PlayerDies()
     {
         FindObjectOfType<GameStateManager>().EndGame();
+        playerVelocity.y = -50;
     }
 }
 
