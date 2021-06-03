@@ -92,6 +92,11 @@ public class MovementPlayerScript : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if(playerVelocity.y < -50)
+        {
+            PlayerDies();
+        }
     }
 
 
@@ -129,6 +134,12 @@ public class MovementPlayerScript : MonoBehaviour
         //can only use staminabar when player is moving
         if (controller.velocity.x != 0)
             StaminaBar.instance.UseStamina(amountOfStaminaToUse);
+    }
+
+    void PlayerDies()
+    {
+        FindObjectOfType<GameStateManager>().EndGame();
+        playerVelocity.y = -50;
     }
 }
 

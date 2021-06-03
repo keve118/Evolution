@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
     private float currentHealth;
 
     private float amountOfHealthToAdd = 10f; //amount of health to regain 
-    private float amountOfHealthToLoose = 0.01f; //amount of health to loose each frame
+    public static float amountOfHealthToLoose = 0.01f; //amount of health to loose each frame
 
     public static HealthBar instance;
     private PlayerControls playerControls;
@@ -75,6 +75,11 @@ public class HealthBar : MonoBehaviour
     {
         currentHealth -= amount;
         healthBar.value = currentHealth;
+
+        if(currentHealth <= 0)
+        {
+            FindObjectOfType<GameStateManager>().EndGame();
+        }
     }
 
 }
