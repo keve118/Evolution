@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 146150081705445204, guid: c8fe297d34a7fd143875442b3fc7312c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 146150081705445204, guid: c8fe297d34a7fd143875442b3fc7312c, type: 3}
+      propertyPath: m_Center.y
+      value: 4.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3943077248776192934, guid: c8fe297d34a7fd143875442b3fc7312c, type: 3}
       propertyPath: m_Name
       value: Tree bigger

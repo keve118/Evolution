@@ -13,17 +13,16 @@ public class CollectResource : MonoBehaviour
             //sound clip when picking up a resource
             FindObjectOfType<SoundManager>().Play("PickUpResource");
 
-            if (gameObject.tag=="Wood")
+            if (gameObject.tag=="Wood" && PlayerProperties.amountWood <= PlayerProperties.maxAmountWood - 1)
                 PlayerProperties.amountWood += 1;
 
-            if (gameObject.tag == "SmallWood")
+            if (gameObject.tag == "SmallWood" && PlayerProperties.amountWood <= PlayerProperties.maxAmountWood-0.25)
                 PlayerProperties.amountWood += 0.25f;
 
-            if (gameObject.tag == "Stone")
+            if (gameObject.tag == "Stone" && PlayerProperties.amountStone <= PlayerProperties.maxAmountStone - 1)
                 PlayerProperties.amountStone += 1;
 
-
-            if (gameObject.tag == "Food")
+            if (gameObject.tag == "Food" && PlayerProperties.amountFood <= PlayerProperties.maxAmountFood - 1)
                 PlayerProperties.amountFood += 1;
             Destroy(gameObject);
         }
@@ -31,7 +30,15 @@ public class CollectResource : MonoBehaviour
 
     void OnTriggerStay(Collider other) 
     {
-        if (other.tag == "Player") 
-            resourceHP -= 1; 
+        if (other.tag == "Player" && gameObject.tag=="Wood" && PlayerProperties.amountWood < PlayerProperties.maxAmountWood) 
+            resourceHP -= 1;
+        if (other.tag == "Player" && gameObject.tag == "SmallWood" && PlayerProperties.amountWood < PlayerProperties.maxAmountWood)
+            resourceHP -= 1;
+
+
+        if (other.tag == "Player" && gameObject.tag == "Food" && PlayerProperties.amountFood < PlayerProperties.maxAmountFood)
+            resourceHP -= 1;
+        if (other.tag == "Player" && gameObject.tag == "Stone" && PlayerProperties.amountStone < PlayerProperties.maxAmountStone)
+            resourceHP -= 1;
     }
 }

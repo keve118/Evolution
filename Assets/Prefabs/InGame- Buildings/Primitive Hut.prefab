@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adc8084ea8c5ea4e99dadae0df0f5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodCost: 20
-  stoneCost: 5
+  woodCost: 10
+  stoneCost: 25
   foodCost: 0
 --- !u!1001 &437692321849922687
 PrefabInstance:

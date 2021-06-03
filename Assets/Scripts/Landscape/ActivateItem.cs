@@ -48,7 +48,7 @@ public class ActivateItem : MonoBehaviour
                 visible = true;
             }
         }
-        else if (visible)
+        else if (distance > distanceToAppear)
         {
             objRenderer.enabled = false; // Hide Object
             visible = false;

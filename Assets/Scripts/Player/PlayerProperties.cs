@@ -11,13 +11,23 @@ public class PlayerProperties : MonoBehaviour
     public static double amountWood;
     public static double amountStone;
     public static double amountFood;
-    
+
+    public static double maxAmountWood;
+    public static double maxAmountStone;
+    public static double maxAmountFood;
+
     private void Awake()
     {
         instance = this;
         amountWood = 0;
         amountStone = 0;
         amountFood = 0;
+
+        maxAmountWood = 20;
+        maxAmountStone = 20;
+        maxAmountFood = 20;
+
+
     }
 
     #endregion
@@ -34,6 +44,14 @@ public class PlayerProperties : MonoBehaviour
     {
         rayCastTransform = rayCastObject.transform;
         rayCastOrigin = rayCastTransform.position;         
-    }+
+
+
+        if(amountWood >= maxAmountWood) 
+        { 
+            
+        
+        }
+
+    }
 
 }

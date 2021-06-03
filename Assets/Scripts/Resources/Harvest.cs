@@ -10,6 +10,7 @@ public class Harvest : MonoBehaviour
     private bool isFallen = false;
 
     public int mass = 10;
+    public int treeMass = 50;
     public int force = 0;
     public int timeFallen = 5;
     public GameObject rest;
@@ -53,6 +54,19 @@ public class Harvest : MonoBehaviour
             rigidBody.AddForce(Vector3.forward * force, ForceMode.Impulse);
             isFallen = true;
         }
+        if(gameObject.tag=="Wood" && !isFallen) 
+        {
+
+            Rigidbody rigidBody = gameObject.AddComponent<Rigidbody>();
+            rigidBody.isKinematic = false;
+            rigidBody.useGravity = true;
+            rigidBody.mass = treeMass;
+            isFallen = true;
+        }
+
+
+
+
 
         StartCoroutine(DestroyThisResource());
     }

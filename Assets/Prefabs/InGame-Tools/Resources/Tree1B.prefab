@@ -138,7 +138,7 @@ CapsuleCollider:
   m_Radius: 1.4
   m_Height: 9.7880335
   m_Direction: 1
-  m_Center: {x: 0, y: 4, z: 0.2}
+  m_Center: {x: 0, y: 4.7, z: 0.2}
 --- !u!114 &6143099969552262845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   startHealth: 20
   health: 0
   mass: 150
+  treeMass: 50
   force: 10
   timeFallen: 3
   rest: {fileID: 5949395493869644678, guid: e432e3baccb526e4a9315ce0c2a34a51, type: 3}

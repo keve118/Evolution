@@ -17,6 +17,7 @@ public class BuildingMenu : MonoBehaviour
     public GameObject primitiveHut;
     public GameObject firePlace;
     public GameObject workshop;
+    public GameObject storage;
 
     [Header("Tools")]
     public GameObject stoneAgeAxe;
@@ -27,6 +28,7 @@ public class BuildingMenu : MonoBehaviour
     public Text primitiveHutCost;
     public Text firePlaceCost;
     public Text workshopCost;
+    public Text storageCost;
     public Text stoneAgeAxeCost;
     public Text stoneAgePickAxeCost;
     public Text stoneAgeSpearCost;
@@ -130,6 +132,7 @@ public class BuildingMenu : MonoBehaviour
         primitiveHutCost.text = "Cost of Building:\n Wood:" + primitiveHut.GetComponent<Cost>().woodCost + "\n Stone:" + primitiveHut.GetComponent<Cost>().stoneCost;
         firePlaceCost.text = "Cost of Building:\n Wood:" + firePlace.GetComponent<Cost>().woodCost + "\n Stone:" + firePlace.GetComponent<Cost>().stoneCost;
         workshopCost.text = "Cost of Building:\n Wood:" + workshop.GetComponent<Cost>().woodCost + "\n Stone:" + workshop.GetComponent<Cost>().stoneCost;
+        storageCost.text = "Cost of Building:\n Wood:" + storage.GetComponent<Cost>().woodCost + "\n Stone:" + storage.GetComponent<Cost>().stoneCost;
 
         stoneAgeAxeCost.text = "Cost of Building:\n Wood:" + stoneAgeAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgeAxe.GetComponent<Cost>().stoneCost;
         stoneAgePickAxeCost.text = "Cost of Building:\n Wood:" + stoneAgePickAxe.GetComponent<Cost>().woodCost + "\n Stone:" + stoneAgePickAxe.GetComponent<Cost>().stoneCost;
