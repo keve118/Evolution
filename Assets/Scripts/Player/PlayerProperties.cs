@@ -31,6 +31,6 @@ public class PlayerProperties : MonoBehaviour
     {
         rayCastTransform = rayCastObject.transform;
         rayCastOrigin = rayCastTransform.position;         
-    }
+    }+
 
 }

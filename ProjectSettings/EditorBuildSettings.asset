@@ -20,4 +20,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Prefabs/Scenes/KevinScene.unity
     guid: c22e9be24dafba146b8a1b719b4537b9
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 4d2f7a58e5b649244b55cab7b80136c2, type: 2}
