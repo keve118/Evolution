@@ -16,6 +16,8 @@ public class PlayerProperties : MonoBehaviour
     public static double maxAmountStone;
     public static double maxAmountFood;
 
+    public GameObject storage;
+
     private void Awake()
     {
         instance = this;
@@ -44,14 +46,16 @@ public class PlayerProperties : MonoBehaviour
     {
         rayCastTransform = rayCastObject.transform;
         rayCastOrigin = rayCastTransform.position;         
-
-
-        if(amountWood >= maxAmountWood) 
-        { 
-            
-        
-        }
-
     }
+
+    public void IncreseMaxWood()
+    {
+        if (amountWood >= storage.GetComponent<Cost>().woodCost && amountStone >= storage.GetComponent<Cost>().stoneCost)
+        {
+            maxAmountWood = 40;
+            Debug.Log("Max Amount increased!" + PlayerProperties.maxAmountWood);
+        }
+    }
+
 
 }

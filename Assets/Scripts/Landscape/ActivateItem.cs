@@ -22,20 +22,6 @@ public class ActivateItem : MonoBehaviour
         Checker();
     }
 
-
-    //void OnBecameVisible()
-    //{
-    //    enabled = true;
-    //}
-    //void OnBecameInvisible()
-    //{
-    //    enabled = false;
-    //}
-    //private void OnGUI()
-    //{
-        
-    //}
-
     private void Checker()
     {
         float distance = Vector3.Distance(cameraPosition.position, transform.position);
