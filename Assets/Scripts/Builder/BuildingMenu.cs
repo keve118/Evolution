@@ -39,7 +39,6 @@ public class BuildingMenu : MonoBehaviour
 
     [Header("General Settings")]
     public Camera MainCamera;
-    public Camera UsingCamera;
     public float timePassed = 2f;
     public GameObject pointer;
     public GameObject player;
@@ -61,8 +60,24 @@ public class BuildingMenu : MonoBehaviour
 
         openCraftMenu.performed += context => isOpenCraftMenu = true;
         openCraftMenu.canceled += context => isOpenCraftMenu = false;
-        openBuildingMenu.performed += context => isOpenBuildingMenu = true;
-        openBuildingMenu.canceled += context => isOpenBuildingMenu = false;
+        //openBuildingMenu.performed += context => isOpenBuildingMenu = true;
+        //openBuildingMenu.canceled += context => isOpenBuildingMenu = false;
+
+        openBuildingMenu.performed += OnBuildingMenuOpen;
+
+    }
+
+    private void OnBuildingMenuOpen(InputAction.CallbackContext context)
+    {
+        if (buildUI.activeSelf)
+        {
+            CloseBuildUI();
+            
+        }
+        else
+        {
+            OpenBuildUI();
+        }
     }
 
     private void OnEnable() => playerContols.Enable();
@@ -71,8 +86,10 @@ public class BuildingMenu : MonoBehaviour
     private void Start()
     {
         MainCamera.enabled = true;
-        UsingCamera.enabled = false;
     }
+
+
+
 
     private void Update()
     {
@@ -91,13 +108,12 @@ public class BuildingMenu : MonoBehaviour
             {
             
                 CloseBuildUI();
-                Cursor.visible = false;
-             
+                Cursor.visible = false;       
             }
             else
             {                            
                 OpenBuildUI();
-               Cursor.visible = true;            
+                Cursor.visible = true;            
             }
             isBuildKeyDown = true;
         }
@@ -141,10 +157,9 @@ public class BuildingMenu : MonoBehaviour
 
     public void CloseBuildUI()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-        HealthBar.amountOfHealthToLoose = 0.01f;
+        Cursor.lockState = CursorLockMode.Locked;
         buildUI.SetActive(false);
     }
     public void OpenBuildUI()
@@ -152,9 +167,7 @@ public class BuildingMenu : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        HealthBar.amountOfHealthToLoose = 0f;
         buildUI.SetActive(true);
-
     }
     public void CloseToolUI()
     {
@@ -193,7 +206,8 @@ public class BuildingMenu : MonoBehaviour
         }
         else
         {
-
+            CloseBuildUI();
+            CloseToolUI();
         }
     }
     public void SpawnObject(GameObject buildingObject)
@@ -201,10 +215,14 @@ public class BuildingMenu : MonoBehaviour
         if (buildingObject.tag == "Tool")
         {
             Instantiate(buildingObject, positionTools.transform.position, transform.rotation);
+            CloseBuildUI();
+            CloseToolUI();
         }
-        else
+        else if(buildingObject.tag == "GameObject")
         { 
             Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
+            CloseBuildUI();
+            CloseToolUI();
         } 
    
     }
