@@ -74,7 +74,9 @@ public class BuildingMenu : MonoBehaviour
 
     private void Update()
     {
+        
 
+ 
         if (!isOpenBuildingMenu && isBuildKeyDown) //Disables spamming menu
         {
             isBuildKeyDown = false;

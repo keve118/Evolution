@@ -981,6 +981,237 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""VirtualMouse"",
+            ""id"": ""7e024d68-7305-41e7-9dba-8a11e44658f2"",
+            ""actions"": [
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""30bc29de-f765-41ba-8d68-3ece6b8c9d6f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Left Click"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""c17c047f-d6de-4b00-aa59-2513f1fbcc52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a0c8a4f7-93de-4827-9a68-c510e868f3fa"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc948480-760e-4bc9-a6f7-61ed251f0b89"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Middle Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""dcddcdd6-3bbe-436b-8908-446269dc5901"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Right Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""91e080d4-c899-45f9-9a6b-d78f2d1000f5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""831e8fff-a3ac-4e04-9407-a9cb5acb9864"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""046e9e37-ff19-4b5d-b327-5b09293871ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tracked Position"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6343689-54a1-46e8-b765-a1c0b8daf3ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Tracked Orientation"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa21b4c5-ddcd-4e8e-b2ea-75fe9ae2c629"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e18195d1-2112-47c8-91af-4805a0b28348"",
+                    ""path"": ""<VirtualMouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""VirtualMouse"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87bc7db8-8d5b-45b7-8378-bca9a361c952"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ef4cb4d-dcda-427d-a7d1-078447f5fe13"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""VirtualMouse"",
+                    ""action"": ""Left Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd1de240-f73e-4ea2-8350-60957bd42e4d"",
+                    ""path"": ""<VirtualMouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fdb1ffa-7b99-4277-8875-8e23c79ba3de"",
+                    ""path"": ""<VirtualMouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""VirtualMouse"",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10a4de07-a40d-4eed-b1b2-30bc5c6779a6"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0dc791b1-3633-4993-81fc-663f1e7f8370"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b8a0e0d-e059-4666-a20e-16132962ee3b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Middle Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a1bc145-4008-4a1c-b376-5e60f2d62a64"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4489a674-8747-4e5d-b8db-0c4d86fd2d52"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0d37f19-397b-4afa-aae3-23acae81bb30"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b8ca2de-027e-4f10-818c-40e1b38997ee"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tracked Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""777b8427-2799-45ed-83ca-990ebde6212f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tracked Orientation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1006,6 +1237,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""VirtualMouse"",
+            ""bindingGroup"": ""VirtualMouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<VirtualMouse>"",
                     ""isOptional"": true,
                     ""isOR"": false
                 }
@@ -1037,6 +1279,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Menu_Select = m_Menu.FindAction("Select", throwIfNotFound: true);
         m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
         m_Menu_MouseCoordinates = m_Menu.FindAction("MouseCoordinates", throwIfNotFound: true);
+        // VirtualMouse
+        m_VirtualMouse = asset.FindActionMap("VirtualMouse", throwIfNotFound: true);
+        m_VirtualMouse_Point = m_VirtualMouse.FindAction("Point", throwIfNotFound: true);
+        m_VirtualMouse_LeftClick = m_VirtualMouse.FindAction("Left Click", throwIfNotFound: true);
+        m_VirtualMouse_Scroll = m_VirtualMouse.FindAction("Scroll", throwIfNotFound: true);
+        m_VirtualMouse_Submit = m_VirtualMouse.FindAction("Submit", throwIfNotFound: true);
+        m_VirtualMouse_MiddleClick = m_VirtualMouse.FindAction("Middle Click", throwIfNotFound: true);
+        m_VirtualMouse_RightClick = m_VirtualMouse.FindAction("Right Click", throwIfNotFound: true);
+        m_VirtualMouse_Move = m_VirtualMouse.FindAction("Move", throwIfNotFound: true);
+        m_VirtualMouse_Cancel = m_VirtualMouse.FindAction("Cancel", throwIfNotFound: true);
+        m_VirtualMouse_TrackedPosition = m_VirtualMouse.FindAction("Tracked Position", throwIfNotFound: true);
+        m_VirtualMouse_TrackedOrientation = m_VirtualMouse.FindAction("Tracked Orientation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1292,6 +1546,111 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // VirtualMouse
+    private readonly InputActionMap m_VirtualMouse;
+    private IVirtualMouseActions m_VirtualMouseActionsCallbackInterface;
+    private readonly InputAction m_VirtualMouse_Point;
+    private readonly InputAction m_VirtualMouse_LeftClick;
+    private readonly InputAction m_VirtualMouse_Scroll;
+    private readonly InputAction m_VirtualMouse_Submit;
+    private readonly InputAction m_VirtualMouse_MiddleClick;
+    private readonly InputAction m_VirtualMouse_RightClick;
+    private readonly InputAction m_VirtualMouse_Move;
+    private readonly InputAction m_VirtualMouse_Cancel;
+    private readonly InputAction m_VirtualMouse_TrackedPosition;
+    private readonly InputAction m_VirtualMouse_TrackedOrientation;
+    public struct VirtualMouseActions
+    {
+        private @PlayerControls m_Wrapper;
+        public VirtualMouseActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Point => m_Wrapper.m_VirtualMouse_Point;
+        public InputAction @LeftClick => m_Wrapper.m_VirtualMouse_LeftClick;
+        public InputAction @Scroll => m_Wrapper.m_VirtualMouse_Scroll;
+        public InputAction @Submit => m_Wrapper.m_VirtualMouse_Submit;
+        public InputAction @MiddleClick => m_Wrapper.m_VirtualMouse_MiddleClick;
+        public InputAction @RightClick => m_Wrapper.m_VirtualMouse_RightClick;
+        public InputAction @Move => m_Wrapper.m_VirtualMouse_Move;
+        public InputAction @Cancel => m_Wrapper.m_VirtualMouse_Cancel;
+        public InputAction @TrackedPosition => m_Wrapper.m_VirtualMouse_TrackedPosition;
+        public InputAction @TrackedOrientation => m_Wrapper.m_VirtualMouse_TrackedOrientation;
+        public InputActionMap Get() { return m_Wrapper.m_VirtualMouse; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(VirtualMouseActions set) { return set.Get(); }
+        public void SetCallbacks(IVirtualMouseActions instance)
+        {
+            if (m_Wrapper.m_VirtualMouseActionsCallbackInterface != null)
+            {
+                @Point.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnPoint;
+                @LeftClick.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnLeftClick;
+                @LeftClick.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnLeftClick;
+                @LeftClick.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnLeftClick;
+                @Scroll.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnScroll;
+                @Scroll.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnScroll;
+                @Scroll.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnScroll;
+                @Submit.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnSubmit;
+                @MiddleClick.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnMiddleClick;
+                @MiddleClick.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnMiddleClick;
+                @MiddleClick.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnMiddleClick;
+                @RightClick.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnRightClick;
+                @RightClick.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnRightClick;
+                @RightClick.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnRightClick;
+                @Move.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnMove;
+                @Cancel.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnCancel;
+                @TrackedPosition.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnTrackedPosition;
+                @TrackedPosition.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnTrackedPosition;
+                @TrackedPosition.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnTrackedPosition;
+                @TrackedOrientation.started -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnTrackedOrientation;
+                @TrackedOrientation.performed -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnTrackedOrientation;
+                @TrackedOrientation.canceled -= m_Wrapper.m_VirtualMouseActionsCallbackInterface.OnTrackedOrientation;
+            }
+            m_Wrapper.m_VirtualMouseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
+                @LeftClick.started += instance.OnLeftClick;
+                @LeftClick.performed += instance.OnLeftClick;
+                @LeftClick.canceled += instance.OnLeftClick;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
+                @MiddleClick.started += instance.OnMiddleClick;
+                @MiddleClick.performed += instance.OnMiddleClick;
+                @MiddleClick.canceled += instance.OnMiddleClick;
+                @RightClick.started += instance.OnRightClick;
+                @RightClick.performed += instance.OnRightClick;
+                @RightClick.canceled += instance.OnRightClick;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+                @TrackedPosition.started += instance.OnTrackedPosition;
+                @TrackedPosition.performed += instance.OnTrackedPosition;
+                @TrackedPosition.canceled += instance.OnTrackedPosition;
+                @TrackedOrientation.started += instance.OnTrackedOrientation;
+                @TrackedOrientation.performed += instance.OnTrackedOrientation;
+                @TrackedOrientation.canceled += instance.OnTrackedOrientation;
+            }
+        }
+    }
+    public VirtualMouseActions @VirtualMouse => new VirtualMouseActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -1308,6 +1667,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
             return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
+    private int m_VirtualMouseSchemeIndex = -1;
+    public InputControlScheme VirtualMouseScheme
+    {
+        get
+        {
+            if (m_VirtualMouseSchemeIndex == -1) m_VirtualMouseSchemeIndex = asset.FindControlSchemeIndex("VirtualMouse");
+            return asset.controlSchemes[m_VirtualMouseSchemeIndex];
         }
     }
     public interface IGameplayActions
@@ -1335,5 +1703,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnMouseCoordinates(InputAction.CallbackContext context);
+    }
+    public interface IVirtualMouseActions
+    {
+        void OnPoint(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
+        void OnMiddleClick(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnTrackedPosition(InputAction.CallbackContext context);
+        void OnTrackedOrientation(InputAction.CallbackContext context);
     }
 }
