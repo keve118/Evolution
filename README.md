@@ -10,3 +10,17 @@ För att köra:
 - Unity 2020.3.1f1 Ska vara installerat. 
 - High Definition Render Pipeline skall användas för projektet.
 - Tillgång till GitHub-filer 
+
+Packages 
+- High Definition RP
+- Input System
+- JetBrains Rider Editor
+- Test Framework
+- TextMeshPro
+- Timeline
+- UI Builder 1.0.0-preview.14
+- UI Toolkit 1.0.0-preview.14
+- Unity Collaborate
+- Unity UI (1.0.0)
+- Visual Studio Code Editor (1.2.3)
+- Visual Studio Editor (2.0.7)
