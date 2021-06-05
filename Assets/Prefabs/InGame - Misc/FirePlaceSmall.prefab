@@ -229,7 +229,6 @@ GameObject:
   - component: {fileID: 6542007832947992527}
   - component: {fileID: 6542007832947992526}
   - component: {fileID: 1032396030}
-  - component: {fileID: -7093195673496417467}
   m_Layer: 0
   m_Name: FirePlaceSmall
   m_TagString: GameObject
@@ -315,19 +314,6 @@ MonoBehaviour:
   woodCost: 5
   stoneCost: 4
   foodCost: 0
---- !u!114 &-7093195673496417467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7014695599563017691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1178cd5338cd30468b4767333a57965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceToAppear: 20
 --- !u!1 &9038894966037631271
 GameObject:
   m_ObjectHideFlags: 0

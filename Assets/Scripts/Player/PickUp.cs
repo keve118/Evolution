@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PickUp : MonoBehaviour
 {
+    //THESE COMMENTS ARE IN A TESTING PHASE
+
     public GameObject rayObject;
     
     private PlayerControls playerControls;
@@ -14,20 +16,55 @@ public class PickUp : MonoBehaviour
     private Transform middleHand;
     private GameObject pickedUpObject;
     private bool pickedUp = false;
-    private bool whenPickUpItem;
+    //private bool whenPickUpItem;
     private float rotationModifier;
+    private void Start()
+    {
+        middleHand = GameObject.Find("MiddleHand").transform;
+        pickedUpObject = gameObject;
+        SnapToGround();
+    }
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         pickUpItem = playerControls.Gameplay.PickUpObject;
         rotatePickedUpObject = playerControls.Gameplay.RotateBuilding;
-
-        pickUpItem.performed += context => whenPickUpItem = true;
-        pickUpItem.canceled += context => whenPickUpItem = false;
+        //pickUpItem.performed += context => whenPickUpItem = true;
+        //pickUpItem.canceled += context => whenPickUpItem = false;
 
         rotatePickedUpObject.performed += OnRotate;
         rotatePickedUpObject.canceled += OnRotate;
+        pickUpItem.performed += OnPickUp;
+    }
+
+    private void OnPickUp(InputAction.CallbackContext context)
+    {
+       if (!pickedUp)
+       {
+            PickUpObject();
+       }
+       else if (pickedUp)
+       {
+            SnapToGround();
+       }
+    }
+  
+    private void PickUpObject() 
+    {
+        Ray ray = new Ray(rayObject.transform.position, rayObject.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 10)) //RayCast To find object that should be carried
+        {
+            if ((hit.collider.tag == "GameObject") &&/* whenPickUpItem && */!pickedUp)
+            {
+                pickedUp = true;
+                pickedUpObject = hit.collider.gameObject;
+                pickedUpObject.GetComponent<Rigidbody>().useGravity = false;
+                pickedUpObject.GetComponent<Rigidbody>().isKinematic = true;
+                hit.collider.gameObject.transform.position = middleHand.transform.position;
+            }      
+        }
     }
 
     private void OnRotate(InputAction.CallbackContext context)
@@ -39,37 +76,15 @@ public class PickUp : MonoBehaviour
 
     private void OnDisable() => playerControls.Disable();
 
-    private void Start()
-    {
-        middleHand = GameObject.Find("MiddleHand").transform;
-        pickedUpObject = gameObject;
-        SnapToGround();
-    }
-
     private void Update()
     {
-        Ray ray = new Ray(rayObject.transform.position, rayObject.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 10)) //RayCast To find object that should be carried
+        if (pickedUp) 
         {
-            if ((hit.collider.tag == "GameObject" /*|| hit.collider.tag == "Workshop"*/) && whenPickUpItem && !pickedUp)
-            {
-                pickedUp = true;
-                pickedUpObject = hit.collider.gameObject;      
-                pickedUpObject.GetComponent<Rigidbody>().useGravity = false;
-                pickedUpObject.GetComponent<Rigidbody>().isKinematic = true;
-                hit.collider.gameObject.transform.position = middleHand.transform.position;
-            }
-            else if (whenPickUpItem && pickedUp)          
-                SnapToGround();           
-            if (pickedUp)            
-                RotateObject();                
+            RotateObject();
+            pickedUpObject.transform.position = middleHand.position;       
         }
-        if (pickedUp)
-            pickedUpObject.transform.position = middleHand.position;           
     }
-
-
+  
     public void RotateObject()
     {
         if (rotationModifier != 0 && rotationModifier > 0)        pickedUpObject.transform.Rotate(0.0f, 40 * Time.deltaTime, 0.0f);       

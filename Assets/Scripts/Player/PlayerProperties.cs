@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerProperties : MonoBehaviour
 {
-
     #region Singleton
     [HideInInspector] public PlayerProperties instance;
 
@@ -26,10 +25,8 @@ public class PlayerProperties : MonoBehaviour
         amountFood = 0;
 
         maxAmountWood = 20;
-        maxAmountStone = 20;
+        maxAmountStone =20;
         maxAmountFood = 20;
-
-
     }
 
     #endregion

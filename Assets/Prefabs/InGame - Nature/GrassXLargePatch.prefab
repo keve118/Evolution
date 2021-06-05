@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2847900296140883712}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GrassXLargePatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

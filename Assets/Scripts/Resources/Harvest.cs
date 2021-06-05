@@ -11,6 +11,7 @@ public class Harvest : MonoBehaviour
 
     public int mass = 10;
     public int treeMass = 50;
+    public int stoneMass = 100;
     public int force = 0;
     public int timeFallen = 5;
     public GameObject rest;
@@ -63,9 +64,15 @@ public class Harvest : MonoBehaviour
             rigidBody.mass = treeMass;
             isFallen = true;
         }
+        if (gameObject.tag == "Stone" && !isFallen)
+        {
 
-
-
+            Rigidbody rigidBody = gameObject.AddComponent<Rigidbody>();
+            rigidBody.isKinematic = false;
+            rigidBody.useGravity = true;
+            rigidBody.mass = stoneMass;
+            isFallen = true;
+        }
 
 
         StartCoroutine(DestroyThisResource());

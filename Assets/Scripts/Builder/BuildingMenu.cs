@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -42,6 +41,9 @@ public class BuildingMenu : MonoBehaviour
     public float timePassed = 2f;
     public GameObject pointer;
     public GameObject player;
+
+    [Header("Manual Input")]
+    public GameObject rayCastObject;
 
     //Input
     private PlayerControls playerContols;
@@ -99,7 +101,7 @@ public class BuildingMenu : MonoBehaviour
             isBuildKeyDown = false;
         }
 
-        Ray ray = new Ray(PlayerProperties.rayCastOrigin, PlayerProperties.rayCastTransform.forward);
+        Ray ray = new Ray(rayCastObject.transform.position, rayCastObject.transform.forward);
         RaycastHit hit;
 
         if (isOpenBuildingMenu && !isBuildKeyDown)
@@ -223,7 +225,12 @@ public class BuildingMenu : MonoBehaviour
             Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
             CloseBuildUI();
             CloseToolUI();
-        } 
-   
+        }
+        else 
+        {
+            Instantiate(buildingObject, positionBuildings.transform.position, transform.rotation);
+            CloseBuildUI();
+            CloseToolUI();
+        }
     }
 }

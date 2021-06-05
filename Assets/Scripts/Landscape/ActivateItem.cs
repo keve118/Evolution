@@ -11,8 +11,7 @@ public class ActivateItem : MonoBehaviour
     private bool skipFunction=false;
 
     private void Start()
-    {
-
+    {  
         cameraPosition = Camera.main.transform;
         objRenderer = gameObject.GetComponentInChildren<Renderer>();
     }
@@ -23,18 +22,6 @@ public class ActivateItem : MonoBehaviour
     }
 
 
-    //void OnBecameVisible()
-    //{
-    //    enabled = true;
-    //}
-    //void OnBecameInvisible()
-    //{
-    //    enabled = false;
-    //}
-    //private void OnGUI()
-    //{
-        
-    //}
 
     private void Checker()
     {

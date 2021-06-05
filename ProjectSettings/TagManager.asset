@@ -14,6 +14,7 @@ TagManager:
   - Tool
   - Workshop
   - SmallWood
+  - Landscape
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - PostProcessing
   - Not in Reflection
   - Player
-  - 
+  - Grass
   - 
   - 
   - 
